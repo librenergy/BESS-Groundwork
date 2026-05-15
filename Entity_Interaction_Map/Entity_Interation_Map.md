@@ -124,7 +124,7 @@ flowchart TB
     
     %% optimiser
     AO === OPT["Optimizer"]:::company
-    AO === TRA["Trader"]:::company
+    AO === TRA["Trader\n QSE\n Route to Market Provider"]:::company
     TAD -->|API| OPT
     OPT --> TRA
     TRA -->|"ISO Trading Platform"| TAD
