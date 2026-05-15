@@ -85,82 +85,113 @@ The map is living documentation. Update it when contracts change, systems migrat
 ## The EIM Diagram
 
 ```mermaid
-flowchart LR
+flowchart TB
+  %% BESS Asset group
   subgraph BESS["BESS Asset"]
-      BU["Battery Units"]
-      BMS["BMS"]
-      PCS["PCS"]
-      PPC["Power Plant Controller"]
-      EMS["EMS"]
+      BAT
+      PCS["PCS"]:::asset
+      PPC["Power Plant Controller"]:::asset
+      EMS["EMS"]:::asset
+      SCADA:::asset <--> PPC
+      SCADA <--> RTAC
+      SCADA <--> EMS
+      RTAC["Grid RTAC"]:::asset
   end
-    BU --- BMS
+
+    subgraph BAT["Battery"]
+      ST["String"]:::asset
+      
+        BMS["BMS"]:::asset
+    end
+    BAT --- ST
+    ST --- BMS
+    ST --- PCS
     BMS --> PCS
     PCS --> EMS
     PCS <--> PPC
     PPC <--> EMS
     BMS --> EMS
 
-    BESS:::asset
-
+    %% Owner
     AO(("BESS Asset Owner")):::owner === BESS
 
-    %% contractual relationships
-    AO === AM["Asset Manager"]
-    AO === INS["Insurer"]
-    AO === IL["Investors / Lender"]
-    AO === OM["LTSA / O&M Provider"]
-    AO === OR["Operator / ROC"]
-    AO === OPT["Optimizer"]
-    AO === TRA["Trader"]
+    %% Asset Owner contractual relationships
+    AO === AM["Asset Manager"]:::company
+    AO === INS["Insurer"]:::company
+    AO === IL["Investors / Lender"]:::company
+    AO === OM["LTSA / O&M Provider"]:::company
+    AO === OR["Operator / ROC"]:::company
+    
+    %% optimiser
+    AO === OPT["Optimizer"]:::company
+    AO === TRA["Trader"]:::company
+    TAD -->|API| OPT
+    OPT --> TRA
+    TRA -->|"ISO Trading Platform"| TAD
+    OPT <-->|"daily call\n weekly report"| AM
+
+    %% Asset Data Interaction
+    AO <-->|settlements| SET
+    AO <--> APM
+
+    %% Grid / Interconnection
+    subgraph GRID["Grid & Market Interface"]
+        GR["Transmission / Distribution Grid"]:::asset
+        POI["Point of Interconnection<br/>Revenue Meter"]:::asset
+        ISO["ISO / RTO"]:::company
+        GO["Grid Operator<br/>Real-time Desk"]:::company
+        OMS["ISO Outage<br/>Management System"]:::data
+        SET["Settlement System"]:::data
+        MD["Market Data"]:::data
+        TAD["Trade & Award Data"]:::data
+    end
+
+    PCS --- POI
+    POI --- GR
+
+    PPC <--> RTAC
+    RTAC <--> ISO
+    RTAC <--> GO
+    RTAC --> POI
+
+    ISO <--> GO
+    ISO <--> OMS
+    ISO --> MD
+    ISO --> TAD
+    ISO --> SET
+    POI --> SET
 
     %% operational flows
     AM --> EMS
     AM --> APM["APM / Battery Analytics"]
     AM --> INS
-
     APM --> EMS
 
-    OM --> CMMS["CMMS"] & BOEM["Battery OEM"] & POEM["PCS OEM"] & EOEM["EMS OEM"] & TS["Ticketing System"]
+
+    OM --> CMMS["CMMS"] 
+    OM -->  BOEM["Battery OEM"] 
+    OM -->  POEM["PCS OEM"] 
+    OM -->  EOEM["EMS OEM"] 
+    OM -->  TS["Ticketing System"]
 
     OR --> TS & BESS
-    OPT --> TAD["Trade & Award Data"] & MD["Market Data"]
-    APM --> BESS & BOEM
-    AM --> SD["Settlement Data"] & OMS["ISO OMS"]
-    MD --> GO["Grid Operator"]
+
+    
+
+    AM --> OMS
+
     GO --> OMS
     BESS --> OMS
 
     %% --- Class assignments ---
-    BU:::asset
-    BMS:::asset
-    PCS:::asset
-    PPC:::asset
-    EMS:::asset
 
-    AO:::owner
-
-    AM:::company
-    INS:::company
-    IL:::company
-    OM:::company
-    OR:::company
-    OPT:::company
-    TRA:::company
-    BOEM:::company
-    POEM:::company
-    EOEM:::company
-    GO:::company
-    APM:::company
 
     CMMS:::data
     TS:::data
-    TAD:::data
-    SD:::data
-    OMS:::data
-    MD:::data
 
     %% --- Style definitions ---
-    classDef asset   fill:#3b82f6,stroke:#1e3a8a,stroke-width:2px,color:#fff
+    classDef asset_group   fill:#3b82f6,stroke:#1e3a8a,stroke-width:2px,color:#fff
+    classDef asset   fill:#1E90FF,stroke:#1e3a8a,stroke-width:2px,color:#fff
     classDef owner   fill:#111827,stroke:#000,stroke-width:2px,color:#fff
     classDef company fill:#dcfce7,stroke:#15803d,stroke-width:1.5px,color:#064e3b
     classDef person  fill:#ffedd5,stroke:#9a3412,stroke-width:1.5px,color:#7c2d12
