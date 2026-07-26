@@ -7,7 +7,9 @@ description: Build or update a BESS project RACI matrix (Responsible/Accountable
 
 # RACI Matrix — Facilitated Session
 
-Template: `RACI_Matrix/02-raci-matrix.md` (repo root). The RACI translates the EIM's contractual edges into operational accountability, scenario by scenario.
+> **Before you start:** read `Definitions_Taxonomy(DT)/definitions.md` (what every acronym and term means on this project — ⚠️-flagged entries carry two meanings) and `Definitions_Taxonomy(DT)/taxonomy.md` (canonical names, organization codes, ID prefixes), if populated. Use the established vocabulary throughout, and add any new acronym or term this session introduces to the glossary before wrapping up (`definitions-taxonomy` skill).
+
+Template: `RACI_Matrix(RACI)/raci-matrix.md` (repo root). The RACI translates the EIM's contractual edges into operational accountability, scenario by scenario.
 
 ## Prerequisites
 
@@ -39,6 +41,6 @@ Ask: "What has actually gone wrong on this project in the last year?" Add a row 
 
 ## Outputs
 
-1. `02-raci-{{project}}-v{{n}}.md` — populated template.
+1. `RACI_Matrix(RACI)/raci-matrix.md` populated in place (version bumped).
 2. Discrepancies table with resolution owners (often the most valuable deliverable — it lists the contractual gaps).
 3. Offer next steps: the accountable parties per event feed directly into the Escalation & Communication Plan skill.

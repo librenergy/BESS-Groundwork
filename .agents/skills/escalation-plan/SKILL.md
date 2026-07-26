@@ -7,7 +7,9 @@ description: Build or update a BESS project's event escalation and communication
 
 # Escalation & Communication Plan — Facilitated Session
 
-Template: `Escalation_Communication_Plan/05-escalation-communication-plan.md` (repo root). This turns the RACI's accountable parties into a 2 AM call sheet with deadlines.
+> **Before you start:** read `Definitions_Taxonomy(DT)/definitions.md` (what every acronym and term means on this project — ⚠️-flagged entries carry two meanings) and `Definitions_Taxonomy(DT)/taxonomy.md` (canonical names, organization codes, ID prefixes), if populated. Use the established vocabulary throughout, and add any new acronym or term this session introduces to the glossary before wrapping up (`definitions-taxonomy` skill).
+
+Template: `Escalation_Communication_Plan(ECP)/escalation-communication-plan.md` (repo root). This turns the RACI's accountable parties into a 2 AM call sheet with deadlines.
 
 ## Prerequisites
 
@@ -18,7 +20,7 @@ Template: `Escalation_Communication_Plan/05-escalation-communication-plan.md` (r
 1. **Severity levels.** Calibrate the four levels to this project: what counts as SEV-1 here, and what notification windows do contracts/ISO rules impose?
 2. **Walk the event types.** For each row in the template, narrate the scenario and confirm: who detects it (which system raises the alarm — tie to EIM data nodes), first call, backup, accountable, must-notify list, and the binding deadline with its source (ISO rule, insurance clause, tolling agreement).
 3. **Standing communications.** Confirm the recurring cadences from the EIM (optimizer daily call/weekly report, O&M calls, monthly report distribution) and add the project's real meeting rhythm.
-4. **Contractual notifications.** Mine the Obligation Matrix and insurance policies for hard notification deadlines — these are the rows where lateness costs money.
+4. **Contractual notifications.** Mine the Performance Guarantee Matrix, Warranty Obligation Matrix, and insurance policies for hard notification deadlines — these are the rows where lateness costs money.
 5. **Quick card.** Fill the print-friendly card with live 24/7 numbers from the Contact Register.
 
 ## Facilitation guidance
@@ -29,6 +31,6 @@ Template: `Escalation_Communication_Plan/05-escalation-communication-plan.md` (r
 
 ## Outputs
 
-1. `05-escalation-plan-{{project}}-v{{n}}.md` — populated template + quick card.
+1. `Escalation_Communication_Plan(ECP)/escalation-communication-plan.md` populated in place (version bumped) + quick card.
 2. Detection-gap list → alerting backlog.
 3. Suggest a periodic drill / annual review date.

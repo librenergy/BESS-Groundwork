@@ -2,12 +2,14 @@
 name: data-interface-register
 title: Data Interface Register — Facilitated Session
 type: Skill
-description: Build or update a BESS project's Data Interface Register from its Entity Interaction Map through a facilitated session with the asset manager or owner. Use whenever the user wants to catalogue data systems, telemetry chains, protocols, signal lists, integration points, or scope data-platform ingestion for a BESS project — including phrases like "map the data flows", "what systems do we need to connect", "telemetry inventory", or when scoping a ClickHouse/historian/APM integration. Requires a project EIM (if none exists, run the eim-review-build skill first).
+description: Build or update a BESS project's Data Interface Register from its Entity Interaction Map through a facilitated session with the asset manager or owner. Use whenever the user wants to catalogue data systems, telemetry chains, protocols, signal lists, integration points, or scope data-platform ingestion for a BESS project — including phrases like "map the data flows", "what systems do we need to connect", "telemetry inventory", or when scoping a historian/data-platform/APM integration. Requires a project EIM (if none exists, run the eim-review-build skill first).
 ---
 
 # Data Interface Register — Facilitated Session
 
-Template: `Data_Interface_Register/01-data-interface-register.md` (repo root). The register is the foundational satellite document — KPIs, settlement reconciliation, and the monthly report all reference its interface IDs.
+> **Before you start:** read `Definitions_Taxonomy(DT)/definitions.md` (what every acronym and term means on this project — ⚠️-flagged entries carry two meanings) and `Definitions_Taxonomy(DT)/taxonomy.md` (canonical names, organization codes, ID prefixes), if populated. Use the established vocabulary throughout, and add any new acronym or term this session introduces to the glossary before wrapping up (`definitions-taxonomy` skill).
+
+Template: `Data_Interface_Register(DIR)/data-interface-register.md` (repo root). The register is the foundational satellite document — KPIs, settlement reconciliation, and the monthly report all reference its interface IDs.
 
 ## Prerequisites
 
@@ -44,6 +46,6 @@ Map which sources feed the historian/platform, via what path, into which tables/
 
 ## Outputs
 
-1. `01-data-interface-register-{{project}}-v{{n}}.md` — populated template.
+1. `Data_Interface_Register(DIR)/data-interface-register.md` populated in place (version bumped in the header).
 2. Open-items table filled with owners and dates (this is the follow-up agenda).
-3. Offer next steps: the ISO telemetry section feeds the KPI Definitions skill; the ingestion map feeds platform scoping.
+3. Offer next steps: the telemetry section feeds the Metrics & KPIs session (`metrics-tree` skill); the ingestion map feeds platform scoping.

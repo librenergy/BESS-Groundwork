@@ -2,16 +2,22 @@
 name: eim-review-build
 title: EIM Review & Build — Facilitated Session
 type: Skill
-description: Facilitate a structured Q&A session to review, build, or update a BESS project's Entity Interaction Map (EIM) in Mermaid. Use this skill whenever the user wants to create an EIM for a new project, review or validate an existing EIM with an asset manager or owner, onboard a new BESS client, map project stakeholders/contracts/data flows, or says things like "let's go through the interaction map", "map out the entities for [project]", or "kickoff session". This is the FIRST skill in the BESS asset-management toolkit — always offer it before any satellite-document skill if no project-specific EIM exists yet, because every other document (interface register, RACI, warranty matrix, KPIs, escalation plan, outage accounting, monthly report, settlement reconciliation) is derived from the EIM.
+description: Facilitate a structured Q&A session to review, build, or update a BESS project's Entity Interaction Map (EIM) in Mermaid. Use this skill whenever the user wants to create an EIM for a new project, review or validate an existing EIM with an asset manager or owner, onboard a new BESS client, map project stakeholders/contracts/data flows, or says things like "let's go through the interaction map", "map out the entities for [project]", or "kickoff session". This is the FIRST skill in the BESS asset-management toolkit — always offer it before any satellite-document skill if no project-specific EIM exists yet, because every other document (interface register, RACI, guarantee & warranty matrices, metrics & KPIs, escalation plan, BESS GADS, settlement reconciliation, monthly report) is derived from the EIM.
 ---
 
 # EIM Review & Build — Facilitated Session
 
+> **Before you start:** read `Definitions_Taxonomy(DT)/definitions.md` (what every acronym and term means on this project — ⚠️-flagged entries carry two meanings) and `Definitions_Taxonomy(DT)/taxonomy.md` (canonical names, organization codes, ID prefixes), if populated. Use the established vocabulary throughout, and add any new acronym or term this session introduces to the glossary before wrapping up (`definitions-taxonomy` skill).
+
 ## What this skill does
 
-Run a collaborative, section-by-section working session that produces (or updates) a project-specific Entity Interaction Map: a Mermaid flowchart showing every entity (companies, contracts, assets, data systems) and every interaction (contractual, operational, data flow) on a BESS project.
+Run a collaborative, section-by-section working session that produces (or updates) a project-specific Entity Interaction Map: a Mermaid flowchart showing every entity (companies, contracts, assets, data systems) and every interaction (contractual, operational, data flow) on a BESS project. The toolkit is BESS-first, but the method is asset-agnostic — for a PV plant, swap the battery asset detail for array/inverter blocks and the same rings (ownership, EPC/warranty, O&M, market, grid, controls) apply.
 
-The generic baseline EIM lives in `Entity_Interaction_Map/Entity_Interaction_Map.md` (repo root) — the Mermaid diagram is inline in that file. A session instantiates it for a specific project with real company names, real contract structures, and project-specific deviations.
+The generic baseline EIM lives in `Entity_Interaction_Map(EIM)/Entity_Interaction_Map(EIM).md` (repo root) — the Mermaid diagram is inline in that file. A session instantiates it for a specific project with real company names, real contract structures, and project-specific deviations.
+
+## Working copy
+
+The default working copy is the Mermaid block inline in `Entity_Interaction_Map(EIM)/Entity_Interaction_Map(EIM).md`. If the project drafts collaboratively in a cloud Mermaid editor (Mermaid Chart / Mermaid.ai, editable via MCP), that cloud diagram becomes the **single working copy**: the repo file holds a pointer, the folder `log.md` holds version history, the folder `todo.md` holds open items, and snapshots sync back at milestones. Two rules when editing the cloud copy: **re-fetch it before every edit** (concurrent editor sessions overwrite each other — lost updates do not merge), and after pushing an edit via MCP, tell the user to refresh their editor tab before making changes there.
 
 ## Session principles
 
@@ -64,14 +70,14 @@ Work through these in order unless the user redirects. For each: state what the 
 - Revenue metering: at POI only, or also PCS-level check meters?
 
 ### 8. Performance engineering overlay (optional)
-- If the user (e.g., Librenergy) is engaged as PE consultant, add the PE entity and its data/reporting edges.
+- If a performance-engineering consultant is engaged, add the PE entity and its data/reporting edges.
 
 ## Wrap-up (always do)
 
 1. Show the complete updated Mermaid map.
 2. Produce the **open questions list** (every ❓) with a suggested owner for each answer.
-3. Save/deliver: `eim-{{project}}-v{{n}}.mermaid` plus the open-questions list.
-4. Offer next steps explicitly: "From this map we can now generate the satellite documents — recommended order: (1) Data Interface Register, (2) Warranty Obligation Matrix, then RACI, KPI definitions, escalation plan, outage accounting, monthly report template, settlement reconciliation. Each has its own skill and template."
+3. Save/deliver: `Entity_Interaction_Map(EIM)/Entity_Interaction_Map(EIM).md` updated in place (version bumped); record the open-questions list in the folder's `todo.md` and the session's changes in the folder's `log.md`.
+4. Offer next steps explicitly: "From this map we can now generate the satellite documents — recommended order: (1) Contact Register, (2) Data Interface Register, (3) Performance Guarantee Matrix, (4) Warranty Obligation Matrix, (5) Metrics Tree then Metrics & KPIs, (6) RACI, (7) Escalation Plan, (8) BESS GADS, (9) Settlement Reconciliation, (10) Monthly Performance Report (a data product). Each has its own skill and template."
 
 ## Editing an existing map
 
