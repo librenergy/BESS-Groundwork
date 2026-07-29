@@ -18,7 +18,8 @@ Everything anchors on the Entity Interaction Map; the satellite documents derive
 * [Metrics & KPIs](/Metrics_Tree%28MT%29/metrics-and-kpis.md) - Authoritative metric definitions traced to sources and contracts, plus the KPI target set.
 * [Escalation & Communication Plan](/Escalation_Communication_Plan%28ECP%29/escalation-communication-plan.md) - Who-calls-whom, severity levels, and notification deadlines.
 * [BESS GADS](/BESS_GADS%28GADS%29/bess-gads.md) - GADS-aligned outage/derate event taxonomy — one authoritative event record feeding every contractual availability calculation.
-* [Monthly Performance Report](/Data_Product%28DP%29/Monthly_Performance_Report%28MPR%29/monthly-performance-report.md) - Assembled monthly/quarterly reporting pack for owner, lender, and IE.
+* [Monthly Performance Report](/Data_Product%28DP%29/Monthly_Performance_Report/monthly-performance-report.md) - Assembled monthly/quarterly reporting pack for owner, lender, and IE.
+* [Daily Performance Report](/Data_Product%28DP%29/Daily_Performance_Report/daily-performance-report.md) - Daily limit tracking against contract usage limits and guarantees, with the design rules for a daily counterparty data exchange.
 * [Settlement Reconciliation](/Settlement_Reconciliation%28SR%29/settlement-reconciliation.md) - Shadow-settlement procedure verifying ISO statements against meter data and awards.
 * [Master Metrics Tree](/Metrics_Tree%28MT%29/metrics-tree.md) - Hierarchical decomposition of all BESS metrics into a Commercial Value limb and an Asset Health limb.
 * [Definitions & Taxonomy](/Definitions_Taxonomy%28DT%29/index.md) - Global glossary of acronyms and terms plus naming/coding conventions (organization codes, ID prefixes) for generated documents.

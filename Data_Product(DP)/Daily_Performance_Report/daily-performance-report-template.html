@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<!--
+  Daily Performance Report — HTML render skeleton
+  Companion to daily-performance-report.md (that file is the specification; this is the render target).
+
+  Conventions, matching a production generator:
+    · 700px centred table layout, inline styles only, no CSS classes — survives email clients and
+      headless-Chromium PDF export unchanged.
+    · Charts embed as base64 PNG so a single file is self-contained and archivable as evidence.
+    · Placeholders are {{TOKENS}}.
+
+  Palette
+    text        #2d3748   headings #1a365d   muted #4a5568 / #718096 / #a0aec0
+    rules       #e2e8f0   panels   #f7fafc / #edf2f7   table header #2d3748
+    accent rule #2b6cb0   good     #38a169   bad #e53e3e   warn panel #fff3cd
+
+  Conditional value colouring (apply in the generator, not by hand):
+    availability at or above target  → #38a169
+    below target                     → #e53e3e
+    non-availability values          → #2d3748
+    not applicable                   → #a0aec0 with &mdash;
+
+  Unit label: this skeleton says "PCS". Swap for the project's unit term where the PCS is integrated
+  into the enclosure (e.g. "Megapack") — see the specification.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>{{SITE_NAME}} — Daily Performance Report</title>
+  <style>@media print { body { background: white !important; } }</style>
+</head>
+<body style="margin:0;padding:0;background:#f7fafc;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#2d3748;font-size:14px">
+<table width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:16px 0">
+<table width="700" cellpadding="0" cellspacing="0" style="background:white;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden">
+
+<!-- ═══ Header ═══════════════════════════════════════════════════════════ -->
+<tr><td style="background:#edf2f7;border-bottom:2px solid #2b6cb0;padding:24px 28px">
+  <div style="font-size:24px;font-weight:600;color:#1a365d">{{SITE_NAME}}</div>
+  <div style="font-size:16px;color:#2d3748;margin-top:2px">Daily Performance Report</div>
+  <div style="font-size:13px;color:#4a5568;margin-top:8px">{{DAY_START}} &ndash; {{DAY_END}} ({{N}} day) &middot; {{TZ_ABBR}}</div>
+  <div style="font-size:12px;color:#718096;margin-top:4px">{{SITE_CODE}} &middot; {{CONTRACT_MW}} MW Contract &middot; {{INSTALLED_MW}} MW Installed &middot; {{PCS_COUNT}} PCS</div>
+</td></tr>
+
+<tr><td style="padding:8px 28px 24px">
+
+  <!-- ═══ Key Performance Indicators ═════════════════════════════════════ -->
+  <h2 style="color:#1a365d;border-bottom:2px solid #2b6cb0;padding-bottom:6px;margin-top:28px;font-size:16px">Key Performance Indicators</h2>
+  <div style="font-size:11px;color:#718096;margin:8px 0 4px">Availability values are With Excused @ 100%; italic caption shows Without Excused.</div>
+
+  <!-- Tiles are laid out 3 per row. Each tile: label / value / caption.
+       Optional 4th row for the Without-Excused caption (italic, #a0aec0). -->
+  <table width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td style="padding:4px"><table width="100%" cellpadding="0" cellspacing="0" style="background:#f7fafc;border:1px solid #e2e8f0;border-radius:6px">
+        <tr><td style="text-align:center;font-size:11px;color:#718096;padding:8px 4px 0">Combined Raw</td></tr>
+        <tr><td style="text-align:center;font-size:22px;font-weight:700;color:{{COLOUR}};padding:2px 4px">{{x}}%</td></tr>
+        <tr><td style="text-align:center;font-size:11px;color:#a0aec0;padding:0 4px 8px">{{MW}} MW</td></tr>
+      </table></td>
+      <td style="padding:4px"><table width="100%" cellpadding="0" cellspacing="0" style="background:#f7fafc;border:1px solid #e2e8f0;border-radius:6px">
+        <tr><td style="text-align:center;font-size:11px;color:#718096;padding:8px 4px 0">Combined DW</td></tr>
+        <tr><td style="text-align:center;font-size:22px;font-weight:700;color:{{COLOUR}};padding:2px 4px">{{x}}%</td></tr>
+        <tr><td style="text-align:center;font-size:11px;color:#a0aec0;padding:0 4px 8px">{{MW}} MW</td></tr>
+        <tr><td style="text-align:center;font-size:10px;color:#a0aec0;font-style:italic;padding:0 4px 8px">Without Excused: {{x}}% &middot; {{MW}} MW</td></tr>
+      </table></td>
+      <td style="padding:4px"><table width="100%" cellpadding="0" cellspacing="0" style="background:#f7fafc;border:1px solid #e2e8f0;border-radius:6px">
+        <tr><td style="text-align:center;font-size:11px;color:#718096;padding:8px 4px 0">Discharged</td></tr>
+        <tr><td style="text-align:center;font-size:22px;font-weight:700;color:#2d3748;padding:2px 4px">{{MWh}}</td></tr>
+        <tr><td style="text-align:center;font-size:11px;color:#a0aec0;padding:0 4px 8px">MWh</td></tr>
+      </table></td>
+    </tr>
+    <tr>
+      <td style="padding:4px"><table width="100%" cellpadding="0" cellspacing="0" style="background:#f7fafc;border:1px solid #e2e8f0;border-radius:6px">
+        <tr><td style="text-align:center;font-size:11px;color:#718096;padding:8px 4px 0">Equip. (Installed)</td></tr>
+        <tr><td style="text-align:center;font-size:22px;font-weight:700;color:{{COLOUR}};padding:2px 4px">{{x}}%</td></tr>
+        <tr><td style="text-align:center;font-size:11px;color:#a0aec0;padding:0 4px 8px">{{MW}} MW</td></tr>
+      </table></td>
+      <td style="padding:4px"><table width="100%" cellpadding="0" cellspacing="0" style="background:#f7fafc;border:1px solid #e2e8f0;border-radius:6px">
+        <tr><td style="text-align:center;font-size:11px;color:#718096;padding:8px 4px 0">Equip. (Contract)</td></tr>
+        <tr><td style="text-align:center;font-size:22px;font-weight:700;color:{{COLOUR}};padding:2px 4px">{{x}}%</td></tr>
+        <tr><td style="text-align:center;font-size:11px;color:#a0aec0;padding:0 4px 8px">{{MW}} MW</td></tr>
+      </table></td>
+      <td style="padding:4px"><table width="100%" cellpadding="0" cellspacing="0" style="background:#f7fafc;border:1px solid #e2e8f0;border-radius:6px">
+        <tr><td style="text-align:center;font-size:11px;color:#718096;padding:8px 4px 0">RTE (SOC Match)</td></tr>
+        <tr><td style="text-align:center;font-size:22px;font-weight:700;color:#2d3748;padding:2px 4px">{{x}}%</td></tr>
+        <!-- When RTE is not computable, print N/A above and the reason here, never a blank. -->
+        <tr><td style="text-align:center;font-size:11px;color:#a0aec0;padding:0 4px 8px">{{n}} cyc</td></tr>
+      </table></td>
+    </tr>
+    <tr>
+      <td style="padding:4px"><table width="100%" cellpadding="0" cellspacing="0" style="background:#f7fafc;border:1px solid #e2e8f0;border-radius:6px">
+        <tr><td style="text-align:center;font-size:11px;color:#718096;padding:8px 4px 0">Total Cycles</td></tr>
+        <tr><td style="text-align:center;font-size:22px;font-weight:700;color:#2d3748;padding:2px 4px">{{n}}</td></tr>
+        <tr><td style="text-align:center;font-size:11px;color:#a0aec0;padding:0 4px 8px">EFC</td></tr>
+      </table></td>
+      <td style="padding:4px"><table width="100%" cellpadding="0" cellspacing="0" style="background:#f7fafc;border:1px solid #e2e8f0;border-radius:6px">
+        <tr><td style="text-align:center;font-size:11px;color:#718096;padding:8px 4px 0">Cycles / Day</td></tr>
+        <tr><td style="text-align:center;font-size:22px;font-weight:700;color:#2d3748;padding:2px 4px">{{n}}</td></tr>
+        <tr><td style="text-align:center;font-size:11px;color:#a0aec0;padding:0 4px 8px">EFC/day</td></tr>
+      </table></td>
+      <td style="padding:4px"><table width="100%" cellpadding="0" cellspacing="0" style="background:#f7fafc;border:1px solid #e2e8f0;border-radius:6px">
+        <tr><td style="text-align:center;font-size:11px;color:#718096;padding:8px 4px 0">Avg SOC</td></tr>
+        <tr><td style="text-align:center;font-size:22px;font-weight:700;color:#2d3748;padding:2px 4px">{{x}}%</td></tr>
+        <tr><td style="text-align:center;font-size:11px;color:#a0aec0;padding:0 4px 8px">&nbsp;</td></tr>
+      </table></td>
+    </tr>
+  </table>
+
+  <!-- ═══ Availability Summary ═══════════════════════════════════════════ -->
+  <h2 style="color:#1a365d;border-bottom:2px solid #2b6cb0;padding-bottom:6px;margin-top:28px;font-size:16px">Availability Summary</h2>
+  <div style="font-size:11px;color:#718096;margin:8px 0 10px">
+    Primary values are With Excused @ 100% (excused minutes credited at contract MW); the italic line shows Without Excused.
+    Combined excludes Equipment (Installed); it is the min of Equipment (Contract), Power, and Operational.
+  </div>
+  <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-size:13px">
+    <tr style="background:#2d3748;color:white">
+      <th style="padding:8px 10px;text-align:left">Metric</th>
+      <th style="padding:8px 10px;text-align:right">Raw</th>
+      <th style="padding:8px 10px;text-align:right">Depth-Weighted</th>
+    </tr>
+    <!-- Equipment rows have NO depth-weighted value: render &mdash; in #a0aec0, never a blank. -->
+    <tr style="background:#f7fafc">
+      <td style="padding:6px 10px;border-bottom:1px solid #e2e8f0">Equipment (Installed)</td>
+      <td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;text-align:right"><span style="color:{{COLOUR}};font-weight:bold">{{x}}%</span> &nbsp; {{MW}} MW
+        <div style="font-size:10px;color:#a0aec0;font-style:italic">Without Excused: {{x}}% &middot; {{MW}} MW</div></td>
+      <td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;text-align:right;color:#a0aec0">&mdash;</td>
+    </tr>
+    <tr style="background:white">
+      <td style="padding:6px 10px;border-bottom:1px solid #e2e8f0">Equipment (Contract)</td>
+      <td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;text-align:right"><span style="color:{{COLOUR}};font-weight:bold">{{x}}%</span> &nbsp; {{MW}} MW
+        <div style="font-size:10px;color:#a0aec0;font-style:italic">Without Excused: {{x}}% &middot; {{MW}} MW</div></td>
+      <td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;text-align:right;color:#a0aec0">&mdash;</td>
+    </tr>
+    <tr style="background:#f7fafc">
+      <td style="padding:6px 10px;border-bottom:1px solid #e2e8f0">Power</td>
+      <td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;text-align:right"><span style="color:{{COLOUR}};font-weight:bold">{{x}}%</span> &nbsp; {{MW}} MW
+        <div style="font-size:10px;color:#a0aec0;font-style:italic">Without Excused: {{x}}% &middot; {{MW}} MW</div></td>
+      <td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;text-align:right"><span style="color:{{COLOUR}};font-weight:bold">{{x}}%</span> &nbsp; {{MW}} MW</td>
+    </tr>
+    <tr style="background:white">
+      <td style="padding:6px 10px;border-bottom:1px solid #e2e8f0">Operational</td>
+      <td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;text-align:right"><span style="color:{{COLOUR}};font-weight:bold">{{x}}%</span> &nbsp; {{MW}} MW
+        <div style="font-size:10px;color:#a0aec0;font-style:italic">Without Excused: {{x}}% &middot; {{MW}} MW</div></td>
+      <td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;text-align:right"><span style="color:{{COLOUR}};font-weight:bold">{{x}}%</span> &nbsp; {{MW}} MW</td>
+    </tr>
+    <!-- Combined row carries the emphasis: #edf2f7 panel, <strong>, 2px accent bottom border. -->
+    <tr style="background:#edf2f7">
+      <td style="padding:8px 10px;border-bottom:2px solid #2b6cb0"><strong>Combined (min of 3)</strong></td>
+      <td style="padding:8px 10px;border-bottom:2px solid #2b6cb0;text-align:right"><strong><span style="color:{{COLOUR}};font-weight:bold">{{x}}%</span> &nbsp; {{MW}} MW</strong>
+        <div style="font-size:10px;color:#a0aec0;font-style:italic">Without Excused: {{x}}% &middot; {{MW}} MW</div></td>
+      <td style="padding:8px 10px;border-bottom:2px solid #2b6cb0;text-align:right"><strong><span style="color:{{COLOUR}};font-weight:bold">{{x}}%</span> &nbsp; {{MW}} MW</strong></td>
+    </tr>
+  </table>
+
+  <!-- ═══ Charts — five blocks, one per view ═════════════════════════════ -->
+  <div><h2 style="color:#1a365d;border-bottom:2px solid #2b6cb0;padding-bottom:6px;margin-top:28px;font-size:16px">Equipment Availability &mdash; Installed</h2>
+    <img src="data:image/png;base64,{{BASE64_PNG}}" alt="Equipment Availability - Installed" style="width:100%;max-width:700px;display:block;margin:8px auto" /></div>
+
+  <!-- Per-unit view: the chart that turns a headline percentage into a work order. -->
+  <div><h2 style="color:#1a365d;border-bottom:2px solid #2b6cb0;padding-bottom:6px;margin-top:28px;font-size:16px">Equipment Availability by PCS</h2>
+    <img src="data:image/png;base64,{{BASE64_PNG}}" alt="Equipment Availability Heatmap" style="width:100%;max-width:700px;display:block;margin:8px auto" /></div>
+
+  <!-- Setpoint vs actual, with the tolerance band drawn. -->
+  <div><h2 style="color:#1a365d;border-bottom:2px solid #2b6cb0;padding-bottom:6px;margin-top:28px;font-size:16px">Operational Availability &mdash; Setpoint Tracking</h2>
+    <img src="data:image/png;base64,{{BASE64_PNG}}" alt="Operational Availability" style="width:100%;max-width:700px;display:block;margin:8px auto" /></div>
+
+  <div><h2 style="color:#1a365d;border-bottom:2px solid #2b6cb0;padding-bottom:6px;margin-top:28px;font-size:16px">Power Availability</h2>
+    <img src="data:image/png;base64,{{BASE64_PNG}}" alt="Power Availability" style="width:100%;max-width:700px;display:block;margin:8px auto" /></div>
+
+  <div><h2 style="color:#1a365d;border-bottom:2px solid #2b6cb0;padding-bottom:6px;margin-top:28px;font-size:16px">Combined Availability</h2>
+    <img src="data:image/png;base64,{{BASE64_PNG}}" alt="Combined Availability" style="width:100%;max-width:700px;display:block;margin:8px auto" /></div>
+
+  <!-- ═══ Energy Summary ════════════════════════════════════════════════ -->
+  <h2 style="color:#1a365d;border-bottom:2px solid #2b6cb0;padding-bottom:6px;margin-top:28px;font-size:16px">Energy Summary</h2>
+  <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-size:13px">
+    <tr style="background:#2d3748;color:white">
+      <th style="padding:8px 10px;text-align:left">Metric</th>
+      <th style="padding:8px 10px;text-align:right">Value</th>
+    </tr>
+    <tr style="background:#f7fafc"><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0">Total Charge</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;text-align:right">{{MWh}} MWh</td></tr>
+    <tr style="background:white"><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0">Total Discharge</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;text-align:right">{{MWh}} MWh</td></tr>
+    <!-- Report BOTH RTE figures; they diverge sharply on a non-SOC-neutral day. -->
+    <tr style="background:#f7fafc"><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0">RTE (SOC Matched)</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;text-align:right">{{x}}%</td></tr>
+    <tr style="background:white"><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0">RTE (Raw)</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;text-align:right">{{x}}%</td></tr>
+    <tr style="background:#f7fafc"><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0">Equivalent Cycles</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;text-align:right">{{n}}</td></tr>
+    <tr style="background:white"><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0">Total Minutes</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;text-align:right">{{n}}</td></tr>
+    <tr style="background:#f7fafc"><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0">Excused Minutes</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;text-align:right">{{n}}</td></tr>
+  </table>
+
+  <!-- ═══ Data Quality ═════════════════════════════════════════════════ -->
+  <h2 style="color:#1a365d;border-bottom:2px solid #2b6cb0;padding-bottom:6px;margin-top:28px;font-size:16px">Data Quality</h2>
+  <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-size:13px">
+    <tr style="background:#2d3748;color:white">
+      <th style="padding:8px 10px;text-align:left">Indicator</th>
+      <th style="padding:8px 10px;text-align:right">Value</th>
+    </tr>
+    <tr style="background:#f7fafc"><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0">BESS Data Completeness (excl. excused)</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;text-align:right">{{x}}% ({{n}} / {{n}} min)</td></tr>
+    <!-- List gap-affected units BY NAME with their percentage, or "None". A site-level figure hides them. -->
+    <tr style="background:white"><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0">PCS with Data Gaps (&lt;95%)</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;text-align:right">{{UNIT}} ({{x}}%), &hellip; &nbsp;|&nbsp; None</td></tr>
+    <!-- Warn panel: the boundary effect is a finding, not a routine row. -->
+    <tr style="background:#fff3cd"><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0"><strong>RTE Boundary Effect</strong></td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;text-align:right">Raw {{x}}% vs SOC-Matched {{x}}% (delta {{n}}pp)</td></tr>
+  </table>
+
+  <!-- ═══ Commercial Events ════════════════════════════════════════════ -->
+  <!-- Heading carries the count. Omit the whole section when zero, or render a single "None" row —
+       never an empty table. Include events that started before the reporting day and overlap it.
+       Carry the counterparty's outage/ticket reference in the event name so rows reconcile. -->
+  <h2 style="color:#1a365d;border-bottom:2px solid #2b6cb0;padding-bottom:6px;margin-top:28px;font-size:16px">Commercial Events ({{COUNT}})</h2>
+  <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-size:13px">
+    <tr style="background:#2d3748;color:white">
+      <th style="padding:8px 10px;text-align:left">Event</th>
+      <th style="padding:8px 10px;text-align:left">Start ({{TZ_ABBR}})</th>
+      <th style="padding:8px 10px;text-align:left">End ({{TZ_ABBR}})</th>
+      <th style="padding:8px 10px;text-align:right">Duration</th>
+      <th style="padding:8px 10px;text-align:right">MW Down</th>
+      <th style="padding:8px 10px;text-align:center">Excused {{CONTRACT}}</th>
+    </tr>
+    <!-- Repeat, alternating background:#f7fafc / white. Colour the verdict: #38a169 Yes, #e53e3e No. -->
+    <tr style="background:#f7fafc">
+      <td style="padding:6px 10px;border-bottom:1px solid #e2e8f0">{{EVENT_REF_AND_DESCRIPTION}}</td>
+      <td style="padding:6px 10px;border-bottom:1px solid #e2e8f0">{{YYYY-MM-DD HH:MM}}</td>
+      <td style="padding:6px 10px;border-bottom:1px solid #e2e8f0">{{YYYY-MM-DD HH:MM}}</td>
+      <td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;text-align:right">{{n}}h</td>
+      <td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;text-align:right">{{n}} MW</td>
+      <td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;text-align:center;color:{{COLOUR}}">{{Yes|No}}</td>
+    </tr>
+  </table>
+
+  <!-- ═══ Report Parameters ════════════════════════════════════════════ -->
+  <!-- Everything needed to reproduce the numbers. Without this the report is an assertion.
+       Group headers are full-width th colspan=2 on #2d3748. -->
+  <h2 style="color:#1a365d;border-bottom:2px solid #2b6cb0;padding-bottom:6px;margin-top:28px;font-size:16px">Report Parameters</h2>
+  <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-size:12px">
+    <tr style="background:#2d3748;color:white"><th style="padding:8px 10px;text-align:left" colspan="2">Site &amp; Contract</th></tr>
+    <tr style="background:#f7fafc"><td style="padding:5px 10px;border-bottom:1px solid #e2e8f0;width:50%">Contracted Power</td><td style="padding:5px 10px;border-bottom:1px solid #e2e8f0">{{MW}} MW</td></tr>
+    <tr style="background:white"><td style="padding:5px 10px;border-bottom:1px solid #e2e8f0">Installed Power</td><td style="padding:5px 10px;border-bottom:1px solid #e2e8f0">{{MW}} MW</td></tr>
+    <tr style="background:#f7fafc"><td style="padding:5px 10px;border-bottom:1px solid #e2e8f0">Contracted Energy</td><td style="padding:5px 10px;border-bottom:1px solid #e2e8f0">{{MWh}} MWh</td></tr>
+    <tr style="background:white"><td style="padding:5px 10px;border-bottom:1px solid #e2e8f0">Discharge MWh at Contract Power</td><td style="padding:5px 10px;border-bottom:1px solid #e2e8f0">{{MWh}} MWh</td></tr>
+    <tr style="background:#f7fafc"><td style="padding:5px 10px;border-bottom:1px solid #e2e8f0">PCS Count</td><td style="padding:5px 10px;border-bottom:1px solid #e2e8f0">{{n}}</td></tr>
+    <tr style="background:white"><td style="padding:5px 10px;border-bottom:1px solid #e2e8f0">Battery Count</td><td style="padding:5px 10px;border-bottom:1px solid #e2e8f0">{{n}}</td></tr>
+    <tr style="background:#f7fafc"><td style="padding:5px 10px;border-bottom:1px solid #e2e8f0">Last Tested RTE</td><td style="padding:5px 10px;border-bottom:1px solid #e2e8f0">{{x}}%</td></tr>
+    <tr style="background:white"><td style="padding:5px 10px;border-bottom:1px solid #e2e8f0">COD Date</td><td style="padding:5px 10px;border-bottom:1px solid #e2e8f0">{{YYYY-MM-DD}}</td></tr>
+    <tr style="background:#f7fafc"><td style="padding:5px 10px;border-bottom:1px solid #e2e8f0">Timezone</td><td style="padding:5px 10px;border-bottom:1px solid #e2e8f0">{{IANA_ZONE}}</td></tr>
+
+    <tr style="background:#2d3748;color:white"><th style="padding:8px 10px;text-align:left" colspan="2">Operational Availability</th></tr>
+    <tr style="background:#f7fafc"><td style="padding:5px 10px;border-bottom:1px solid #e2e8f0">Stable Tolerance</td><td style="padding:5px 10px;border-bottom:1px solid #e2e8f0">{{MW}} MW ({{x}}% nameplate) &mdash; at ramp &le; {{x}}%/sec</td></tr>
+    <tr style="background:white"><td style="padding:5px 10px;border-bottom:1px solid #e2e8f0">Max Tolerance</td><td style="padding:5px 10px;border-bottom:1px solid #e2e8f0">{{x}}% nameplate at &ge; {{x}}%/sec ramp</td></tr>
+    <tr style="background:#f7fafc"><td style="padding:5px 10px;border-bottom:1px solid #e2e8f0">Ramp Window</td><td style="padding:5px 10px;border-bottom:1px solid #e2e8f0">{{n}} back + {{n}} forward intervals (centered rolling max)</td></tr>
+
+    <tr style="background:#2d3748;color:white"><th style="padding:8px 10px;text-align:left" colspan="2">Depth-Weighted Availability</th></tr>
+    <tr style="background:#f7fafc"><td style="padding:5px 10px;border-bottom:1px solid #e2e8f0">Forgiveness Threshold</td><td style="padding:5px 10px;border-bottom:1px solid #e2e8f0">{{x}}% SOC (discharge below {{x}}%, charge above {{x}}%)</td></tr>
+    <tr style="background:white"><td style="padding:5px 10px;border-bottom:1px solid #e2e8f0">Curve Exponent</td><td style="padding:5px 10px;border-bottom:1px solid #e2e8f0">{{n}} (weight = (SOC / threshold)<sup>{{n}}</sup>)</td></tr>
+  </table>
+
+</td></tr>
+
+<!-- ═══ Footer ═══════════════════════════════════════════════════════════ -->
+<tr><td style="background:#f7fafc;border-top:1px solid #e2e8f0;padding:14px 28px;font-size:11px;color:#a0aec0" align="center">
+  Generated {{TIMESTAMP}} {{TZ_ABBR}} &middot; {{GENERATOR}} v{{VERSION}} &middot; {{SITE_NAME}} ({{SITE_CODE}})
+</td></tr>
+
+</table>
+</td></tr></table>
+</body>
+</html>

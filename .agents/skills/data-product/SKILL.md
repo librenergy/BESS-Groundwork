@@ -11,7 +11,7 @@ description: Scope and register a new data product in Data_Product(DP)/ — any 
 
 A **data product** is a recurring, consumable deliverable *generated from* the toolkit's documents and plant data — a report, dashboard, evidence pack, or export. The documents (EIM, PGM, Metrics & KPIs, BESS GADS…) define what is true; data products package it for an audience on a cadence. Each product lives in its own subfolder under `Data_Product(DP)/` and is listed in the folder `index.md`.
 
-Typical products: monthly performance report (has its own skill), performance dashboards, the OEM-LD evidence pack (event log + shadow calc backing an availability LD claim), shadow-settlement exports, lender/IE quarterly packs, NERC GADS export.
+Typical products: monthly performance report (has its own skill), daily performance report / limit tracking, **external counterparty data exchange** (a recurring machine-readable feed to an offtaker or utility, usually against a schema *they* supply), performance dashboards, the OEM-LD evidence pack (event log + shadow calc backing an availability LD claim), shadow-settlement exports, lender/IE quarterly packs, NERC GADS export.
 
 ## Prerequisites
 
@@ -23,7 +23,7 @@ Typical products: monthly performance report (has its own skill), performance da
 2. **Contractual anchor.** Is the product required by a contract (reporting obligation, claim evidence, deadline, deemed-acceptance window)? Cite the clause — a contractual product inherits its deadline and format from the contract, not from preference.
 3. **Inputs.** Which metrics (by name, from Metrics & KPIs), which event records (BESS GADS), which interfaces (DIR `SYS`/`IF` refs). Every number in the product must trace to an authoritative source already declared — a product is assembly, never a new calculation.
 4. **Ownership.** Who produces it, who reviews it, who signs/sends it, who receives it — align with the RACI Matrix; flag mismatches back to that document.
-5. **Skeleton.** Draft the product's structure (sections for a report, panels for a dashboard, columns for an export) as `Data_Product(DP)/<Product_Name(ACR)>/` with its own `index.md` and main document; register the acronym in the taxonomy.
+5. **Skeleton.** Draft the product's structure (sections for a report, panels for a dashboard, columns for an export) as `Data_Product(DP)/<Product_Name>/` with its own `index.md` and main document. **Product subfolders are plain-named** — acronym suffixes are top-level only, so no `(ACR)` inside `Data_Product(DP)/`. If the product has a commonly used acronym, define it in the glossary rather than in the folder name.
 6. **Register.** Add the product to `Data_Product(DP)/index.md` and the repo README; note automation status (manual, scripted, platform-generated) in the product doc.
 
 ## Facilitation guidance

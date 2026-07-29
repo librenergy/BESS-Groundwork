@@ -36,6 +36,8 @@ When several names exist for the same thing, pick one canonical term; the others
 
 Ratified 2026-07-26 and **applied to the folder names** as `Folder_Name(ACR)` for easier navigation. Markdown links to these paths must percent-encode the parentheses (`%28`/`%29`). `Project_Documentation` keeps its name (scaffolding). The former `KPI_Definitions` was merged into `Metrics_Tree(MT)` as `metrics-and-kpis.md`.
 
+**Acronym suffixes are top-level only.** A folder nested inside an acronym-suffixed folder uses its plain name — no second acronym in the path. So the products under `Data_Product(DP)/` are plain-named (`Monthly_Performance_Report/`), not `…(MPR)`. Stacked acronyms in one path are harder to read than the names they abbreviate.
+
 | Acronym | Folder |
 |---------|--------|
 | EIM | Entity_Interaction_Map(EIM) |
@@ -45,8 +47,7 @@ Ratified 2026-07-26 and **applied to the folder names** as `Folder_Name(ACR)` fo
 | WOM | Warranty_Obligation_Matrix(WOM) |
 | ECP | Escalation_Communication_Plan(ECP) |
 | OAP | BESS_GADS(GADS) |
-| DP | Data_Product(DP) — parent folder for generated deliverables |
-| MPR | Data_Product(DP)/Monthly_Performance_Report(MPR) |
+| DP | Data_Product(DP) — parent folder for generated deliverables; its product subfolders are plain-named |
 | SR | Settlement_Reconciliation(SR) |
 | MT | Metrics_Tree(MT) |
 | DT | Definitions_Taxonomy(DT) |
