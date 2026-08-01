@@ -9,7 +9,7 @@ description: Build or update the project's BESS GADS document — the GADS-align
 
 > **Before you start:** read `Definitions_Taxonomy(DT)/definitions.md` (what every acronym and term means on this project — ⚠️-flagged entries carry two meanings) and `Definitions_Taxonomy(DT)/taxonomy.md` (canonical names, organization codes, ID prefixes), if populated. Use the established vocabulary throughout, and add any new acronym or term this session introduces to the glossary before wrapping up (`definitions-taxonomy` skill).
 
-Template: `BESS_GADS(GADS)/bess-gads.md`. The premise: NERC GADS is the industry's event-accounting standard (Conventional, Wind, Solar — standalone BESS pending, storage today only as co-located groups in GADS Solar), so the project's event taxonomy is **GADS-aligned from day one** — one authoritative event record, tagged once, feeding every contractual availability calculation, exportable when NERC opens BESS reporting. The availability *formulas* live in `Metrics_Tree(MT)/metrics-and-kpis.md`; this document owns the **event record** they depend on.
+Template: `BESS_GADS(GADS)/bess-gads.md`. The premise: NERC GADS is the industry's event-accounting standard (Conventional, Wind, Solar — standalone BESS pending, storage today only as co-located groups in GADS Solar), so the project's event taxonomy is **GADS-aligned from day one** — one authoritative event record, tagged once, feeding every contractual availability calculation, exportable when NERC opens BESS reporting. The availability *formulas* live in `Metrics_Tree(MT)/metrics-tree.md`; this document owns the **event record** they depend on.
 
 ## Prerequisites
 

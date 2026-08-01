@@ -7,7 +7,7 @@ description: "A GADS-aligned event taxonomy for BESS: one authoritative outage/d
 # BESS GADS — Outage & Availability Event Accounting
 
 **Project:** `{{PROJECT_NAME}}`  **Market/ISO:** `{{ISO}}`  **Version:** `{{VERSION}}`  **Last updated:** `{{DATE}}`
-**Source EIM version:** `{{EIM_VERSION}}` · **Companions:** [Metrics & KPIs](../Metrics_Tree%28MT%29/metrics-and-kpis.md) (availability formulas) · [PGM](../Performance_Guarantee_Matrix%28PGM%29/performance-guarantee-matrix.md) (guarantees)
+**Source EIM version:** `{{EIM_VERSION}}` · **Companions:** [Metrics & KPIs](../Metrics_Tree%28MT%29/metrics-tree.md) (availability formulas) · [PGM](../Performance_Guarantee_Matrix%28PGM%29/performance-guarantee-matrix.md) (guarantees)
 
 > **Why "GADS".** NERC's Generating Availability Data System is the industry's standard event-accounting taxonomy — mandatory for conventional units, extended to wind (2018) and solar (DRI 2024, reporting phased from 2025). **No standalone BESS GADS exists yet**: storage appears today only as *co-located energy-storage groups* inside GADS Solar reporting, and NERC's energy-storage assessment recommends extending battery capture. It is coming. This template defines a **GADS-aligned event taxonomy for BESS now**, so that (a) every event is tagged once and feeds every contractual availability calculation consistently, and (b) when NERC opens standalone BESS reporting, the log exports to it instead of being rebuilt.
 
@@ -81,7 +81,7 @@ Monthly: export all ledgers → match by timestamp overlap (tolerance `{{TOL}}`)
 
 ## 7. Availability calculations
 
-Defined authoritatively in [Metrics & KPIs](../Metrics_Tree%28MT%29/metrics-and-kpis.md) — one metric per contract. This document owns the **event record** they depend on; it does not restate formulas.
+Defined authoritatively in [Metrics & KPIs](../Metrics_Tree%28MT%29/metrics-tree.md) — one metric per contract. This document owns the **event record** they depend on; it does not restate formulas.
 
 ## 8. Event log (running)
 

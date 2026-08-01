@@ -1,18 +1,19 @@
 ---
 name: metrics-tree
-title: Metrics Tree, Metrics & KPIs — Facilitated Session
+title: Metrics Tree & KPIs — Facilitated Session
 type: Skill
-description: Build or update the project's metrics layer — the metrics tree (how value decomposes to data sources) and the Metrics & KPIs document (authoritative metric calculations plus the KPI target set) in Metrics_Tree(MT)/. Use whenever the user wants to build or prune the metrics tree, define availability/capacity/RTE/dispatch metrics, resolve disagreements between systems reporting different numbers for the same quantity (APM vs OEM vs offtaker), declare authoritative data sources, or set KPI targets and dashboards. Requires the project EIM and ideally the Data Interface Register and Performance Guarantee Matrix (run those skills first if missing).
+description: Build or update the project's metrics layer — one document (Metrics_Tree(MT)/metrics-tree.md) holding the metrics tree (how value decomposes to data sources), the authoritative metric calculations, and the KPI target set. Use whenever the user wants to build or prune the metrics tree, define availability/capacity/RTE/dispatch metrics, resolve disagreements between systems reporting different numbers for the same quantity (APM vs OEM vs offtaker), declare authoritative data sources, or set KPI targets and dashboards. Requires the project EIM and ideally the Data Interface Register and Performance Guarantee Matrix (run those skills first if missing).
 ---
 
-# Metrics Tree, Metrics & KPIs — Facilitated Session
+# Metrics Tree & KPIs — Facilitated Session
 
 > **Before you start:** read `Definitions_Taxonomy(DT)/definitions.md` (what every acronym and term means on this project — ⚠️-flagged entries carry two meanings) and `Definitions_Taxonomy(DT)/taxonomy.md` (canonical names, organization codes, ID prefixes), if populated. Use the established vocabulary throughout, and add any new acronym or term this session introduces to the glossary before wrapping up (`definitions-taxonomy` skill).
 
-Two documents in `Metrics_Tree(MT)/`, built **in order**:
+**One document** — `Metrics_Tree(MT)/metrics-tree.md` — holding three layers, built **in order**:
 
-1. **The tree first** (`metrics-tree.md`) — the map: how the headline value decomposes through LDs/adjustments and drivers down to data sources. Cheap to sketch, easy to argue about, and it exposes what the metrics document must define.
-2. **Then Metrics & KPIs** (`metrics-and-kpis.md`) — the definitions: one authoritative calculation per metric, then the slim KPI table (a **KPI is a metric held against a target** — every KPI is a metric, most metrics are not KPIs).
+1. **The tree first** — the map: how the headline value decomposes through LDs/adjustments and drivers down to data sources. Cheap to sketch, easy to argue about, and it exposes what the metric definitions must cover.
+2. **Then the metric definitions** — one authoritative calculation per metric (formula, boundary, exclusions, clock, reporting chain), in the same document below the tree, so every purple KPI node resolves to a definition without leaving the file.
+3. **Then the KPI table** — the slim target set (a **KPI is a metric held against a target** — every KPI is a metric, most metrics are not KPIs).
 
 The layer is BESS-first but the method is asset-agnostic — for a PV plant the tree's revenue limb decomposes PPA/merchant revenue and the metric set swaps RTE/SOC for PR/soiling/insolation; the structure (tree → metrics → targets → sources) is identical.
 
@@ -41,12 +42,13 @@ The layer is BESS-first but the method is asset-agnostic — for a PV plant the 
 
 ## Facilitation guidance
 
+- Keep the tree and the definitions consistent within the document: every purple KPI node must resolve to a metric definition (a full sheet or a compact-table row) below — a purple node with no definition is a gap to close in-session.
 - When the contractual definition and operational habit differ, record both and mark the contractual one authoritative for money.
 - Timezone/interval-convention errors (interval-beginning vs -ending, DST, per-contract evaluation clocks) are the most common silent corruption — ask explicitly.
 - Tie each metric to implementation: where is the official number computed (platform model, dashboard, report script)? Uncomputable metrics go to the automation backlog.
 
 ## Outputs
 
-1. `Metrics_Tree(MT)/metrics-tree.md` (tree updated, version bumped) and `Metrics_Tree(MT)/metrics-and-kpis.md` populated in place.
+1. `Metrics_Tree(MT)/metrics-tree.md` populated in place (tree + metric definitions + KPI table; version bumped).
 2. Implementation backlog: metrics lacking a source or computation home; folder `todo.md` updated, session logged in the folder `log.md`.
 3. Next steps: metrics feed the Monthly Performance Report (data product) and BESS GADS directly.

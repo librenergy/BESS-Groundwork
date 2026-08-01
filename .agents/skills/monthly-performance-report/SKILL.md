@@ -15,7 +15,7 @@ Template: `Data_Product(DP)/Monthly_Performance_Report/monthly-performance-repor
 
 **Mode A — Template setup (first session on a project):**
 1. Confirm audience and distribution (AO only? lender? IE? offtaker gets a variant?) — audiences change tone and content.
-2. Walk the template's sections; keep/cut/add per project. For each kept section, verify its feeding source exists in the Data Interface Register and its metrics exist in Metrics & KPIs (`Metrics_Tree(MT)/metrics-and-kpis.md`). Missing feeds become the automation backlog.
+2. Walk the template's sections; keep/cut/add per project. For each kept section, verify its feeding source exists in the Data Interface Register and its metrics exist in Metrics & KPIs (`Metrics_Tree(MT)/metrics-tree.md`). Missing feeds become the automation backlog.
 3. Agree the production calendar: data cutoff, draft date, review, publication — anchored to settlement and LTSA-report availability.
 4. Decide the production pipeline: manual, notebook-generated (e.g., Marimo → PDF), or hybrid; record where each section's numbers come from programmatically.
 

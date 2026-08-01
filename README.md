@@ -34,14 +34,14 @@ Each document is built through a facilitated Q&A session driven by a matching sk
 2. **Data Interface Register** — first of the foundations; the telemetry and interface inventory.
 3. **Performance Guarantee Matrix** — second foundation; measured-performance guarantees, their calculation methodologies, and the data that shadows them.
 4. **Warranty Obligation Matrix** — defect-style warranties, claim paths, and owner-side compliance conditions.
-5. **Metrics Tree, then Metrics & KPIs** (in `Metrics_Tree(MT)/`) — build the tree first, then the metric definitions and KPI targets; depends on the Data Interface Register + Performance Guarantee Matrix.
+5. **Metrics Tree & KPIs** (one document in `Metrics_Tree(MT)/`) — build the tree first, then the metric definitions and KPI targets below it; depends on the Data Interface Register + Performance Guarantee Matrix.
 6. **RACI Matrix** — who is responsible/accountable for each event and process.
 7. **Escalation & Communication Plan** — who calls whom; builds on the RACI.
 8. **BESS GADS** — the GADS-aligned outage/derate event accounting; depends on the Performance Guarantee Matrix + Metrics & KPIs.
 9. **Settlement Reconciliation** — depends on the Data Interface Register.
 10. **Monthly Performance Report** (a data product, in `Data_Product(DP)/`) — assembles everything above.
 
-Alongside these, the **Metrics Tree** is a cross-cutting view rather than a sequenced step: once the EIM and Metrics & KPIs exist, it organizes every metric into limbs (the generic baseline: Commercial Value and Asset Health) and feeds dashboards and the Monthly Performance Report.
+Alongside these, the **tree** inside Metrics Tree & KPIs is a cross-cutting view rather than a sequenced step: it organizes every metric into limbs (the generic baseline: Commercial Value and Asset Health) and feeds dashboards and the Monthly Performance Report.
 
 Most populated documents carry an `EIM_VERSION` header — the registers and procedures (all except the Contact Register and the Monthly Report) trace back to a specific EIM version. When the EIM changes, search for that version to find the documents that need review.
 
@@ -51,20 +51,19 @@ All resources below are **templates**. The workflow: **clone this entire reposit
 
 | Resource | Skill | Status | Description |
 |:---|:---|:---|:---|
-| [Entity Interaction Map](./Entity_Interaction_Map%28EIM%29/Entity_Interaction_Map%28EIM%29.md) | [`eim-review-build`](./.agents/skills/eim-review-build/SKILL.md) | Template | Topology template mapping the people, companies, systems, and data flows surrounding a BESS asset. The anchor for everything else. |
+| [Entity Interaction Map](./Entity_Interaction_Map%28EIM%29/entity-interaction-map.md) | [`eim-review-build`](./.agents/skills/eim-review-build/SKILL.md) | Template | Topology template mapping the people, companies, systems, and data flows surrounding a BESS asset. The anchor for everything else. |
 | [Contact Register](./Contact_Register%28CR%29/contact-register.md) | — | Template | Named contacts and organizations behind the EIM entities, with roles and reachability. |
 | [Data Interface Register](./Data_Interface_Register%28DIR%29/data-interface-register.md) | [`data-interface-register`](./.agents/skills/data-interface-register/SKILL.md) | Template | Catalogue of data systems, telemetry chains, protocols, and integration points feeding the platform. |
 | [RACI Matrix](./RACI_Matrix%28RACI%29/raci-matrix.md) | [`raci-matrix`](./.agents/skills/raci-matrix/SKILL.md) | Template | Responsible/Accountable/Consulted/Informed assignments for operational events and processes. |
 | [Performance Guarantee Matrix](./Performance_Guarantee_Matrix%28PGM%29/performance-guarantee-matrix.md) | [`performance-guarantee-matrix`](./.agents/skills/performance-guarantee-matrix/SKILL.md) | Template | Inventory of measured-performance guarantees with their exact calculation methodologies, exclusion asymmetries, and shadow-calculation requirements. |
 | [Warranty Obligation Matrix](./Warranty_Obligation_Matrix%28WOM%29/warranty-obligation-matrix.md) | [`warranty-obligation-matrix`](./.agents/skills/warranty-obligation-matrix/SKILL.md) | Template | Inventory of defect-style warranties, claim paths, and the owner-side conditions that keep coverage valid. |
-| [Metrics & KPIs](./Metrics_Tree%28MT%29/metrics-and-kpis.md) | [`metrics-tree`](./.agents/skills/metrics-tree/SKILL.md) | Template | Metric definitions (the authoritative calculations) and the KPI target set — lives beside the metrics tree. |
 | [Escalation & Communication Plan](./Escalation_Communication_Plan%28ECP%29/escalation-communication-plan.md) | [`escalation-plan`](./.agents/skills/escalation-plan/SKILL.md) | Template | Who-calls-whom, severity levels, and notification deadlines for plant events. |
 | [BESS GADS](./BESS_GADS%28GADS%29/bess-gads.md) | [`bess-gads`](./.agents/skills/bess-gads/SKILL.md) | Template | GADS-aligned outage/derate event taxonomy for BESS — one authoritative event record, NERC-export-ready. |
 | [Data Products](./Data_Product%28DP%29/index.md) | [`data-product`](./.agents/skills/data-product/SKILL.md) | Category | Catalogue of recurring deliverables generated from the toolkit's documents and plant data — reports, dashboards, evidence packs, exports; each product gets its own subfolder. |
 | [Monthly Performance Report](./Data_Product%28DP%29/Monthly_Performance_Report/monthly-performance-report.md) | [`monthly-performance-report`](./.agents/skills/monthly-performance-report/SKILL.md) | Template | The assembled monthly/quarterly reporting pack for owner, lender, and IE — the first data product. |
 | [Daily Performance Report](./Data_Product%28DP%29/Daily_Performance_Report/daily-performance-report.md) | [`data-product`](./.agents/skills/data-product/SKILL.md) | Template | Daily availability under each contractual definition (equipment, power, operational, combined) with excused and depth-weighted variants, energy and efficiency, data quality, commercial events, and a reproducibility parameter block; Markdown spec + HTML render skeleton. |
 | [Settlement Reconciliation](./Settlement_Reconciliation%28SR%29/settlement-reconciliation.md) | [`settlement-reconciliation`](./.agents/skills/settlement-reconciliation/SKILL.md) | Template | Shadow-settlement procedure verifying ISO statements against project meter data and awards. |
-| [Metrics Tree](./Metrics_Tree%28MT%29/metrics-tree.md) | [`metrics-tree`](./.agents/skills/metrics-tree/SKILL.md) | Template | Decomposition of the headline value through LDs/adjustments and drivers down to metrics, signals, and data sources. |
+| [Metrics Tree & KPIs](./Metrics_Tree%28MT%29/metrics-tree.md) | [`metrics-tree`](./.agents/skills/metrics-tree/SKILL.md) | Template | One document: the metrics tree (decomposition of the headline value down to data sources), the authoritative metric definitions, and the KPI target set. |
 | [Definitions & Taxonomy](./Definitions_Taxonomy%28DT%29/index.md) | [`definitions-taxonomy`](./.agents/skills/definitions-taxonomy/SKILL.md) | Template | Global glossary (every acronym/term/organization with its project meaning, ambiguous terms flagged) plus naming authority (organization codes, canonical terms, ID-prefix conventions). |
 | [Project Information](./project_info.md) | — | Template | Root scaffold for the key facts of the project a repo clone is dedicated to: capacity, equipment, commercial structure, counterparties, milestones, open items. |
 

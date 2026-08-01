@@ -13,11 +13,11 @@ description: Facilitate a structured Q&A session to review, build, or update a B
 
 Run a collaborative, section-by-section working session that produces (or updates) a project-specific Entity Interaction Map: a Mermaid flowchart showing every entity (companies, contracts, assets, data systems) and every interaction (contractual, operational, data flow) on a BESS project. The toolkit is BESS-first, but the method is asset-agnostic — for a PV plant, swap the battery asset detail for array/inverter blocks and the same rings (ownership, EPC/warranty, O&M, market, grid, controls) apply.
 
-The generic baseline EIM lives in `Entity_Interaction_Map(EIM)/Entity_Interaction_Map(EIM).md` (repo root) — the Mermaid diagram is inline in that file. A session instantiates it for a specific project with real company names, real contract structures, and project-specific deviations.
+The generic baseline EIM lives in `Entity_Interaction_Map(EIM)/entity-interaction-map.md` (repo root) — the Mermaid diagram is inline in that file. A session instantiates it for a specific project with real company names, real contract structures, and project-specific deviations.
 
 ## Working copy
 
-The default working copy is the Mermaid block inline in `Entity_Interaction_Map(EIM)/Entity_Interaction_Map(EIM).md`. If the project drafts collaboratively in a cloud Mermaid editor (Mermaid Chart / Mermaid.ai, editable via MCP), that cloud diagram becomes the **single working copy**: the repo file holds a pointer, the folder `log.md` holds version history, the folder `todo.md` holds open items, and snapshots sync back at milestones. Two rules when editing the cloud copy: **re-fetch it before every edit** (concurrent editor sessions overwrite each other — lost updates do not merge), and after pushing an edit via MCP, tell the user to refresh their editor tab before making changes there.
+The default working copy is the Mermaid block inline in `Entity_Interaction_Map(EIM)/entity-interaction-map.md`. If the project drafts collaboratively in a cloud Mermaid editor (Mermaid Chart / Mermaid.ai, editable via MCP), that cloud diagram becomes the **single working copy**: the repo file holds a pointer, the folder `log.md` holds version history, the folder `todo.md` holds open items, and snapshots sync back at milestones. Two rules when editing the cloud copy: **re-fetch it before every edit** (concurrent editor sessions overwrite each other — lost updates do not merge), and after pushing an edit via MCP, tell the user to refresh their editor tab before making changes there.
 
 ## Session principles
 
@@ -76,7 +76,7 @@ Work through these in order unless the user redirects. For each: state what the 
 
 1. Show the complete updated Mermaid map.
 2. Produce the **open questions list** (every ❓) with a suggested owner for each answer.
-3. Save/deliver: `Entity_Interaction_Map(EIM)/Entity_Interaction_Map(EIM).md` updated in place (version bumped); record the open-questions list in the folder's `todo.md` and the session's changes in the folder's `log.md`.
+3. Save/deliver: `Entity_Interaction_Map(EIM)/entity-interaction-map.md` updated in place (version bumped); record the open-questions list in the folder's `todo.md` and the session's changes in the folder's `log.md`.
 4. Offer next steps explicitly: "From this map we can now generate the satellite documents — recommended order: (1) Contact Register, (2) Data Interface Register, (3) Performance Guarantee Matrix, (4) Warranty Obligation Matrix, (5) Metrics Tree then Metrics & KPIs, (6) RACI, (7) Escalation Plan, (8) BESS GADS, (9) Settlement Reconciliation, (10) Monthly Performance Report (a data product). Each has its own skill and template."
 
 ## Editing an existing map
