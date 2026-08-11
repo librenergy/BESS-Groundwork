@@ -36,7 +36,7 @@ When several names exist for the same thing, pick one canonical term; the others
 
 Ratified 2026-07-26 and **applied to the folder names** as `Folder_Name(ACR)` for easier navigation. Markdown links to these paths must percent-encode the parentheses (`%28`/`%29`). `Project_Documentation` keeps its name (scaffolding). The former `KPI_Definitions` was merged into `Metrics_Tree(MT)` as `metrics-tree.md`.
 
-**Acronym suffixes are top-level only.** A folder nested inside an acronym-suffixed folder uses its plain name — no second acronym in the path. So the products under `Data_Product(DP)/` are plain-named (`Monthly_Performance_Report/`), not `…(MPR)`. Stacked acronyms in one path are harder to read than the names they abbreviate.
+**Acronym suffixes are top-level only.** A folder nested inside an acronym-suffixed folder uses its plain name — no second acronym in the path. So the products under `Data_Product(DP)/` are plain-named (`Monthly_Performance_Report/`, `BESS_GADS/`, `Settlement_Reconciliation/`), not `…(MPR)` / `…(GADS)` / `…(SR)`. Stacked acronyms in one path are harder to read than the names they abbreviate. A folder that **moves under `Data_Product(DP)/` drops its acronym suffix on the way in**, and its acronym leaves the registry below.
 
 **Acronyms are folder-only — never in filenames.** The document inside an acronym-suffixed folder uses its plain kebab-case name (`entity-interaction-map.md`, not `Entity_Interaction_Map(EIM).md`): the acronym already lives on the folder, and repeating it in the file doubles the parentheses-encoding burden in links. Ratified 2026-08-01 when the EIM file — the sole outlier against the §3 kebab-case rule — was renamed.
 
@@ -48,11 +48,11 @@ Ratified 2026-07-26 and **applied to the folder names** as `Folder_Name(ACR)` fo
 | PGM | Performance_Guarantee_Matrix(PGM) |
 | WOM | Warranty_Obligation_Matrix(WOM) |
 | ECP | Escalation_Communication_Plan(ECP) |
-| OAP | BESS_GADS(GADS) |
-| DP | Data_Product(DP) — parent folder for generated deliverables; its product subfolders are plain-named |
-| SR | Settlement_Reconciliation(SR) |
+| DP | Data_Product(DP) — parent folder for generated deliverables; product subfolders are plain-named (`Monthly_Performance_Report`, `Daily_Performance_Report`, `BESS_GADS`, `Settlement_Reconciliation`) |
 | MT | Metrics_Tree(MT) |
 | DT | Definitions_Taxonomy(DT) |
+
+*Retired folder acronyms:* `MPR`, `OAP`/`GADS`, `SR` — those folders now sit under `Data_Product(DP)/` with plain names. **GADS** remains a live *term* in the glossary (NERC's Generating Availability Data System); it is simply no longer a folder code.
 
 ## 3. Prefix & ID conventions
 

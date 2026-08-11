@@ -14,22 +14,63 @@ Two documents in `Definitions_Taxonomy(DT)/` serve every other document in the r
 
 Rule of thumb: a reader who knows nothing about the project should be able to expand and understand any acronym in any repo document using `definitions.md` alone; a writer should be able to name and code anything new using `taxonomy.md` alone.
 
+## The two tiers
+
+Definitions live at two levels, and the distinction is what keeps them from becoming two competing glossaries:
+
+| Tier | File | Holds | Written by |
+|:---|:---|:---|:---|
+| **1 — Per-document extraction** | `Project_Documentation/<DOMAIN>/definitions.md` | Everything *that one document* defines, in its own words, with the clause reference. Source fidelity is the whole point — this is an extraction, like `guarantees.md`, not a glossary. | `project-document-review` |
+| **2 — Master glossary** | `Definitions_Taxonomy(DT)/definitions.md` | The repo-wide lookup: terms that travel beyond their own document, every acronym, and every collision between contracts. One place a reader goes to ask "what does this mean here?" | `definitions-taxonomy` (this skill) |
+
+Tier 1 is the **source of record** for what a contract says. Tier 2 is the **single lookup**, and every entry it carries traces back to a Tier 1 file. Neither replaces the other: a term's full contractual definition stays in Tier 1; Tier 2 carries the project meaning plus the pointer.
+
+**Tier 2 is never written from scratch once Tier 1 files exist** — it is rolled up from them (see below), then topped up by a repo scan for terms no contract defines (repo methodology terms, market vocabulary, equipment names from drawings).
+
+### What gets promoted from Tier 1 to Tier 2
+
+Promote a term when **any** of these is true:
+
+- It is an **acronym** — no exceptions, however obvious.
+- It is **used outside its own document** — in a satellite document, a data product, another contract's companion, or ordinary conversation about the project.
+- It **collides**: another document defines the same word differently. Promotion is mandatory here, with ⚠️ and both meanings — these are the terms that cause disputes.
+- It names **money, a guarantee, a measurement boundary, a clock, or an obligation with a deadline**.
+
+Leave it in Tier 1 when it is **internal contract vocabulary that never leaves the document** — indemnity and arbitration boilerplate, standard definitional plumbing, test-protocol minutiae. A reader who needs those is already reading the contract, and promoting them buries the terms that matter.
+
+When in doubt, promote compactly: one line in Tier 2 with the pointer, full detail left in Tier 1.
+
+### Relinking
+
+- Every Tier 2 entry's **Source cell links to the Tier 1 file** (with clause), so master → extraction → source PDF is a two-hop trail. Where a term predates its document's review, repoint it at the Tier 1 file when one appears.
+- Each Tier 1 `definitions.md` carries a **one-line header pointing back** to the master glossary, so a reader who lands there mid-document knows where the cross-contract picture lives.
+- A Tier 1 file that gets **updated triggers a roll-up in the same session** — new terms promoted, changed meanings corrected upstream, new collisions flagged. An extraction that has been re-reviewed while the master still shows the old meaning is the exact drift this structure exists to prevent.
+
 ## Principles
 
-- **Global scope.** One glossary for the whole repo — never per-document glossaries. Documents may keep short local "definitions" sections only for math-heavy KPI formulas; everything else points here.
 - **Project meaning over textbook meaning.** "Availability" gets the offtake-contract definition *and* the LTSA definition if they differ — the difference is the point. Cite the source (document, section/exhibit).
 - **Flag the tricky ones.** Terms with two meanings in the repo (e.g. "SC" = Scheduling Coordinator *and* Substantial Completion) get an explicit ⚠️ ambiguity note listing both meanings and where each appears. These are the terms that cause real disputes.
 - **Aliases are recorded, not repeated.** Source documents spell parties inconsistently (the same contractor may appear under three names across contracts). The taxonomy names one canonical form + code; definitions and new writing use only the canonical form, with aliases listed for searchability.
 - **Capture, don't block.** Unknown expansion or unconfirmed entity → keep the entry with a ❓ marker and an open item; never guess a legal entity name.
 
-## Building / refreshing `definitions.md`
+## Building / refreshing the master `definitions.md`
 
-1. **Scan the whole repo** — all `.md` files (summaries, guarantee extractions, matrices, skills, `project_info.md`), plus terms appearing in source-document filenames and index descriptions. Fan out with a search subagent if available.
-2. **What qualifies:** every acronym without exception (even obvious-looking ones — COD, POI, kW-month), plus any term of art whose *project* meaning isn't self-evident to an outsider: contract-defined words, telemetry flags, formula symbols, program names. Plain English that means exactly what it says stays out — the goal is unique definitions that need stating, not a dictionary.
-3. **Group** entries: Organizations & parties · Contracts & commercial · Technical & equipment · Market & grid · Metrics & KPIs · Methodology/repo terms. Working category by category surfaces far more terms than one flat pass — the grouping itself prompts recall. Alphabetical within a group.
-4. **Define in project context**, one entry per term: `**TERM** — expansion. One-to-three-line meaning as used on this project. *Source: file/§.*` Add ⚠️ notes for ambiguous terms and cross-reference the authoritative document for contested definitions.
-5. **Diff against the previous version** when refreshing: new terms from newly reviewed documents in, stale entries corrected, never silently dropped.
-6. **Wire it in**: OKF frontmatter, folder `index.md` entry, `log.md` entry.
+Run this as a **roll-up**, in this order — the Tier 1 files first, because a contract's own words beat anything inferred from a summary:
+
+1. **Collect every Tier 1 file** — `Project_Documentation/*/definitions.md` (and any per-document subfolder). These are the authoritative inputs.
+2. **Promote per the rule above**, term by term, into the master. For each promoted term: project meaning in one to three lines, ⚠️ where it collides, and a **Source cell linking to the Tier 1 file and clause**.
+3. **Then scan the rest of the repo** for terms no contract defines — summaries, guarantee extractions, matrices, drawings-derived equipment names, `project_info.md`, market and methodology vocabulary. Fan out with a search subagent if available. This is the top-up pass, not the primary one.
+4. **What qualifies overall:** every acronym without exception (even obvious-looking ones — COD, POI, kW-month), plus any term of art whose *project* meaning isn't self-evident to an outsider: contract-defined words, telemetry flags, formula symbols, program names. Plain English that means exactly what it says stays out — the goal is unique definitions that need stating, not a dictionary.
+5. **Group** entries: Organizations & parties · Contracts & commercial · Technical & equipment · Market & grid · Metrics & KPIs · ⚠️ Ambiguous & tricky · Methodology/repo terms. Working category by category surfaces far more terms than one flat pass — the grouping itself prompts recall.
+6. **Diff against the previous version** when refreshing: new terms from newly reviewed documents in, stale entries corrected, never silently dropped. Where a Tier 1 review *changed* a meaning (a re-read that sharpened or corrected it), the master entry is corrected too and the correction noted in the folder `log.md`.
+7. **Check the collisions deliberately.** After promoting, re-read §6 (ambiguous terms): a new document usually adds at least one word that another contract already uses differently. Two contracts, two definitions, one word is the normal case on these projects, not the exception.
+8. **Wire it in**: OKF frontmatter, folder `index.md` entry, `log.md` entry.
+
+### When to run
+
+- **After every source-document review** that produced or changed a Tier 1 `definitions.md` — same session, per the roll-up trigger above.
+- **Before the satellite-document sequence starts** (the dedicated step after the EIM): all documents reviewed, so all Tier 1 files exist — this is the pass that produces the first complete master glossary and the taxonomy session that follows it.
+- **On demand** when a session surfaces an undefined or contested term.
 
 ## Maintaining `taxonomy.md` (facilitated)
 
@@ -41,6 +82,7 @@ Taxonomy decisions are the user's to make — run them as short Q&A sessions, no
 
 ## Ongoing duties (all skills, all sessions)
 
-- New acronym used in any new document → entry added to `definitions.md` in the same session.
+- A source-document review that writes or updates a Tier 1 `definitions.md` → **roll up into the master glossary in the same session**, with the Source cells linked back.
+- New acronym used in any new document → entry added to the master `definitions.md` in the same session.
 - Never invent a new name for something the taxonomy already names.
 - When a term's meaning is contested between contracts, the definitions entry records the conflict — resolving it belongs to the KPI-definitions or guarantee-matrix skills.

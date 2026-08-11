@@ -77,7 +77,7 @@ Work through these in order unless the user redirects. For each: state what the 
 1. Show the complete updated Mermaid map.
 2. Produce the **open questions list** (every ❓) with a suggested owner for each answer.
 3. Save/deliver: `Entity_Interaction_Map(EIM)/entity-interaction-map.md` updated in place (version bumped); record the open-questions list in the folder's `todo.md` and the session's changes in the folder's `log.md`.
-4. Offer next steps explicitly: "From this map we can now generate the satellite documents — recommended order: (1) Contact Register, (2) Data Interface Register, (3) Performance Guarantee Matrix, (4) Warranty Obligation Matrix, (5) Metrics Tree then Metrics & KPIs, (6) RACI, (7) Escalation Plan, (8) BESS GADS, (9) Settlement Reconciliation, (10) Monthly Performance Report (a data product). Each has its own skill and template."
+4. Offer next steps explicitly: "From this map we can now generate the remaining documents — recommended order: (1) Warranty Obligation Matrix, (2) Performance Guarantee Matrix, (3) RACI, (4) Data Interface Register, (5) Metrics Tree & KPIs, (6) Escalation Plan; then the data products in `Data_Product(DP)/`, in dependency order: (7) BESS GADS — the event ledger the reports read, so it comes first — (8) Daily Performance Report, (9) Monthly Performance Report, (10) any counterparty data exchange, (11) Settlement Reconciliation. Each has its own skill and template." (Definitions & Taxonomy and the Contact Register precede the map in the build sequence — confirm they are done rather than offering them here.)
 
 ## Editing an existing map
 

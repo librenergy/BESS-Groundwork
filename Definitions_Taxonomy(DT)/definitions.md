@@ -74,7 +74,7 @@ One row per organization, with **every alias/spelling seen in source documents**
 | **AS / AGC** | Ancillary Services / Automatic Generation Control | | |
 | **RA** | Resource Adequacy | Name the program administering it in this market | |
 | **NERC** | North American Electric Reliability Corporation | | |
-| **GADS** | Generating Availability Data System (NERC) | The industry outage/derate event taxonomy (Conventional/Wind/Solar; standalone BESS GADS pending) — the toolkit's `BESS_GADS(GADS)` document runs a GADS-aligned BESS taxonomy | `BESS_GADS(GADS)/` |
+| **GADS** | Generating Availability Data System (NERC) | The industry outage/derate event taxonomy (Conventional/Wind/Solar; standalone BESS GADS pending) — the toolkit's `Data_Product(DP)/BESS_GADS` document runs a GADS-aligned BESS taxonomy | `Data_Product(DP)/BESS_GADS/` |
 
 ## 5. Metrics & KPIs
 

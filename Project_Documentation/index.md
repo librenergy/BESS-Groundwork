@@ -2,7 +2,9 @@
 
 Client-provided and project reference documents, sorted by domain. Non-markdown source documents (PDF/DOCX/XLSX) are listed for inventory; they are not OKF concept documents.
 
-New documents are reviewed via the `project-document-review` skill: each gets a `summary.md` (and a `guarantees.md` extraction where applicable) beside the source file, a per-folder index entry, and its facts propagated to `project_info.md` and the matrix documents. When a folder accumulates several unrelated documents, create a subfolder per document so each keeps its own companions.
+**Every domain folder carries an `instructions.md`** — the declared starting point for reviewing that kind of document, layered on the mechanical workflow in the skill. Two worked archetypes ship with the template: [`PPA/instructions.md`](PPA/instructions.md) (the owner *gives* the guarantees — read as the defendant) and [`LTSA/instructions.md`](LTSA/instructions.md) (the owner *holds* them — read as the claimant). Write one for any other domain on its first review, modelled on those.
+
+New documents are reviewed via the `project-document-review` skill: each gets the domain's companion set beside the source file (`summary.md` always; `definitions.md`, `guarantees.md`, `operations-and-maintenance.md`, `outage-management.md`, `telemetry.md`, `red-flags.md` as applicable), a per-folder index entry, a definitions roll-up into the master glossary in the same session, and its facts propagated to `project_info.md` and the matrix documents. When a folder accumulates several unrelated documents, create a subfolder per document so each keeps its own companions.
 
 ## Domains
 

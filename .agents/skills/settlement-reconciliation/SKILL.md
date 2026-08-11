@@ -11,7 +11,7 @@ description: Build or update a BESS project's settlement reconciliation (shadow 
 
 > **Before you start:** read `Definitions_Taxonomy(DT)/definitions.md` (what every acronym and term means on this project — ⚠️-flagged entries carry two meanings) and `Definitions_Taxonomy(DT)/taxonomy.md` (canonical names, organization codes, ID prefixes), if populated. Use the established vocabulary throughout, and add any new acronym or term this session introduces to the glossary before wrapping up (`definitions-taxonomy` skill).
 
-Template: `Settlement_Reconciliation(SR)/settlement-reconciliation.md` (repo root). Per the EIM, the chain under audit is: POI revenue meters → ISO settlement system → AO, cross-checked against Trade & Award Data via the Optimizer/SC.
+Template: `Data_Product(DP)/Settlement_Reconciliation/settlement-reconciliation.md`. Per the EIM, the chain under audit is: POI revenue meters → ISO settlement system → AO, cross-checked against Trade & Award Data via the Optimizer/SC.
 
 ## Prerequisites
 
@@ -34,6 +34,6 @@ Template: `Settlement_Reconciliation(SR)/settlement-reconciliation.md` (repo roo
 
 ## Outputs
 
-1. `Settlement_Reconciliation(SR)/settlement-reconciliation.md` populated in place (version bumped).
+1. `Data_Product(DP)/Settlement_Reconciliation/settlement-reconciliation.md` populated in place (version bumped).
 2. Implementation backlog: statement parser, meter validation job, shadow models, exception report.
 3. Watchlist seeded with the project's known meter/telemetry issue patterns.

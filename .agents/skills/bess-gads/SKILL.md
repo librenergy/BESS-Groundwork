@@ -9,7 +9,7 @@ description: Build or update the project's BESS GADS document — the GADS-align
 
 > **Before you start:** read `Definitions_Taxonomy(DT)/definitions.md` (what every acronym and term means on this project — ⚠️-flagged entries carry two meanings) and `Definitions_Taxonomy(DT)/taxonomy.md` (canonical names, organization codes, ID prefixes), if populated. Use the established vocabulary throughout, and add any new acronym or term this session introduces to the glossary before wrapping up (`definitions-taxonomy` skill).
 
-Template: `BESS_GADS(GADS)/bess-gads.md`. The premise: NERC GADS is the industry's event-accounting standard (Conventional, Wind, Solar — standalone BESS pending, storage today only as co-located groups in GADS Solar), so the project's event taxonomy is **GADS-aligned from day one** — one authoritative event record, tagged once, feeding every contractual availability calculation, exportable when NERC opens BESS reporting. The availability *formulas* live in `Metrics_Tree(MT)/metrics-tree.md`; this document owns the **event record** they depend on.
+Template: `Data_Product(DP)/BESS_GADS/bess-gads.md`. The premise: NERC GADS is the industry's event-accounting standard (Conventional, Wind, Solar — standalone BESS pending, storage today only as co-located groups in GADS Solar), so the project's event taxonomy is **GADS-aligned from day one** — one authoritative event record, tagged once, feeding every contractual availability calculation, exportable when NERC opens BESS reporting. The availability *formulas* live in `Metrics_Tree(MT)/metrics-tree.md`; this document owns the **event record** they depend on.
 
 ## Prerequisites
 
@@ -34,6 +34,6 @@ Template: `BESS_GADS(GADS)/bess-gads.md`. The premise: NERC GADS is the industry
 
 ## Outputs
 
-1. `BESS_GADS(GADS)/bess-gads.md` populated in place (version bumped); folder `todo.md`/`log.md` updated.
+1. `Data_Product(DP)/BESS_GADS/bess-gads.md` populated in place (version bumped); folder `todo.md`/`log.md` updated.
 2. The backfill test results (last month reconciled) as a worked example.
 3. Automation backlog: matching script, derate detector, per-contract verdict engine, monthly reconciliation report, NERC-export mapping (parked until a BESS DRI exists).

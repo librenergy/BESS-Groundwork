@@ -181,7 +181,7 @@ Fill one row per node. `Metric ref` points to a metric definition sheet below; `
 
 ## Metric definition sheets
 
-One sheet per metric, starting with the money-critical ones — the availability metric(s), one per contract, belong first. Event tagging that feeds them lives in [BESS GADS](../BESS_GADS%28GADS%29/bess-gads.md); this document owns the formulas.
+One sheet per metric, starting with the money-critical ones — the availability metric(s), one per contract, belong first. Event tagging that feeds them lives in [BESS GADS](../Data_Product%28DP%29/BESS_GADS/bess-gads.md); this document owns the formulas.
 
 ### `{{Metric Name}}`
 

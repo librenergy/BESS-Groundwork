@@ -9,7 +9,7 @@ description: Set up or produce a BESS project's monthly asset performance report
 
 > **Before you start:** read `Definitions_Taxonomy(DT)/definitions.md` (what every acronym and term means on this project — ⚠️-flagged entries carry two meanings) and `Definitions_Taxonomy(DT)/taxonomy.md` (canonical names, organization codes, ID prefixes), if populated. Use the established vocabulary throughout, and add any new acronym or term this session introduces to the glossary before wrapping up (`definitions-taxonomy` skill).
 
-Template: `Data_Product(DP)/Monthly_Performance_Report/monthly-performance-report.md` (repo root). Every section header in the template names its feeding systems per the EIM — the report is an assembly of the other satellite documents' outputs.
+Template: `Data_Product(DP)/Monthly_Performance_Report/monthly-performance-report.md`. Every section header in the template names its feeding systems per the EIM — the report is an assembly of the other satellite documents' outputs.
 
 ## Two modes
 
