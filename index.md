@@ -15,6 +15,7 @@ Everything anchors on the Entity Interaction Map; the satellite documents derive
 * [Data Interface Register (DIR)](/Data_Interface_Register%28DIR%29/data-interface-register.md) - Catalogue of data systems, telemetry chains, protocols, and integration points.
 * [RACI Matrix](/RACI_Matrix%28RACI%29/raci-matrix.md) - Responsible/Accountable/Consulted/Informed assignments for operational events.
 * [Performance Guarantee Matrix (PGM)](/Performance_Guarantee_Matrix%28PGM%29/performance-guarantee-matrix.md) - Measured-performance guarantees with their calculation methodologies, exclusion asymmetries, and shadow-calculation requirements.
+* [Calculation Sheets](/Performance_Guarantee_Matrix%28PGM%29/calculations/index.md) - One standalone sheet per guarantee mechanism, plus the shared placeholder schema for the per-sheet pseudo-SQL sections.
 * [Warranty Obligation Matrix](/Warranty_Obligation_Matrix%28WOM%29/warranty-obligation-matrix.md) - Defect-style warranties, claim paths, and owner-side conditions that keep coverage valid.
 * [Escalation & Communication Plan](/Escalation_Communication_Plan%28ECP%29/escalation-communication-plan.md) - Who-calls-whom, severity levels, and notification deadlines.
 * [Metrics Tree & KPIs](/Metrics_Tree%28MT%29/metrics-tree.md) - One document: the tree (Commercial Value and Asset Health limbs), the authoritative metric definitions, and the KPI target set.
@@ -33,7 +34,7 @@ Recurring deliverables generated from the templates above and plant data; each p
 
 ## Project scaffolding
 
-* [Project Documentation](/Project_Documentation/index.md) - Domain folder structure (PPA, LTSA, EPC, GRID, O&M, OEM, SCADA, EMS, Design, Asset Management, Performance Engineering) for client-provided source documents, ready for the `project-document-review` skill.
+* [Project Documentation](/Project_Documentation/index.md) - Domain folder structure (PPA, BSA, LTSA, EPC, GRID, O&M, OEM, SCADA, EMS, Design, Asset Management, Performance Engineering) for client-provided source documents, each carrying an `instructions.md` review method; four worked archetypes ship (offtake, supply, service, OEM documentation).
 
 ## Skills
 

@@ -79,7 +79,7 @@ Inside a document:
 
 New contract, spec, drawing set, or report? The goal is that nobody has to re-read the PDF: the review turns it into Markdown that is cheap to search and cites the clause when challenged.
 
-1. **File it** under `Project_Documentation/<DOMAIN>/` — `PPA/`, `LTSA/`, `EPC/`, `GRID/`, `O&M/`, `OEM/`, `SCADA/`, `Design/`, `Asset_Management/`, `EMS/`, `Performance_Engineering/`. If a folder is collecting several unrelated documents, give each one its own subfolder.
+1. **File it** under `Project_Documentation/<DOMAIN>/` — `PPA/`, `BSA/`, `LTSA/`, `EPC/`, `GRID/`, `O&M/`, `OEM/`, `SCADA/`, `Design/`, `Asset_Management/`, `EMS/`, `Performance_Engineering/`. If a folder is collecting several unrelated documents, give each one its own subfolder.
 2. **Review it** into companions beside the source file: a `summary.md` always, a **`definitions.md`** for any contract, and a `guarantees.md` whenever the document carries performance guarantees, warranties, or LDs. Cite clause and page for every claim; transcribe year-by-year tables in full rather than pointing at them.
 3. **Roll the definitions up.** The `definitions.md` you just wrote holds what *this* document defines, in its own words — it is the source of record, not a competing glossary. Promote from it into the master glossary ([`Definitions_Taxonomy(DT)/definitions.md`](./Definitions_Taxonomy%28DT%29/definitions.md)) every term that travels beyond this document: acronyms, anything naming money, a guarantee, a measurement boundary, a clock or a deadline — and, mandatorily, **every word another contract defines differently** (⚠️, both meanings). Link each promoted entry back to the extraction it came from. Internal contract vocabulary stays in the folder. **Do this in the same session as the review** — an extraction that says one thing while the master still says another is the drift this two-tier structure exists to prevent.
 4. **Index it** — add a bullet in the folder's `index.md` and in [`Project_Documentation/index.md`](./Project_Documentation/index.md), and log the review in the folder's `log.md`.
@@ -102,43 +102,44 @@ Nothing below Phase 1 is worth starting until the contracts are in and reviewed.
 - [ ] **2. Load the source documents** into their `Project_Documentation/<DOMAIN>/` folders.
 - [ ] **3. Design documents** (if they exist) — sizing basis, augmentation plan. Sets the physical baseline everything else is measured against.
 - [ ] **4. Offtake agreement** (`PPA/`) — the commercial spine: revenue mechanics, guarantees, usage limits, dispatch rights.
-- [ ] **5. OEM service agreement** (`LTSA/`) — the supply-side guarantees that shadow the offtake ones.
-- [ ] **6. Interconnection agreement** (`GRID/`) — telemetry and metering duties, outage obligations, operating envelope.
-- [ ] **7. O&M agreement(s)** — feeds the RACI, the escalation plan, and the service-level rows of the guarantee matrix.
-- [ ] **8. EPC contract** — workmanship warranties feed the Warranty Obligation Matrix.
-- [ ] **9. SCADA sets + OEM equipment specs** — the Data Interface Register at step 16 depends on these; give them companions rather than mining them ad hoc.
+- [ ] **5. Battery supply agreement** (`BSA/`) — what was actually bought: quantity, ratings, the defect and serial-defect warranty, and the commissioning dates that start the service agreement's clocks. **Review it before the service agreement** — the service agreement's formulas reference capacities this document defines.
+- [ ] **6. OEM service agreement** (`LTSA/`) — the supply-side guarantees that shadow the offtake ones.
+- [ ] **7. Interconnection agreement** (`GRID/`) — telemetry and metering duties, outage obligations, operating envelope.
+- [ ] **8. O&M agreement(s)** — feeds the RACI, the escalation plan, and the service-level rows of the guarantee matrix.
+- [ ] **9. EPC contract** — workmanship warranties feed the Warranty Obligation Matrix.
+- [ ] **10. SCADA sets + OEM equipment specs** — the Data Interface Register at step 17 depends on these; give them companions rather than mining them ad hoc.
 
 ### Phase 2 — Vocabulary and parties
 
-- [ ] **10. Definitions & Taxonomy** (`definitions-taxonomy`) — roll every per-document `definitions.md` up into the master glossary, settle the ⚠️ collisions, then run the taxonomy session (canonical names, organization codes, ID prefixes). **Do this before anything below**, so every document that follows is written in one settled vocabulary.
-- [ ] **11. Contact Register** — the named people and organizations behind the parties. No skill; fill the template directly.
-- [ ] **12. Entity Interaction Map** (`eim-review-build`) — the anchor. **Everything below derives from it** and references its node IDs.
+- [ ] **11. Definitions & Taxonomy** (`definitions-taxonomy`) — roll every per-document `definitions.md` up into the master glossary, settle the ⚠️ collisions, then run the taxonomy session (canonical names, organization codes, ID prefixes). **Do this before anything below**, so every document that follows is written in one settled vocabulary.
+- [ ] **12. Contact Register** — the named people and organizations behind the parties. No skill; fill the template directly.
+- [ ] **13. Entity Interaction Map** (`eim-review-build`) — the anchor. **Everything below derives from it** and references its node IDs.
 
 ### Phase 3 — Obligations, roles, and measurement
 
-- [ ] **13. Warranty Obligation Matrix** (`warranty-obligation-matrix`) — defect-style warranties, claim paths, owner-side conditions that keep cover valid. Needs steps 5 and 8.
-- [ ] **14. Performance Guarantee Matrix** (`performance-guarantee-matrix`) — measured-performance guarantees, calculation methodologies, exclusion asymmetries.
-- [ ] **15. RACI Matrix** (`raci-matrix`) — who is responsible and accountable for each event and process.
-- [ ] **16. Data Interface Register** (`data-interface-register`) — systems, telemetry chains, protocols, integration points. Depends on step 9.
-- [ ] **17. Metrics Tree & KPIs** (`metrics-tree`) — tree first, then the authoritative metric calculations, then the KPI targets. Depends on steps 14 and 16.
-- [ ] **18. Escalation & Communication Plan** (`escalation-plan`) — who calls whom, severity levels, notification deadlines. Builds on steps 11 and 15.
+- [ ] **14. Warranty Obligation Matrix** (`warranty-obligation-matrix`) — defect-style warranties, claim paths, owner-side conditions that keep cover valid. Needs steps 5, 6 and 9 — the supply agreement carries the defect warranty.
+- [ ] **15. Performance Guarantee Matrix** (`performance-guarantee-matrix`) — measured-performance guarantees, calculation methodologies, exclusion asymmetries.
+- [ ] **16. RACI Matrix** (`raci-matrix`) — who is responsible and accountable for each event and process.
+- [ ] **17. Data Interface Register** (`data-interface-register`) — systems, telemetry chains, protocols, integration points. Depends on step 10.
+- [ ] **18. Metrics Tree & KPIs** (`metrics-tree`) — tree first, then the authoritative metric calculations, then the KPI targets. Depends on steps 15 and 17.
+- [ ] **19. Escalation & Communication Plan** (`escalation-plan`) — who calls whom, severity levels, notification deadlines. Builds on steps 12 and 16.
 
 ### Phase 4 — Data products
 
 Everything here needs defensible numbers from Phase 3 first. New products are scoped with `data-product`.
 
-- [ ] **19. BESS GADS / outage tracking** (`bess-gads`) — the outage/derate event taxonomy and ledger. **Before the reports**, which read it.
-- [ ] **20. Daily Performance Report** — availability under each measurement definition; the diagnostic instrument.
-- [ ] **21. Monthly Performance Report** (`monthly-performance-report`) — the assembled owner/lender/IE pack.
-- [ ] **22. Counterparty data exchange** — any recurring payload the offtake agreement obliges. Contractual, so not optional where it exists.
-- [ ] **23. Settlement Reconciliation** (`settlement-reconciliation`) — the shadow-settlement or invoice walk.
+- [ ] **20. BESS GADS / outage tracking** (`bess-gads`) — the outage/derate event taxonomy and ledger. **Before the reports**, which read it.
+- [ ] **21. Daily Performance Report** — availability under each measurement definition; the diagnostic instrument.
+- [ ] **22. Monthly Performance Report** (`monthly-performance-report`) — the assembled owner/lender/IE pack.
+- [ ] **23. Counterparty data exchange** — any recurring payload the offtake agreement obliges. Contractual, so not optional where it exists.
+- [ ] **24. Settlement Reconciliation** (`settlement-reconciliation`) — the shadow-settlement or invoice walk.
 
 ### Notes on the order
 
 - **GADS comes before the reports.** The daily and monthly reports both *read* the event ledger — availability, excused minutes, and commercial events all resolve against it. Build the reports first and you build them against unsettled event types, then rework them.
 - **Contact Register before the EIM works.** It looks inverted, but the parties come from the contracts rather than the map, and the Contact Register is one of only two documents carrying no *Source EIM version* stamp.
-- **Steps 3–9 can run in any order** internally, but all should finish before step 10 — the definitions roll-up is only as complete as the reviews feeding it.
-- **Steps 3 and 12 can swap** where a reviewer already holds the whole picture: build the map from the interview and let the document reviews become the verification pass.
+- **Steps 3–10 can run in any order** internally, but all should finish before step 11 — the definitions roll-up is only as complete as the reviews feeding it.
+- **Steps 3 and 13 can swap** where a reviewer already holds the whole picture: build the map from the interview and let the document reviews become the verification pass.
 
 ---
 
