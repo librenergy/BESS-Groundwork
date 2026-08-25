@@ -60,3 +60,12 @@ The audit needs two inputs:
 - [ ] All pattern classes covered, not just names
 - [ ] Worked examples read specifically for quoted-not-restated material
 - [ ] Findings fixed (tree) or dispositioned with the user (history); audit recorded in `log.md`
+
+## Images need a visual pass
+
+Text scanning cannot see pixels. Screenshots, diagrams, and photos get audited **by looking at them**: names in table cells, browser tabs, URLs, person names in assignment columns, ticket numbers, logos. Prefer fictionalized datasets for illustrations.
+
+**The image-audit judgment-call rule.** Weak residual identifiers (market names, market-service vendors, first names) are a maintainer judgment call, recorded as a disposition in the folder log. Client, project, and counterparty names are never acceptable, fictionalized dataset or not. Two constraints on how a disposition gets recorded:
+
+- **Record the scope actually confirmed.** A general standing instruction ("assume my uploaded screenshots are pre-sanitized") disposes of the class it was given about. It does not convert into a specific confirmation about a particular artifact the maintainer was never shown. Write down which of the two you have.
+- **Geographic content is not a weak identifier.** Map pins, coordinates, basemap place labels, and anything else that locates the asset defeat name anonymization on their own: the labels can all be fictional and the site still be identified from where it is plotted. Treat location as a hard finding requiring explicit per-artifact confirmation that the coordinates are synthetic, not as a judgment call.

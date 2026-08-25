@@ -31,7 +31,7 @@ Read the cover/key terms, table of contents, and definitions first; then grep to
 
 - Parties (exact legal entities — they resolve ownership questions), effective/execution dates, term.
 - Commercial structure: prices, fees, escalation, payment mechanics.
-- Technical parameters: capacities, boundaries (POI/POM), equipment, operating limits.
+- Technical parameters: capacities, boundaries (POI/POM), equipment, operating limits. **Transcribe equipment ratings tables in full** (per-unit power, apparent power, energy, option codes) — never "see spec" or "extracted further only as needed". A rating deferred here is a rating the next question will be told the repo does not hold, and the fallback is a web search that returns a number with no contractual standing.
 - **Guarantees, warranties, LDs, and their calculation mechanics** (formulas, evaluation periods, exclusions, test protocols) — transcribe year-by-year tables **in full**, never "see table".
 - Obligations with deadlines: notices, reports, milestones.
 - References to documents **not in the repo** (an equipment supply agreement, an exhibit "attached separately") — each becomes an open item, never a guess.

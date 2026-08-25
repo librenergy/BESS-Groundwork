@@ -30,7 +30,7 @@ Every symbol resolves to a source. A term defined in a document not held is reco
 
 Numbered, exhaustive. This is the section that decides disputes:
 
-1. **Measurement boundary** — which meter, at what voltage, and what sits inside it (losses, auxiliary load).
+1. **Measurement boundary** — which meter, at what voltage, and what sits inside it (losses, auxiliary load). For **delivery-based guarantees** (dispatch/setpoint compliance), add a *Control chain and measurement boundary* section: how the offtaker's setpoint reaches the plant (dispatch signal → RTUs/RTACs → plant controller → OEM site controller) and at which meter the control loop closes vs where compliance is measured — a loop that settles upstream of the compliance meter consumes part of the compliance band through losses, systematically. If no document shows the loop closing on the compliance meter, that is an open ask to the controls integrator.
 2. **Exclusions and excuse events** — the full list, and for each: does the *other* side's contract excuse it too? The asymmetries are the owner's exposure.
 3. **Notice conditions** — any exclusion that exists only if a notice went out on time.
 4. **Caps on exclusions** — planned-outage allowances and what happens to the overflow (it usually becomes chargeable, not merely un-excluded).

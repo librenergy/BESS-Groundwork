@@ -31,7 +31,7 @@ The layer is BESS-first but the method is asset-agnostic — for a PV plant the 
 
 ### Part 2 — Metrics (the calculations)
 
-4. **One metric per contractual definition.** Availability and RTE routinely differ between the offtake contract and the LTSA — define each **separately** (formula, boundary, exclusions, clock, reporting chain); never merge, and record the delta deliberately. Event tagging lives in BESS GADS; the formulas live here.
+4. **One metric per contractual definition.** Availability and RTE routinely differ between the offtake contract and the LTSA — define each **separately** (formula, boundary, exclusions, clock, reporting chain); never merge, and record the delta deliberately. Event tagging lives in the Outage Tracker; the formulas live here.
 5. **Run the sheet per metric.** The hard fields: measurement boundary, authoritative source, aggregation, timezone/clock convention, exclusions, and the **reporting chain** (who produces the official number, the contractual deadline, deemed-acceptance windows, and how the owner's shadow double-checks it). "Availability" without an exclusions list is not a definition.
 6. **Source-of-truth decisions.** For each quantity reported by multiple systems (SOC, power, availability, capacity, prices), force an explicit authoritative-hop declaration with rationale; never verify a counterparty's number with the counterparty's data.
 7. **Reconciliation rules.** Tolerances and cadence for cross-checks (owner vs OEM vs offtaker availability; meter vs PPC energy); clock discipline per contract.
@@ -51,4 +51,4 @@ The layer is BESS-first but the method is asset-agnostic — for a PV plant the 
 
 1. `Metrics_Tree(MT)/metrics-tree.md` populated in place (tree + metric definitions + KPI table; version bumped).
 2. Implementation backlog: metrics lacking a source or computation home; folder `todo.md` updated, session logged in the folder `log.md`.
-3. Next steps: metrics feed the Monthly Performance Report (data product) and BESS GADS directly.
+3. Next steps: metrics feed the Monthly Performance Report (data product) and the Outage Tracker directly.

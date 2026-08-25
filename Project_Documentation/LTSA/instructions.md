@@ -115,7 +115,7 @@ Anything structurally against the owner — a metric measuring less than its nam
 
 ## Step 11 — Missing documents, close out
 
-List every referenced document not in the repo, with why it matters and what cannot be computed without it — the **equipment supply contract** always matters (covered equipment, the date that starts every clock, the BOL capacity that anchors the degradation curve). Then: both indexes, folder `log.md`, `todo.md`, the definitions **roll-up into the master glossary in the same session**, and propagation (guarantee-matrix rows and calc sheets, warranty matrix, metrics tree, interface register, GADS, `project_info.md`).
+List every referenced document not in the repo, with why it matters and what cannot be computed without it — the **equipment supply contract** always matters (covered equipment, the date that starts every clock, the BOL capacity that anchors the degradation curve). Then: both indexes, folder `log.md`, `todo.md`, the definitions **roll-up into the master glossary in the same session**, and propagation (guarantee-matrix rows and calc sheets, warranty matrix, metrics tree, interface register, the outage tracker, `project_info.md`).
 
 ## Review checklist
 

@@ -76,7 +76,7 @@ Anything structurally against the owner: one-sided deemed rules, uncapped deduct
 
 ## Step 8 — Close out
 
-Indexes, folder `log.md`, `todo.md`, glossary roll-up **in the same session**, and propagate: guarantee-matrix rows and calc sheets, metrics tree, interface register, the GADS excused/charged mapping, escalation-plan notice rows, `project_info.md`.
+Indexes, folder `log.md`, `todo.md`, glossary roll-up **in the same session**, and propagate: guarantee-matrix rows and calc sheets, metrics tree, interface register, the outage-tracker excused/charged mapping, RACI escalation notice rows, `project_info.md`.
 
 ## Known traps (offtake-specific)
 

@@ -70,7 +70,7 @@ Per settlement interval, compute expected charges/credits per stream and compare
 
 | Pattern | Detection | History |
 |---------|-----------|---------|
-| Meter sentinel values (e.g., UINT32 max on SEL-class meters) | §2 check | |
+| Meter sentinel values (e.g., UINT32 max written by some revenue meters instead of a null) | §2 check | |
 | Stale telemetry causing AS performance penalties | telemetry uptime KPI | |
 | Award/schedule mismatch after exceptional dispatch | TAD vs. dispatch diff | |
 | | | |

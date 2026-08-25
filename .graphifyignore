@@ -1,0 +1,18 @@
+# graphify scan exclusions
+#
+# OKF v0.2 scaffolding. Every folder carries index.md / log.md / todo.md.
+# They are navigation and history, not domain content, and they were producing
+# 44% of the graph's nodes while contributing 9% of its cross-content edges.
+#
+#   index.md - a catalogue of links to documents the graph already contains.
+#              Created a duplicate node for every real document
+#              ("Warranty Obligation Matrix" vs "Warranty Obligation Matrix Index").
+#   log.md   - changelog. Nodes were bare dates; re-extracted on every --update.
+#   todo.md  - transient open items, obsolete by design.
+index.md
+log.md
+todo.md
+
+# To keep the root toolkit map while still dropping the 42 per-folder indexes,
+# uncomment the next line (negations are last-match-wins, so it must stay below):
+#!/index.md

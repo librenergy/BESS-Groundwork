@@ -21,7 +21,7 @@ description: "Monthly/quarterly asset performance reporting pack, assembled from
   3.
 
 ## 2. Availability & Outages
-*Sources: reconciled ledger (BESS GADS §6) — owner platform + OEM CMMS + offtaker/ISO view*
+*Sources: reconciled ledger (Outage Tracker §6) — owner platform + OEM CMMS + offtaker/ISO view*
 
 | Metric | This Month | YTD | Target | Status |
 |--------|-----------|-----|--------|--------|

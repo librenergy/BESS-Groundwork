@@ -17,6 +17,20 @@ This is a **documentation-only** toolkit for performance engineering and asset m
 
 The Contact Register has no skill — fill its template directly.
 
+## Answering questions (retrieval order)
+
+When asked a question about the project, work **down this ladder and stop at the first rung that answers it**. Do not skip rungs, and do not jump to the bottom.
+
+1. **A knowledge-graph index, if the clone has one.** Some clones build a graph over the repo (for example `graphify-out/graph.json`, typically gitignored). Query it first. The graph rarely holds the answer itself: it returns the **map**, which nodes are relevant, which source file each came from, which clusters they bridge. Treat it as an index, not as a source, and check its build date against recent commits. If there is no graph, start at rung 2.
+2. **The Markdown around those edges.** Read the source file behind every node the traversal returned, plus its immediate neighbours, then widen with `grep` across the repo. Most answers live here. Cite `path:line`.
+3. **The underlying source documents.** The Markdown companions in `Project_Documentation/` are *summaries*, and they deliberately defer detail. If the Markdown does not carry the number, go to the PDF, DOCX or XLSX it was extracted from: `pdftotext -layout <file> /tmp/x.txt` then grep the text. **A question is never "not answerable from the repo" until this rung has been tried.** Where a governing revision exists (a specification incorporated as a contract exhibit), quote the governing one and cross-check it against any superseded standalone copy.
+4. **Web search, last resort only.** Only once rungs 1 to 3 are exhausted, and only for genuinely *external* facts: published standards, market rules, public vendor data. **Never for project facts.** Contract terms, equipment ratings, guarantees and telemetry are in the repo or they are open items in a `todo.md`. Label any web-sourced fact as external, and never let it silently override or fill a gap in a project number.
+
+Two follow-through rules:
+
+- **A rung-3 answer is a repo gap.** If the fact was only in the source document, extract it into the relevant Markdown companion, update the folder `index.md`/`log.md`, and note it so the next agent answers on rung 2.
+- **Confidentiality does not climb the ladder.** Client source documents carry NDA and confidentiality markings; numbers read from them stay in the project clone and never travel to this template (see the `genericity-audit` skill).
+
 ## Conventions (OKF)
 
 **This repository follows [OKF v0.2](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md) (Google's Open Knowledge Format).** Every change must keep it conformant:
@@ -33,3 +47,4 @@ The Contact Register has no skill — fill its template directly.
 - **Performance lens — commercial detail stays out.** This is a performance-engineering toolkit. Companions and documents record what *prices performance*: LD, adjustment and buydown rates, their caps, what a one-percent or one-day miss costs, and the dates that start performance clocks. **Purchase prices, payment-milestone schedules, credit support and delivery logistics are out of scope** — one-line pointer to the contract at most.
 - **Audit before you contribute.** This template publishes — including `log.md` and the full git history. Before any commit, PR, merge, or push that adds ported or substantially edited content, run the [`genericity-audit`](./.agents/skills/genericity-audit/SKILL.md) skill: working tree (all file types, untracked-committable included), plus a full history blob scan. It reads your private, gitignored `.audit-wordlist.txt` for the client/project vocabulary — the method is public, the names never are. The recurring leak class is quoted worked examples: restate lessons as patterns, never with the real figure or name that taught them.
 - **Per-folder todos:** anything that is a task — open items, pending questions, unresolved conflicts — goes in the folder's `todo.md` (checklist, one item per line with context and a suggested owner), never in the document body. If the folder has no `todo.md` yet, create it with the first task; do **not** create empty `todo.md` files for folders with nothing pending. The main document stays a clean formal version; it may keep a one-line "Open items: tracked in this folder's todo.md" pointer.
+- **Quality-control every big draft.** After drafting or substantially rewriting a document, run the [`drafting-quality-control`](./.agents/skills/drafting-quality-control/SKILL.md) skill before registering and logging it: replace em dashes with plain punctuation (standalone table placeholders and quoted source text keep theirs; `log.md` is never swept) and cut verbosity per the skill's checklist, losing no fact, number, or citation.

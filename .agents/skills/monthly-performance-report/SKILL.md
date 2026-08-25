@@ -2,7 +2,7 @@
 name: monthly-performance-report
 title: Monthly Asset Performance Report — Facilitated Session
 type: Skill
-description: Set up or produce a BESS project's monthly asset performance report through a facilitated session with the asset manager. Use whenever the user wants to design the monthly/quarterly reporting pack, define what goes to the owner/lender/IE, assemble a specific month's report from platform data, or automate report generation (Marimo/PDF pipelines). Two modes - template-setup (first time, tailoring sections to the project) and monthly-production (filling a given month). Requires the project EIM; Metrics & KPIs and BESS GADS make the numbers defensible (run those skills first for the setup mode). The report is a data product — it lives under Data_Product(DP)/.
+description: Set up or produce a BESS project's monthly asset performance report through a facilitated session with the asset manager. Use whenever the user wants to design the monthly/quarterly reporting pack, define what goes to the owner/lender/IE, assemble a specific month's report from platform data, or automate report generation (Marimo/PDF pipelines). Two modes - template-setup (first time, tailoring sections to the project) and monthly-production (filling a given month). Requires the project EIM; Metrics & KPIs and the Outage Tracker make the numbers defensible (run those skills first for the setup mode). The report is a data product — it lives under Data_Product(DP)/.
 ---
 
 # Monthly Asset Performance Report — Facilitated Session
@@ -20,7 +20,7 @@ Template: `Data_Product(DP)/Monthly_Performance_Report/monthly-performance-repor
 4. Decide the production pipeline: manual, notebook-generated (e.g., Marimo → PDF), or hybrid; record where each section's numbers come from programmatically.
 
 **Mode B — Monthly production (recurring):**
-1. Pull the month's reconciled availability (the BESS GADS reconciled month), KPI values vs targets, settlement reconciliation summary, ticket stats, and warranty positions.
+1. Pull the month's reconciled availability (the Outage Tracker reconciled month), KPI values vs targets, settlement reconciliation summary, ticket stats, and warranty positions.
 2. Fill the template section by section; the user supplies narrative judgment (executive summary, issue commentary), the data fills the tables.
 3. Flag any number that fails its reconciliation tolerance — never publish an unreconciled figure silently; annotate it.
 4. Produce the Actions & Decisions table — a report without asks is a newsletter.

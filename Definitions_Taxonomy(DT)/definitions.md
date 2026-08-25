@@ -47,6 +47,9 @@ One row per organization, with **every alias/spelling seen in source documents**
 | Term | Expansion | Meaning on this project | Source |
 |---|---|---|---|
 | **BESS** | Battery Energy Storage System | | |
+| **AC Block (ACB)** | — | Integrated PCS+battery container with AC output; the leaf unit at owner level — no separate Bus or Bat visible | [`taxonomy.md`](taxonomy.md) §2b |
+| **DC Block** | — | DC battery container with no inverter; connects to an external PCS. Carries the `Bat` segment code in topic paths | [`taxonomy.md`](taxonomy.md) §2b |
+| **ES** | Energy Station | The combination level: the blocks behind one block transformer — multiple AC blocks + TX (AC station), or multiple DC blocks + one or more PCS + TX (DC station) | [`taxonomy.md`](taxonomy.md) §2b |
 | **BMS** | Battery Management System | Note the hierarchy actually deployed (string/master) | |
 | **PCS** | Power Conversion System | Note whether separate skids or integrated in the enclosure | |
 | **EMS** | Energy Management System | Name the actual device/vendor product | |
@@ -74,14 +77,21 @@ One row per organization, with **every alias/spelling seen in source documents**
 | **AS / AGC** | Ancillary Services / Automatic Generation Control | | |
 | **RA** | Resource Adequacy | Name the program administering it in this market | |
 | **NERC** | North American Electric Reliability Corporation | | |
-| **GADS** | Generating Availability Data System (NERC) | The industry outage/derate event taxonomy (Conventional/Wind/Solar; standalone BESS GADS pending) — the toolkit's `Data_Product(DP)/BESS_GADS` document runs a GADS-aligned BESS taxonomy | `Data_Product(DP)/BESS_GADS/` |
+| **GADS** | Generating Availability Data System (NERC) | The industry outage/derate event taxonomy (Conventional/Wind/Solar; standalone BESS GADS pending) — the toolkit's `Data_Product(DP)/Outage_Tracker` document runs a GADS-aligned BESS taxonomy | `Data_Product(DP)/Outage_Tracker/` |
 
 ## 5. Metrics & KPIs
 
 | Term | Expansion | Meaning on this project | Source |
 |---|---|---|---|
+| **OBE** | Overall Battery Effectiveness | The BESS analogue of manufacturing's OEE: the average across intervals of `min(EA, OA, PA, QA)`. The weakest of the four availability types sets the ceiling in every interval | [Daily Performance Report §2](/Data_Product%28DP%29/Daily_Performance_Report/daily-performance-report.md) |
+| **EA** | Equipment Availability | Is the BESS on? Built bottom-up from contactor and status signals: `min` at string, `min` of battery side and conversion side at the DC bus. Blind to imbalance, SOC error, and derates | Daily Performance Report §2.1 |
+| **OA** | Operational Availability | Is it responding to dispatch? Meter vs setpoint, with a ramp-widened dead-band and a **directional** SOC exclusion. The most accurate of the four, but only exists while the plant is dispatched | Daily Performance Report §2.2 |
+| **PA** | Power Availability | Can it deliver full power now? ⚠️ Two competing definitions: the correct one is `min(ACP, ADP)` away from the SOC rails; some service agreements use `max(...)`, which cannot see a one-sided derate | Daily Performance Report §2.3 |
+| **QA** | Energy Availability | Does it still hold the contracted MWh? `min(Q_test / Q_guaranteed, 100%)` from the most recent controlled capacity test. ⚠️ A **scalar**, not an interval series: layering it per interval double-counts what EA, OA and PA already capture | Daily Performance Report §2.4 |
+| **ACP / ADP** | Available Charge Power / Available Discharge Power | The two directional power-capability signals, from the BMS at DC-bus level and the PCS per module. Keep them separate until the final combination step | Daily Performance Report §2.3 |
 | **RTE** | Roundtrip Efficiency | ⚠️ Expect per-contract variants (boundary, temperature adjustment, guaranteed values) | |
-| **SOC / SOE** | State of Charge / State of Energy | ⚠️ Watch units (% vs MWh) across sources | |
+| **SOC / SOE** | State of Charge / State of Energy | ⚠️ Watch units (% vs MWh) **and basis** (installed vs contracted) across sources. A plant at 100% contracted SOC may be at 95% installed SOC with batteries that are not full | |
+| **Overbuild** | — | Installed capacity above contracted capacity. Absorbs unit outages before the contract position is touched; the gap closing is the earliest warning that guarantee margin is being consumed | |
 | **SOH** | State of Health | | |
 | **Availability** | — | ⚠️ Expect one definition per contract; record each formula and its exclusions | |
 | **EFC** | Equivalent Full Cycles | Compare usage rights vs guarantee termination thresholds | |

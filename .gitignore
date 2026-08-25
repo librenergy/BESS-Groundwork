@@ -4,3 +4,7 @@ CLAUDE.md
 
 .DS_Store
 .audit-wordlist.txt
+
+
+# context graph temporarily ignored during testing
+graphify-out/

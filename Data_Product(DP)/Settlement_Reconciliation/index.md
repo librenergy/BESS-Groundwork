@@ -5,4 +5,5 @@
 ## Status
 
 * **Template.** Populated by the `settlement-reconciliation` skill; depends on the Data Interface Register's meter and market interfaces.
-* **2026-08-10 — moved under `Data_Product(DP)/`** from the repo root, acronym suffix dropped (`Settlement_Reconciliation(SR)` → `Settlement_Reconciliation`). On a non-ISO or tolling project the reconciliation is primarily the invoice walk rather than an ISO statement check — scope it before the session.
+* On a non-ISO or tolling project the reconciliation is primarily the invoice walk rather than an ISO statement check. Scope it before the session.
+* Moved in from the repo root — see [log.md](log.md).

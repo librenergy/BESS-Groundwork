@@ -14,7 +14,20 @@ description: "Template to map the people, companies, systems, and data flows sur
 >
 > **Rendered in**: Any Markdown viewer that supports Mermaid (GitHub, Notion, Obsidian, VS Code, Typora etc.)
 >
-> **Working copy**: the default working copy is the Mermaid block inline in this file. While a draft is being edited collaboratively, the diagram may instead live in a cloud Mermaid editor (e.g. Mermaid Chart / Mermaid.ai, editable by agents via MCP) as the **single working copy** — in that mode, replace the block here with a link to the cloud diagram, keep version history in the folder's `log.md` and open items in its `todo.md`, and sync a snapshot back at each milestone (permanently once the draft stabilizes). Exactly one copy is authoritative at any time; cloud editors do not merge concurrent edits, so refresh the editor before saving whenever an agent may have updated the diagram.
+> **Working copy**: the Mermaid block inline in this file. A cloud Mermaid editor (Mermaid Chart / Mermaid.ai, editable by agents via MCP) is useful for drafting collaboratively, but it is a convenience copy rather than the record; see the callout below. Keep version history in the folder's `log.md` and open items in its `todo.md`.
+
+> ### 🔗 View this diagram online
+>
+> A published, view-only copy is easier to read and pan than the block below:
+>
+> **[BESS-Groundwork Entity Interaction Map on Mermaid.ai](https://mermaid.ai/d/1c05018a-fbf7-408c-91d7-845094cabd3d)**
+>
+> **The diagram in this file is the source of truth.** The online copy is a convenience, not the record:
+>
+> - **It drifts.** Edit either copy and they diverge. Re-sync the block below after editing online, and re-fetch the online copy before editing it, because concurrent edits overwrite rather than merge.
+> - **Access is not guaranteed.** Publishing depends on a subscription that may lapse, so the link may stop working. Nothing in this repo may depend on it, which is why the block below is the record.
+>
+> *Working in a clone? Replace the link with your own diagram, or delete this callout.*
 
 ## What is an Entity Interaction Map?
 
