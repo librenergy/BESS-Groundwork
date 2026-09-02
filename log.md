@@ -1,5 +1,12 @@
 # Log
 
+## 2026-09-02 (genericity audit: HEAD 70f7b1b + working tree + full history)
+
+* **Audit run before committing the day's ported changes.** Scope: all committable working-tree files (all types), the `70f7b1b` commit's added lines, and a full-history blob scan over every text object (533 objects listed; scanner verified against known-dirty and known-clean strings before trusting results). Wordlist dated 2026-08-17, both source clones covered.
+* **Working tree and `70f7b1b`: clean.** All raw hits were binary byte coincidences inside PNGs/PDFs or English words ("wireless APs", "wrapping up"). A borderline-terms sweep beyond the wordlist (meter model numbers, voltage levels, notice-window names, market hubs, site names, SCADA product names) found nothing at HEAD. The commit's only binary changes are two deleted images.
+* **One history-only finding, dispositioned: leave as is.** An early version of the daily-report HTML template (superseded blob) used a vendor product name as an "e.g." in a comment; the current file has been generic for two commits. The blob is already public on origin/main; the name is a globally known product identifying no client, project, or deal; a history rewrite would break clones for no meaningful exposure reduction.
+* Standing rule reaffirmed for the image/PDF assets (committed and audited previously): text scanning cannot see pixels; new screenshots get a visual pass at porting time, fictionalized datasets preferred.
+
 ## 2026-09-02 (DIR slimmed to systems + interfaces)
 
 * **Data Interface Register narrowed to the system/interface grain**, ported from the first project clone: §3 ISO Telemetry Point List and §4 Historian Ingestion Map **removed** in favor of a "Where the telemetry detail lives" pointer section — grid/market points (incl. APD/APC/SOC/MAXENER/Mode) belong to the **Grid Telemetry Map** data product, vendor tag semantics to the OEM telemetry extraction, per-guarantee capture requirements to **PGM §6**, metric definitions to the Metrics Tree. §2 Interface Register slimmed from 12 columns to 7 with a stability rule on `IF-NN` IDs. The `data-interface-register` skill's Step 4 rewritten from "build the point list" to "hand off the telemetry detail" (both repos); frontmatter/purpose/index descriptions updated.

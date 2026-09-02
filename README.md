@@ -1,18 +1,22 @@
 ---
 type: Index
-title: BESS Performance Engineering
-description: "Index of templates, skills, and reference materials for performance engineering and asset management on BESS assets."
+title: BESS Groundwork
+description: "Operational ontology for BESS performance engineering: the foundation layer a project lays before it can measure, report, or enforce anything."
 ---
 
-# BESS Performance Engineering
+# BESS Groundwork
 
-A collection of templates, reference materials, and structured resources for performance engineering on Battery Energy Storage System (BESS) assets. BESS-first by design, but the method (an entity map, satellite documents, a metrics layer, and data products) is asset-agnostic and transfers to PV, wind, and hybrid plants.
+**Operational ontology for BESS performance engineering.**
 
+Groundwork is what you lay *before* performance engineering or asset management can start on a project. Before anyone can defend an availability number, contest a liquidated damage, or trust a dashboard, the project needs a settled account of itself: who the parties are, what each contract guarantees and on what formula, which system emits which signal, what a "battery string" is and what it is called, and which metric answers to which agreement. That account is the plant's operational ontology, and building it is the first real piece of work on any asset.
 
+This repository is the method and the templates for building it: an entity map, the satellite registers and matrices that derive from it, a ratified vocabulary, a metrics layer, and the recurring data products that fall out the far end. Each document is built through a facilitated Q&A session with an AI agent, or filled by hand from the same questions.
+
+BESS-first by design, and the depth of the taxonomy, the outage model, and the guarantee structures reflects that. The method itself is asset-agnostic: it transfers to PV, wind, and hybrid plants, and to any asset carrying multiple subcontracts, layered entity relationships, and matrixed guarantee and warranty structures.
 
 ## Purpose
 
-This repository is a shared workspace for the tools and context needed to understand, measure, and improve BESS fleet performance. It is intended to support:
+The groundwork exists to support:
 
 - **Data architecture**: Topology mapping, signal inventories, and data flow documentation.
 - **Metrics design**: Grounded definitions that trace back to real sources, sinks, and contracts.
