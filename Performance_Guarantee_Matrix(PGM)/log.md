@@ -1,5 +1,25 @@
 # Log
 
+## 2026-09-02 (calc-sheet template: PG code in title and H1)
+
+* `calc-sheet-template.md` title/H1 changed from "Calc Sheet: {{CONTRACT}} — {{METRIC}}" to "PG-{{ID}} — {{CONTRACT}} {{METRIC}}", and the rename instruction now says to carry the code in the frontmatter title and H1 as well as the filename — every appearance of a metric carries its reference. Ported from the first project clone, where a QC pass caught sheets whose files were renumbered but whose titles were not.
+
+## 2026-09-02 (§6: shadow-calc definition home + Metric (ref) column)
+
+* **§6 Shadow Calculation Requirements clarified as a data-requirements inventory, not a definition home** (callout added: a shadow calculation is an owner metric whose authoritative definition lives in the Metrics Tree under an `MT_` code), **and the table gained a "Metric (ref)" column**: the per-row pointer to that metric, ❓ until each project assigns codes at build time, — for raw inputs/externals/records that are not metrics. Both ported from the first project clone, where the column ships part-filled (`MT_BESS_001/002`).
+
+## 2026-09-01 (calc-sheet data section is direction-aware)
+
+* **`calc-sheet-template.md`'s "Data and metrics required to shadow it" section retitled "…to deliver / shadow it"** with a direction rule, ported from the first project clone: use **deliver** when this party is the contractual reporting party (typically offtaker-facing guarantees — the deemed-acceptance clock only helps if the number survives scrutiny), **shadow** when the counterparty reports and you verify (typically vendor-held guarantees). The clone's tolling sheets had been drafted in shadow language although the owner is the reporting party there.
+
+## 2026-09-01 (calc-sheet filenames carry the PG code)
+
+* **Calc-sheet naming convention changed from `calc-{contract}-{metric}.md` to `PG-{ID}-{contract}-{metric}.md`**, ported from the first project clone (its seven populated sheets renamed the same day): the guarantee's PG code leads, so the folder sorts by counterparty series and a sheet's filename alone identifies which matrix row it defines — matching the owner-metric pattern (`MT_<SEG_TYPE>_<NNN>-<slug>.md`) in the Metrics Tree. Updated: `calculations/index.md`, `calc-sheet-template.md` (which keeps its own name — it is the template, not a sheet), and the `performance-guarantee-matrix` skill (both mentions).
+
+## 2026-08-31 (series-based guarantee IDs)
+
+* **Guarantee IDs renumbered from sequential PG-01…PG-11 to counterparty series**, ported from the first project clone where sequential numbering hit its wall (an insertion shifts every later ID): **PG-1xx** offtaker, **PG-2xx** LTSA/supply provider, **PG-3xx** O&M provider; three digits, append-only within a series, series by counterparty not instrument. Mapping: 01→101, 02→102, 03→103, 04→104 (offtaker); 05→201, 06→202, 07→203, 09→204, 10→205, 11→206 (vendor side, incl. the commissioning, retention-warranty, and response-gap rows); 08→301 (O&M). Scheme stated in the matrix header. Swept: this matrix, the Metrics Tree (prose, node table, and diagram labels), and the Daily Performance Report; `log.md` files excluded per the never-sweep-logs rule.
+
 ## 2026-08-25 (later, tied to the metrics tree)
 
 * **§1.3 added: cross-reference to the metrics tree.** States the division plainly, since the two documents had been drifting: **the [metrics tree](/Metrics_Tree%28MT%29/metrics-tree.md) is the source of truth for what gets monitored, this matrix for what the contract says.** Carries a node-to-row mapping table, and, more usefully, a second table listing the five rows **deliberately not on the tree** with the reason for each: PG-07 vendor RTE (a real claim, but the tree scopes the vendor side to power and capacity for readability), PG-08 O&M SLAs (service obligations, not a computed measurement), PG-09 commissioning (one-time, sets the denominators then stops mattering), PG-10 retention warranty (a defect path whose measurement the tree already carries), PG-11 response guarantee (no tree node because it usually has no contract). Closes with the maintenance rule: a new tree node with no row here is an unmapped mechanism, and a row whose tree node was deleted is a monitoring gap.

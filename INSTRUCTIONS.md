@@ -37,7 +37,7 @@ This is the **master template repo**: every document here is a pristine, unpopul
 | You want to know… | Go to |
 |:---|:---|
 | The headline project facts: capacity, counterparties, milestones, LD values | [`project_info.md`](./project_info.md) |
-| What an acronym or term means on this project | [`Definitions_Taxonomy(DT)/definitions.md`](./Definitions_Taxonomy%28DT%29/definitions.md), the master glossary |
+| What an acronym or term means on this project | [`Definitions(DEF)/definitions.md`](./Definitions%28DEF%29/definitions.md), the master glossary |
 | Exactly how one contract defines a term, in its own words | `Project_Documentation/<DOMAIN>/definitions.md`, the per-document extraction the glossary rolls up from |
 | What a contract actually says | `Project_Documentation/<DOMAIN>/summary.md`, the reviewed extract; the source PDF sits beside it |
 | Exact guarantee mechanics: formulas, exclusions, LDs | [`Performance_Guarantee_Matrix(PGM)/`](./Performance_Guarantee_Matrix%28PGM%29/performance-guarantee-matrix.md) and its calculation sheets |
@@ -83,7 +83,7 @@ New contract, spec, drawing set, or report? The goal is that nobody has to re-re
 
 1. **File it** under `Project_Documentation/<DOMAIN>/`: `PPA/`, `BSA/`, `LTSA/`, `EPC/`, `GRID/`, `O&M/`, `OEM/`, `SCADA/`, `Design/`, `Asset_Management/`, `EMS/`, `Performance_Engineering/`. If a folder is collecting several unrelated documents, give each one its own subfolder.
 2. **Review it** into companions beside the source file: a `summary.md` always, a **`definitions.md`** for any contract, and a `guarantees.md` whenever the document carries performance guarantees, warranties, or LDs. Cite clause and page for every claim; transcribe year-by-year tables in full rather than pointing at them.
-3. **Roll the definitions up.** The `definitions.md` you just wrote holds what *this* document defines, in its own words. It is the source of record, not a competing glossary. Promote from it into the master glossary ([`Definitions_Taxonomy(DT)/definitions.md`](./Definitions_Taxonomy%28DT%29/definitions.md)) every term that travels beyond this document: acronyms, anything naming money, a guarantee, a measurement boundary, a clock or a deadline. Mandatorily, also **every word another contract defines differently** (⚠️, both meanings). Link each promoted entry back to the extraction it came from. Internal contract vocabulary stays in the folder. **Do this in the same session as the review.** An extraction that says one thing while the master still says another is the drift this two-tier structure exists to prevent.
+3. **Roll the definitions up.** The `definitions.md` you just wrote holds what *this* document defines, in its own words. It is the source of record, not a competing glossary. Promote from it into the master glossary ([`Definitions(DEF)/definitions.md`](./Definitions%28DEF%29/definitions.md)) every term that travels beyond this document: acronyms, anything naming money, a guarantee, a measurement boundary, a clock or a deadline. Mandatorily, also **every word another contract defines differently** (⚠️, both meanings). Link each promoted entry back to the extraction it came from. Internal contract vocabulary stays in the folder. **Do this in the same session as the review.** An extraction that says one thing while the master still says another is the drift this two-tier structure exists to prevent.
 4. **Index it.** Add a bullet in the folder's `index.md` and in [`Project_Documentation/index.md`](./Project_Documentation/index.md), and log the review in the folder's `log.md`.
 5. **Propagate** any new fact into [`project_info.md`](./project_info.md) and into the affected toolkit documents (a new guarantee → the Performance Guarantee Matrix; a new interface → the Data Interface Register; a new counterparty → the EIM).
 6. **Record what you could not resolve** in the folder's `todo.md`, including any document the source references that the project does not hold.
@@ -109,7 +109,7 @@ Nothing below Phase 1 is worth starting until the contracts are in and reviewed.
 - [ ] **7. Interconnection agreement** (`GRID/`): telemetry and metering duties, outage obligations, operating envelope.
 - [ ] **8. O&M agreement(s).** Feeds the RACI (including its escalation sections) and the service-level rows of the guarantee matrix.
 - [ ] **9. EPC contract.** Workmanship warranties feed the Warranty Obligation Matrix.
-- [ ] **10. SCADA sets + OEM equipment specs.** The Data Interface Register at step 17 depends on these; give them companions rather than mining them ad hoc.
+- [ ] **10. SCADA sets + OEM equipment specs.** The Data Interface Register at step 15 depends on these; give them companions rather than mining them ad hoc.
 
 ### Phase 2: Vocabulary and parties
 
@@ -119,21 +119,24 @@ Nothing below Phase 1 is worth starting until the contracts are in and reviewed.
 
 ### Phase 3: Obligations, roles, and measurement
 
-- [ ] **14. Warranty Obligation Matrix** (`warranty-obligation-matrix`): defect-style warranties, claim paths, owner-side conditions that keep cover valid. Needs steps 5, 6 and 9; the supply agreement carries the defect warranty.
-- [ ] **15. Performance Guarantee Matrix** (`performance-guarantee-matrix`): measured-performance guarantees, calculation methodologies, exclusion asymmetries.
-- [ ] **16. RACI Matrix** (`raci-matrix`): who is responsible and accountable for each event and process, plus the escalation & communication sections (who calls whom, severity levels, notification deadlines; they also build on step 12).
-- [ ] **17. Data Interface Register** (`data-interface-register`): systems, telemetry chains, protocols, integration points. Depends on step 10.
-- [ ] **18. Metrics Tree & KPIs** (`metrics-tree`): tree first, then the authoritative metric calculations, then the KPI targets. Depends on steps 15 and 17.
+The guarantee matrix leads: it is what the measurement chain (interface register → ontology → metrics tree) consumes. The warranty and RACI matrices close the phase; neither has a downstream dependent inside it.
+
+- [ ] **14. Performance Guarantee Matrix** (`performance-guarantee-matrix`): measured-performance guarantees, calculation methodologies, exclusion asymmetries.
+- [ ] **15. Data Interface Register** (`data-interface-register`): systems, telemetry chains, protocols, integration points. Depends on step 10.
+- [ ] **16. Ontology** (`ontology`): the segment taxonomy, measurement vocabulary, and canonical data models every later document's terms resolve to. Seeded from the taxonomy session (step 11); **filled ratchet-wise via the metrics fill loop**: each metric built in step 17 ratifies its terms here first, so steps 16 and 17 advance together rather than strictly in sequence.
+- [ ] **17. Metrics Tree** (`metrics-tree`): tree first, then the authoritative metric calculations, then the targets. Depends on steps 14 and 15, written in the ontology's ratified terms.
+- [ ] **18. Warranty Obligation Matrix** (`warranty-obligation-matrix`): defect-style warranties, claim paths, owner-side conditions that keep cover valid. Needs steps 5, 6 and 9; the supply agreement carries the defect warranty.
+- [ ] **19. RACI Matrix** (`raci-matrix`): who is responsible and accountable for each event and process, plus the escalation & communication sections (who calls whom, severity levels, notification deadlines; they also build on step 12).
 
 ### Phase 4: Data products
 
 Everything here needs defensible numbers from Phase 3 first. New products are scoped with `data-product`.
 
-- [ ] **19. Outage Tracker** (`outage-tracker`): the outage/derate event taxonomy and ledger. **Before the reports**, which read it.
-- [ ] **20. Daily Performance Report.** Availability under each measurement definition; the diagnostic instrument.
-- [ ] **21. Monthly Performance Report** (`monthly-performance-report`): the assembled owner/lender/IE pack.
-- [ ] **22. Counterparty data exchange.** Any recurring payload the offtake agreement obliges. Contractual, so not optional where it exists.
-- [ ] **23. Settlement Reconciliation** (`settlement-reconciliation`): the shadow-settlement or invoice walk.
+- [ ] **20. Outage Tracker** (`outage-tracker`): the outage/derate event taxonomy and ledger. **Before the reports**, which read it.
+- [ ] **21. Daily Performance Report.** Availability under each measurement definition; the diagnostic instrument.
+- [ ] **22. Monthly Performance Report** (`monthly-performance-report`): the assembled owner/lender/IE pack.
+- [ ] **23. Counterparty data exchange.** Any recurring payload the offtake agreement obliges. Contractual, so not optional where it exists.
+- [ ] **24. Settlement Reconciliation** (`settlement-reconciliation`): the shadow-settlement or invoice walk.
 
 ### Alongside the sequence: studies and procedures
 
@@ -165,7 +168,7 @@ You can work either way:
 Before you start any session:
 
 - **Build in order.** The EIM comes first; everything else references it. The README's *Recommended sequence* gives the dependency order for the rest.
-- **Read the glossary first** ([`definitions.md`](./Definitions_Taxonomy%28DT%29/definitions.md)) and use the established vocabulary. Any new acronym you introduce goes into the glossary in the same session.
+- **Read the glossary first** ([`definitions.md`](./Definitions%28DEF%29/definitions.md)) and use the established vocabulary. Any new acronym you introduce goes into the glossary in the same session.
 - **Bring the sources.** A guarantee session needs the reviewed contract extract; a metrics session needs the Data Interface Register. Sessions grounded in "what we think we remember" are the ones that get rebuilt later.
 
 When you finish: bump the version in the document header, write the folder `log.md` entry, move anything unresolved into `todo.md`, and update `index.md` if a file was added.
@@ -183,7 +186,7 @@ The repo follows [OKF v0.2](https://github.com/GoogleCloudPlatform/knowledge-cat
 3. **History in `log.md`, open items in `todo.md`.** No change-log tables or "open questions" sections inside document bodies.
 4. **Update the indexes.** New document → a bullet in the folder `index.md` and, if it is significant, in the root [`index.md`](./index.md).
 5. **Log what you change.** Detailed entry in the folder's `log.md`; the root `log.md` carries repo-wide or cross-cutting changes and pointers to folder milestones.
-6. **Naming.** Document files are kebab-case (`data-interface-register.md`). Acronym suffixes belong to top-level folders only; a folder nested inside `Data_Product(DP)/` uses its plain name. Canonical names and codes are settled in [`taxonomy.md`](./Definitions_Taxonomy%28DT%29/taxonomy.md).
+6. **Naming.** Document files are kebab-case (`data-interface-register.md`). Acronym suffixes belong to top-level folders only; a folder nested inside `Data_Product(DP)/` uses its plain name. Canonical names and codes are settled in [`taxonomy.md`](./Ontology%28ONT%29/taxonomy.md).
 7. **Cite the source.** Any contractual number gets its clause or exhibit reference. A figure with no traceable source is a finding, not a fact.
 
 **Project content stays in the clone; structural improvements come back here.** If a session produces a better convention, a template fix, or a sharper skill, port it to the master template repo so the next project starts from it. Project facts, populated documents, and `Project_Documentation/` content are never ported.

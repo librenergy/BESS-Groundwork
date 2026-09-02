@@ -2,18 +2,18 @@
 name: eim-review-build
 title: EIM Review & Build — Facilitated Session
 type: Skill
-description: Facilitate a structured Q&A session to review, build, or update a BESS project's Entity Interaction Map (EIM) in Mermaid. Use this skill whenever the user wants to create an EIM for a new project, review or validate an existing EIM with an asset manager or owner, onboard a new BESS client, map project stakeholders/contracts/data flows, or says things like "let's go through the interaction map", "map out the entities for [project]", or "kickoff session". This is the FIRST skill in the BESS asset-management toolkit — always offer it before any satellite-document skill if no project-specific EIM exists yet, because every other document (interface register, RACI & escalation, guarantee & warranty matrices, metrics & KPIs, Outage Tracker, settlement reconciliation, monthly report) is derived from the EIM.
+description: Facilitate a structured Q&A session to review, build, or update a BESS project's Entity Interaction Map (EIM) in Mermaid. Use this skill whenever the user wants to create an EIM for a new project, review or validate an existing EIM with an asset manager or owner, onboard a new BESS client, map project stakeholders/contracts/data flows, or says things like "let's go through the interaction map", "map out the entities for [project]", or "kickoff session". This is the FIRST skill in the BESS asset-management toolkit: always offer it before any satellite-document skill if no project-specific EIM exists yet, because every other document (interface register, RACI & escalation, guarantee & warranty matrices, metrics & KPIs, Outage Tracker, settlement reconciliation, monthly report) is derived from the EIM.
 ---
 
-# EIM Review & Build — Facilitated Session
+# EIM Review & Build: Facilitated Session
 
-> **Before you start:** read `Definitions_Taxonomy(DT)/definitions.md` (what every acronym and term means on this project — ⚠️-flagged entries carry two meanings) and `Definitions_Taxonomy(DT)/taxonomy.md` (canonical names, organization codes, ID prefixes), if populated. Use the established vocabulary throughout, and add any new acronym or term this session introduces to the glossary before wrapping up (`definitions-taxonomy` skill).
+> **Before you start:** read `Definitions(DEF)/definitions.md` (what every acronym and term means on this project; ⚠️-flagged entries carry two meanings) and `Ontology(ONT)/taxonomy.md` (canonical names, organization codes, ID prefixes), if populated. Use the established vocabulary throughout, and add any new acronym or term this session introduces to the glossary before wrapping up (`definitions-taxonomy` skill).
 
 ## What this skill does
 
-Run a collaborative, section-by-section working session that produces (or updates) a project-specific Entity Interaction Map: a Mermaid flowchart showing every entity (companies, contracts, assets, data systems) and every interaction (contractual, operational, data flow) on a BESS project. The toolkit is BESS-first, but the method is asset-agnostic — for a PV plant, swap the battery asset detail for array/inverter blocks and the same rings (ownership, EPC/warranty, O&M, market, grid, controls) apply.
+Run a collaborative, section-by-section working session that produces (or updates) a project-specific Entity Interaction Map: a Mermaid flowchart showing every entity (companies, contracts, assets, data systems) and every interaction (contractual, operational, data flow) on a BESS project. The toolkit is BESS-first, but the method is asset-agnostic; for a PV plant, swap the battery asset detail for array/inverter blocks and the same rings (ownership, EPC/warranty, O&M, market, grid, controls) apply.
 
-The generic baseline EIM lives in `Entity_Interaction_Map(EIM)/entity-interaction-map.md` (repo root) — the Mermaid diagram is inline in that file. A session instantiates it for a specific project with real company names, real contract structures, and project-specific deviations.
+The generic baseline EIM lives in `Entity_Interaction_Map(EIM)/entity-interaction-map.md` (repo root); the Mermaid diagram is inline in that file. A session instantiates it for a specific project with real company names, real contract structures, and project-specific deviations.
 
 ## Working copy
 
@@ -44,29 +44,29 @@ Work through these in order unless the user redirects. For each: state what the 
 
 ### 3. EPC & warranty structure
 - Single EPC or split BESS/substation EPCs?
-- Who manages workmanship warranty claims — LTSA or owner directly?
-- Battery/PCS/EMS supplied through EPC or owner-furnished equipment? (Changes warranty privity — draw the edges accordingly.)
+- Who manages workmanship warranty claims: LTSA or owner directly?
+- Battery/PCS/EMS supplied through EPC or owner-furnished equipment? (Changes warranty privity; draw the edges accordingly.)
 
 ### 4. O&M / LTSA ring
 - One LTSA for everything, or split BESS vs. substation/BOP?
-- Is the LTSA the battery OEM itself? (Common — collapses nodes.)
+- Is the LTSA the battery OEM itself? (Common; collapses nodes.)
 - ROCC: LTSA's, owner's, or third party? 24/7?
 - Which CMMS and ticketing systems actually exist, and who has access?
 
 ### 5. Market & revenue ring
 - Revenue model: tolling, full merchant, hybrid? Offtaker identity?
 - Optimizer and SC/QSE: same company or separate? Route-to-market provider?
-- Who is the registered Generator Operator? (Often the LTSA or AM — verify, it drives the RACI later.)
-- Standing cadences: optimizer daily call / weekly report — confirm or correct.
+- Who is the registered Generator Operator? (Often the LTSA or AM; verify, it drives the RACI later.)
+- Standing cadences: optimizer daily call / weekly report; confirm or correct.
 
 ### 6. Grid & ISO ring
-- ISO/BA, Transmission Owner, TOP — names.
+- ISO/BA, Transmission Owner, TOP: names.
 - GIA counterparty and any special interconnection conditions worth a labeled edge.
 - ISO telemetry signal set: confirm APD/APC/SOC/MAXENER/Mode applies in this market, or adapt (e.g., ERCOT vs. CAISO naming).
 
 ### 7. On-site control & data architecture
-- PPC vendor, EMS vendor, RTAC setup — confirm the control chain edges (BMS → battery controller → PPC; EMS ↔ PPC mode authority).
-- Where does the owner's data platform / APM tap in? (EMS API? Direct PLC/Modbus? Historian replication?) Draw that edge precisely — it scopes the data engagement.
+- PPC vendor, EMS vendor, RTAC setup; confirm the control chain edges (BMS → battery controller → PPC; EMS ↔ PPC mode authority).
+- Where does the owner's data platform / APM tap in? (EMS API? Direct PLC/Modbus? Historian replication?) Draw that edge precisely; it scopes the data engagement.
 - Revenue metering: at POI only, or also PCS-level check meters?
 
 ### 8. Performance engineering overlay (optional)
@@ -77,7 +77,7 @@ Work through these in order unless the user redirects. For each: state what the 
 1. Show the complete updated Mermaid map.
 2. Produce the **open questions list** (every ❓) with a suggested owner for each answer.
 3. Save/deliver: `Entity_Interaction_Map(EIM)/entity-interaction-map.md` updated in place (version bumped); record the open-questions list in the folder's `todo.md` and the session's changes in the folder's `log.md`.
-4. Offer next steps explicitly: "From this map we can now generate the remaining documents — recommended order: (1) Warranty Obligation Matrix, (2) Performance Guarantee Matrix, (3) RACI (including its escalation & communication sections), (4) Data Interface Register, (5) Metrics Tree & KPIs; then the data products in `Data_Product(DP)/`, in dependency order: (6) Outage Tracker — the event ledger the reports read, so it comes first — (7) Daily Performance Report, (8) Monthly Performance Report, (9) any counterparty data exchange, (10) Settlement Reconciliation. Each has its own skill and template." (Definitions & Taxonomy and the Contact Register precede the map in the build sequence — confirm they are done rather than offering them here.)
+4. Offer next steps explicitly: "From this map we can now generate the remaining documents — recommended order: (1) Warranty Obligation Matrix, (2) Performance Guarantee Matrix, (3) RACI (including its escalation & communication sections), (4) Data Interface Register, (5) Metrics Tree; then the data products in `Data_Product(DP)/`, in dependency order: (6) Outage Tracker — the event ledger the reports read, so it comes first — (7) Daily Performance Report, (8) Monthly Performance Report, (9) any counterparty data exchange, (10) Settlement Reconciliation. Each has its own skill and template." (Definitions & Taxonomy and the Contact Register precede the map in the build sequence; confirm they are done rather than offering them here.)
 
 ## Editing an existing map
 

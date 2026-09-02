@@ -7,7 +7,7 @@ description: "How the physical (installed) state of energy reported by the batte
 # State of Energy Mapping
 
 **Project:** `{{PROJECT_NAME}}`  **Market/ISO:** `{{ISO}}`  **Version:** `{{VERSION}}`  **Last updated:** `{{DATE}}`
-**Source EIM version:** `{{EIM_VERSION}}`  **Companions:** [Grid Telemetry Map](../Grid_Telemetry_Mapping/grid-telemetry-map.md) (SOC and energy points) · [Metrics Tree & KPIs](../../Metrics_Tree%28MT%29/metrics-tree.md) · [PGM](../../Performance_Guarantee_Matrix%28PGM%29/performance-guarantee-matrix.md) · [DIR](../../Data_Interface_Register%28DIR%29/data-interface-register.md) §3
+**Source EIM version:** `{{EIM_VERSION}}`  **Companions:** [Grid Telemetry Map](../Grid_Telemetry_Mapping/grid-telemetry-map.md) (SOC and energy points) · [Metrics Tree](../../Metrics_Tree%28MT%29/metrics-tree.md) · [PGM](../../Performance_Guarantee_Matrix%28PGM%29/performance-guarantee-matrix.md) · [DIR](../../Data_Interface_Register%28DIR%29/data-interface-register.md) §3
 
 > Purpose: one authoritative mapping between the **installed** state of energy the OEM fleet reports and the **contractual** state of energy the offtaker sees. Oversized fleets carry more installed energy than the contracted range, so "full" and "empty" on the contractual scale occur while the batteries physically sit inside buffered limits. Define the map once, before the telemetry chain hardcodes a raw pass-through. Check early: many DIRs map the offtaker SOC point straight to the OEM's remaining-energy tag, meaning no remap exists in the chain at all.
 

@@ -7,7 +7,7 @@ description: "Daily BESS performance snapshot: equipment health, the contractual
 # Daily Performance Report
 
 **Project:** `{{PROJECT_NAME}}`  **Market/ISO:** `{{ISO}}`  **Version:** `{{VERSION}}`  **Last updated:** `{{DATE}}`
-**Source EIM version:** `{{EIM_VERSION}}` · **Companions:** [Outage Tracker](/Data_Product%28DP%29/Outage_Tracker/outage-tracker.md) (event ledger) · [PGM](/Performance_Guarantee_Matrix%28PGM%29/performance-guarantee-matrix.md) (the contractual calculations) · [Metrics Tree & KPIs](/Metrics_Tree%28MT%29/metrics-tree.md) (formulas)
+**Source EIM version:** `{{EIM_VERSION}}` · **Companions:** [Outage Tracker](/Data_Product%28DP%29/Outage_Tracker/outage-tracker.md) (event ledger) · [PGM](/Performance_Guarantee_Matrix%28PGM%29/performance-guarantee-matrix.md) (the contractual calculations) · [Metrics Tree](/Metrics_Tree%28MT%29/metrics-tree.md) (formulas)
 
 > **Scope note.** This document describes the target structure and build method for the daily report. **§2 is the engineering measurement**, the OBE framework: four availability types, computed the same way on every project, owing nothing to any contract. It is the starting point a project should adopt rather than a menu to choose from. **§3 is the offtaker's contractual view**, which is whatever the executed agreement says and is transcribed rather than modelled. **§4 is the service provider's view**, where §2's power availability definition is also the calculation the owner should negotiate into the agreement. Fill the contractual sections from the project's own [PGM calculation sheets](/Performance_Guarantee_Matrix%28PGM%29/calculations/index.md). Contractual numbers are generally not derivable from one another, nor from §2, and the report should say so rather than reconcile them away.
 
@@ -72,7 +72,7 @@ Site, reporting day and timezone, contract and installed MW, unit count, generat
 |---|---|---|
 | **Total Charge** | Energy into the battery over the reporting day (MWh) | Boundary-dependent: revenue meter vs inverter terminals moves it by transformer and auxiliary losses. Feeds both RTE and EFC, so fix one boundary and use it for all three |
 | **Total Discharge** | Energy out of the battery over the reporting day (MWh) | Same boundary caveat. RTE is discharge ÷ charge, so any boundary mismatch between the two surfaces as an efficiency error rather than a metering error |
-| **EFC / Equivalent Full Cycles** | Throughput expressed in whole-capacity cycles | Must use the same convention as the service agreement's guarantee; see [definitions](/Definitions_Taxonomy%28DT%29/definitions.md). Cumulative EFC is commonly what terminates an energy-retention guarantee, so record the contract's threshold and trend against it |
+| **EFC / Equivalent Full Cycles** | Throughput expressed in whole-capacity cycles | Must use the same convention as the service agreement's guarantee; see [definitions](/Definitions%28DEF%29/definitions.md). Cumulative EFC is commonly what terminates an energy-retention guarantee, so record the contract's threshold and trend against it |
 | **Cycles / day** | EFC accrued in the reporting day | Offtake agreements commonly cap cycles per day and per year. Record both limits and show headroom |
 | **RTE (Raw)** | Discharge ÷ charge over the raw day window | Meaningless when the day is not SOC-neutral |
 | **RTE (SOC Matched)** | Same ratio over a window trimmed to equal start/end SOC | The defensible figure. Report **both**: they diverge sharply on a partial-cycle day. Below one full cycle, suppress it rather than print it: show `N/A` with the throughput that disqualified it (e.g. `Throughput 58% < 100%`) |
@@ -172,13 +172,13 @@ Defaulting a data gap to zero rather than to the last known value is deliberate.
 ```
 Avail_BESS_MW(i)  = Σ_bus Avail_Bus_MW(bus, i) + Excused_MW(i)
 
-Avail_Installed_%(i)  = min( Avail_BESS_MW(i) / Installed_Capacity_MW,  100% )
-Avail_Contracted_%(i) = min( Avail_BESS_MW(i) / Contracted_Capacity_MW, 100% )
+Avail_Installed_%(i)  = Avail_BESS_MW(i) / Installed_Capacity_MW          -- must never exceed 100%
+Avail_Contracted_%(i) = min( Avail_BESS_MW(i) / Contracted_Capacity_MW, 200% )
 
 Avail_BESS_MW(ep) = Σ_i Avail_BESS_MW(i) / N
 ```
 
-`Excused_MW` carries excused events quantified in MW per interval: scheduled maintenance, grid outages, and data loss during periods of known-good availability. `i` is the calculation interval, typically 1 to 5 minutes; `ep` is the evaluation period, from a day to a year; `N` is the number of intervals in it. Cap at 100% at both levels so overbuild cannot manufacture availability above contract.
+`Excused_MW` carries excused events quantified in MW per interval: scheduled maintenance, grid outages, and data loss during periods of known-good availability. `i` is the calculation interval, typically 1 to 5 minutes; `ep` is the evaluation period, from a day to a year; `N` is the number of intervals in it. **Capping convention:** the installed view is not clipped: it cannot legitimately exceed 100%, so a value above 100% is a denominator error to alert on, never to hide. The contracted view is capped at **200%** of contracted capacity; the 100–200% band is the visible fleet headroom (overbuild) absorbing unit outages before the contract position is touched, and clipping it at 100% would hide exactly the margin-consumption signal §3 says to watch.
 
 ![equipment availability time series](daily-performance-report.assets/equipment-availability-timeseries.png)
 
@@ -374,7 +374,7 @@ Compute an owner-side replica of the provider's own definition, whatever it is, 
 
 #### 4.2 Operational availability: the dimension usually missing
 
-Where the agreement carries no response measure, shadow one anyway. It costs nothing beyond data already captured, it is the evidence base for arguing the provider's number overstates what the owner received, and it is the specification to table at the next amendment. It is seeded as an explicit gap row (PG-11) in the PGM for the same reason.
+Where the agreement carries no response measure, shadow one anyway. It costs nothing beyond data already captured, it is the evidence base for arguing the provider's number overstates what the owner received, and it is the specification to table at the next amendment. It is seeded as an explicit gap row (PG-206) in the PGM for the same reason.
 
 Use the §2.2 construction unchanged, including the directional SOC exclusion, so the owner's operational number and the provider-attributed one differ only in **attribution**, never in method. A difference in method turns every conversation into an argument about arithmetic instead of about cause.
 
@@ -511,7 +511,7 @@ The conversions behind every MW figure in §2. Publish them or none of the avail
 - [ ] **Depth-weighting curve**, or an explicit statement that no forgiveness is applied.
 - [ ] **Day boundary** in the project timezone, verified across daylight-saving transitions, rolling up cleanly into contract-year totals.
 - [ ] **Provisional vs final**, with a version and supersedes marker.
-- [ ] **Emit from the [PGM](/Performance_Guarantee_Matrix%28PGM%29/performance-guarantee-matrix.md) and [Metrics Tree & KPIs](/Metrics_Tree%28MT%29/metrics-tree.md) calculations.** Never recompute inside the report. A daily figure that disagrees with the monthly guarantee calculation is worse than no figure.
+- [ ] **Emit from the [PGM](/Performance_Guarantee_Matrix%28PGM%29/performance-guarantee-matrix.md) and [Metrics Tree](/Metrics_Tree%28MT%29/metrics-tree.md) calculations.** Never recompute inside the report. A daily figure that disagrees with the monthly guarantee calculation is worse than no figure.
 - [ ] **Agentic data pipeline.** Where pre-computed insights land and how the notebook reads them.
 - [ ] **Notebook deployment.** Scheduled execution environment, secrets management for database credentials.
 - [ ] **Distribution list** and report-store path.

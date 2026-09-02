@@ -1,5 +1,27 @@
 # Log
 
+## 2026-09-02 (registry: POM section; two cycle conventions)
+
+* Registry section renamed **POM: the commercial boundary (revenue meter)** with the ontology's `PoC` → `POM` rename, and the single "throughput/EFC" candidate split into **two**: offtake cycles vs usage rights, and vendor EFC vs the limitation tables — first-clone lesson that offtake and vendor agreements normalize cycles on different denominators and clocks (contracted energy vs guaranteed capacity; contract year vs operating year), so they are two metrics under the same never-merge rule as the two availabilities. Skill's facilitation guidance extended to state the rule.
+
+## 2026-09-02 (colour encodes metric class; online copy re-synced)
+
+* **Node colour now encodes metric class**, ported from the first project clone (its diagram v0.10): the single purple `kpi` class split into **amber `pg`** (performance guarantee, `PG-xxx`), **solid purple `mt`** (owner metric with an assigned `MT_` code) and **dashed purple `mtc`** (owner-metric candidate, `❓MT`). The rule the colours state: amber means someone owes money on the number; purple means the owner computes it for itself, so a shadow calculation is never amber. Applied to the generic tree (AVLD/DISLD/CAPLD/PAGUAR/CAPGUAR → amber; SHADOW/DELTA/EA/OA/PA/QA → dashed purple with `❓MT` markers matching their registry rows), with the node-taxonomy legend and the promote-a-signal maintenance bullet rewritten and the same rule added to the `metrics-tree` skill's facilitation guidance.
+* **Two knock-on restyles** to keep the colour language unambiguous: the central outage log moved off amber (it was `#fef3c7`, now slate `#334155` on a heavy border) since amber now means guarantee, and it is a shared *record* rather than a metric; the OBE composite moved from teal to filled purple, keeping its emphasis while joining the owner-metric family it belongs to.
+* **Online copy re-synced.** It had drifted *behind* this file — still carrying the pre-2026-08-31 two-digit codes (`PG-01`…`PG-06`) against the committed three-digit series — so the sync pushed this file's codes up rather than pulling the old ones down. Both copies now match at the class-colour version. Reminder for next time: check the direction of drift before syncing; the online copy is not automatically the newer one.
+
+## 2026-09-02 (tree conventions: no source systems, every metric node coded)
+
+* **Two conventions added to the maintenance bullets and the `metrics-tree` skill**, ported from the first project clone (its diagram v0.9): the tree shows performance-guarantee items and metrics only — no source-system leaves; where a quantity comes from is the calculation sheet's and the Data Interface Register's job — and every metric node carries its reference in the label (`PG-xxx` / `MT_` code / `❓MT` for registry candidates, codes append-only and never speculative). The template's generic tree already drew no source leaves, so no diagram change was needed here.
+
+## 2026-08-31 (v0.3, metric registry restructure — ported from the first project clone)
+
+* **The KPI notion removed.** Everything is a metric; a target is a property a metric carries in its definition home. Title and frontmatter retitled to "Metrics Tree"; the Metric-vs-KPI callout replaced by the metric-identity rule; every KPI word in prose, node-taxonomy, and node-table types replaced; `kpi_code` replaced by the code schemes below. The tree's purple class now reads "Metric".
+* **Metric codes adopted**: PG-xxx (counterparty series, per the PGM header) for contractual metrics, **`MT_<SEG_TYPE>_<NNN>`** (segment type = reporting grain, append-only) for owner metrics; both registered in the ontology's taxonomy. **One definition home per metric; every other appearance is a link** — the tree never restates a contractual calculation.
+* **Core metrics reorganized per segment** (Site → PoC → BESS → unit level), replacing the flat starter set; a **Related PG** column types each owner metric's guarantee relationship (itself / shadows / evidences / feeds / leads); shadow replicas are owner metrics, cross-referenced from the PGM rows they shadow.
+* **Three sections removed** in favor of self-contained sheets: the KPI table, the source-of-truth decision table, and the reconciliation rules. A new `calculations/` subfolder mirrors the PGM pattern, with a [metric-sheet template](calculations/metric-sheet-template.md) whose fields carry the classic rules forward (inputs declare sources of truth: meter for money, the controlled test over telemetry, never verify a counterparty's number with the counterparty's data; per-contract clocks; explicit null/gap handling; reconciliation/plausibility checks).
+* Header gained the `ONT_VERSION` stamp; the `metrics-tree` skill rewritten to the new flow (tree → registry → sheets).
+
 ## 2026-08-25 (draft-copy callout)
 
 * **Draft online copy callout added, and the authority inverted.** The document previously said the cloud Mermaid editor was "the single working copy while drafting" and the repo block a synced snapshot. That is backwards for a public template: a subscription-gated link cannot be the record for a repo other people clone, and the lost-update incident earlier today showed the practical cost. **The diagram in the repo file is now stated as the source of truth**, with the Mermaid.ai link presented as a convenience that is easier to read and pan.

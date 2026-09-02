@@ -19,8 +19,8 @@ Everything anchors on the Entity Interaction Map; the satellite documents derive
 * [Calculation Sheets](/Performance_Guarantee_Matrix%28PGM%29/calculations/index.md) - One standalone sheet per guarantee mechanism, plus the shared placeholder schema for the per-sheet pseudo-SQL sections.
 * [References](/Performance_Guarantee_Matrix%28PGM%29/references/index.md) - The BESS performance-engineering video series behind the availability methodology, its slide decks, and where each part lands in the toolkit.
 * [Warranty Obligation Matrix](/Warranty_Obligation_Matrix%28WOM%29/warranty-obligation-matrix.md) - Defect-style warranties, claim paths, and owner-side conditions that keep coverage valid.
-* [Metrics Tree & KPIs](/Metrics_Tree%28MT%29/metrics-tree.md) - One document: the tree (Commercial Value and Asset Health limbs), the authoritative metric definitions, and the KPI target set.
-* [Definitions & Taxonomy](/Definitions_Taxonomy%28DT%29/index.md) - Global glossary of acronyms and terms plus naming/coding conventions (organization codes, ID prefixes) for generated documents.
+* [Metrics Tree](/Metrics_Tree%28MT%29/metrics-tree.md) - One document: the tree (Commercial Value and Asset Health limbs), the authoritative metric definitions, and the KPI target set.
+* [Definitions & Taxonomy](/Definitions%28DEF%29/index.md) - Global glossary of acronyms and terms plus naming/coding conventions (organization codes, ID prefixes) for generated documents.
 * [Project Information](/project_info.md) - Blank scaffold for key project facts: capacity, equipment, commercial structure, counterparties, milestones, and open items.
 
 ## Data products
@@ -28,22 +28,22 @@ Everything anchors on the Entity Interaction Map; the satellite documents derive
 Recurring deliverables generated from the templates above and plant data; each product gets its own plain-named subfolder. Build order within the category: the event ledger and the reconciliation feed the reports.
 
 * [Data Products (DP)](/Data_Product%28DP%29/index.md) - Parent folder for generated deliverables: reports, dashboards, counterparty exchanges, exports.
-* [Outage Tracker](/Data_Product%28DP%29/Outage_Tracker/index.md) - GADS-aligned outage/derate event taxonomy — one authoritative event record feeding every contractual availability calculation.
+* [Outage Tracker](/Data_Product%28DP%29/Outage_Tracker/index.md) - GADS-aligned outage/derate event taxonomy: one authoritative event record feeding every contractual availability calculation.
 * [Settlement Reconciliation](/Data_Product%28DP%29/Settlement_Reconciliation/index.md) - Shadow-settlement procedure verifying counterparty statements against meter data and awards.
 * [Daily Performance Report](/Data_Product%28DP%29/Daily_Performance_Report/index.md) - The daily operational instrument: availability under each measurement definition, the offtaker and service-provider contractual views, and the build architecture behind an automated daily pack.
 * [Monthly Performance Report](/Data_Product%28DP%29/Monthly_Performance_Report/monthly-performance-report.md) - Assembled monthly/quarterly reporting pack for owner, lender, and IE.
 * [Performance Engineering Management](/Data_Product%28DP%29/Performance_Engineering_Management/index.md) - The management layer of the operation: register set (daily review checklists, observations, actions, cases, outage events, engineering changes, knowledge base), linking model, and cadences for running performance engineering on a collaboration platform.
 * [Dashboards](/Data_Product%28DP%29/Dashboards/index.md) - Monitoring and diagnostic dashboards: design rules, the four-tier worked suite (fleet, site, device, analytics) with screenshots, and the per-project register tying each dashboard to its metric definitions and data sources.
-* [Grid Telemetry Mapping](/Data_Product%28DP%29/Grid_Telemetry_Mapping/index.md) - The grid telemetry points (BESS ↔ grid operator) from the BESS SCADA's point of view: each point's source, the performance engineer's monitoring tag, and the grid-side address — how the owner watches an interface the utility side keeps unreadable.
+* [Grid Telemetry Mapping](/Data_Product%28DP%29/Grid_Telemetry_Mapping/index.md) - The grid telemetry points (BESS ↔ grid operator) from the BESS SCADA's point of view: each point's source, the performance engineer's monitoring tag, and the grid-side address: how the owner watches an interface the utility side keeps unreadable.
 * [State of Energy Mapping](/Data_Product%28DP%29/State_of_Energy_Mapping/index.md) - The remap from installed state of energy (OEM fleet) to contractual state of energy (the offtaker's 0-to-contracted range): buffers, the remap function block and its accounting gains, computation owner, and the layered counting/steering/recalibration algorithm.
 
 ## Work products
 
-* [Work Products (WP)](/Work_Product%28WP%29/index.md) - Engineering studies and reviews the performance-engineering team produces — point-in-time analyses ending in findings; first worked template: the IT systems reliability study.
+* [Work Products (WP)](/Work_Product%28WP%29/index.md) - Engineering studies and reviews the performance-engineering team produces: point-in-time analyses ending in findings; first worked template: the IT systems reliability study.
 
 ## Standard operating procedures
 
-* [Standard Operating Procedures (SOP)](/Standard_Operating_Procedures%28SOP%29/index.md) - Step-by-step procedures issued to operating parties and counterparties — controlled documents with issuance and acknowledgement tracking; category scaffold with the recurring procedure catalogue.
+* [Standard Operating Procedures (SOP)](/Standard_Operating_Procedures%28SOP%29/index.md) - Step-by-step procedures issued to operating parties and counterparties: controlled documents with issuance and acknowledgement tracking; category scaffold with the recurring procedure catalogue.
 
 ## Project scaffolding
 

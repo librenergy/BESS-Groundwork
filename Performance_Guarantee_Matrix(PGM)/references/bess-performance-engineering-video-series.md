@@ -37,7 +37,7 @@ Availability tells you what happened; performance engineering is the practice th
 | Power availability as the calculation to negotiate into a service agreement | [Daily Performance Report §4.1](/Data_Product%28DP%29/Daily_Performance_Report/daily-performance-report.md) |
 | Capacity normalisation to the POI | [Daily Performance Report §9.2](/Data_Product%28DP%29/Daily_Performance_Report/daily-performance-report.md) |
 | Per-guarantee calculation methodology | [Calculation sheets](../calculations/index.md) |
-| Terminology (OBE, EA, OA, PA, QA, ACP/ADP, overbuild) | [Definitions](/Definitions_Taxonomy%28DT%29/definitions.md) §5 |
+| Terminology (OBE, EA, OA, PA, QA, ACP/ADP, overbuild) | [Definitions](/Definitions%28DEF%29/definitions.md) §5 |
 | Entity interaction mapping (Module 2, pillar 1) | [Entity Interaction Map](/Entity_Interaction_Map%28EIM%29/entity-interaction-map.md) |
-| Metrics tree (Module 2, pillar 1) | [Metrics Tree & KPIs](/Metrics_Tree%28MT%29/metrics-tree.md) |
+| Metrics tree (Module 2, pillar 1) | [Metrics Tree](/Metrics_Tree%28MT%29/metrics-tree.md) |
 | Dashboards and the daily engineering discipline | [Dashboards](/Data_Product%28DP%29/Dashboards/dashboards.md), [Performance Engineering Management](/Data_Product%28DP%29/Performance_Engineering_Management/performance-engineering-management.md) |

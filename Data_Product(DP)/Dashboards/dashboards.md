@@ -8,7 +8,7 @@ description: "Monitoring and diagnostic dashboards for the asset: design rules, 
 
 **Version:** 0.2 · **Status:** Template
 
-Dashboards **visualize** metrics; they never define them. Every number on a dashboard traces to an authoritative definition in the [Metrics Tree & KPIs](../../Metrics_Tree%28MT%29/index.md) and a source in the [Data Interface Register](../../Data_Interface_Register%28DIR%29/data-interface-register.md).
+Dashboards **visualize** metrics; they never define them. Every number on a dashboard traces to an authoritative definition in the [Metrics Tree](../../Metrics_Tree%28MT%29/index.md) and a source in the [Data Interface Register](../../Data_Interface_Register%28DIR%29/data-interface-register.md).
 
 The screenshots below come from a live Grafana deployment of this suite (fictionalized dataset). They are the working reference for what each dashboard contains.
 

@@ -1,7 +1,7 @@
 ---
 type: Template
 title: Data Interface Register
-description: "Single source of truth for every data system, signal group, and interface on the project, each traceable to a node or edge on the EIM."
+description: "Register of every data system on the project and the interfaces between them: who owns each system, how they communicate, and where the gaps are. Signal-level detail lives in the telemetry data products, not here."
 ---
 
 # Data Interface Register
@@ -9,7 +9,7 @@ description: "Single source of truth for every data system, signal group, and in
 **Project:** `{{PROJECT_NAME}}`  **Market/ISO:** `{{ISO}}`  **Version:** `{{VERSION}}`  **Last updated:** `{{DATE}}`
 **Source EIM version:** `{{EIM_VERSION}}`
 
-> Purpose: single source of truth for every data system, signal group, and interface on the project — who owns it, how it moves, who consumes it. Each row should be traceable to a node or edge on the Entity Interaction Map (EIM).
+> Purpose: the register of **every data system and every interface between them**: who owns each system, how it communicates, who consumes it, and where the gaps are. Systems trace to nodes on the Entity Interaction Map (EIM). **Point- and tag-level detail deliberately lives elsewhere** (see §3); this document stays at the system/interface grain so it can be reviewed in one sitting.
 
 ## 1. System Inventory
 
@@ -41,43 +41,33 @@ One row per data system (purple node on the EIM).
 
 ## 2. Interface Register
 
-One row per data flow (edge on the EIM). IDs follow `IF-NN`.
+One row per interface between two systems. IDs follow `IF-NN` and are **stable** once assigned (calc sheets and the Metrics Tree reference them). What moves is stated in one line; per-point detail lives with the telemetry products (§3). Criticality: H = touches dispatch, safety, or money.
 
-| ID | From → To | EIM Edge | Signal Group / Content | Protocol / Transport | Direction | Rate / Latency | Format | Auth / Network Path | Criticality (H/M/L) | Owner | Status |
-|----|-----------|----------|------------------------|----------------------|-----------|----------------|--------|---------------------|---------------------|-------|--------|
-| IF-01 | String BMS → Master BMS | `STR_BMS --> M_BMS` | Cell V/T, string SOC, alarms | | up | | | | H | | |
-| IF-02 | Master BMS → Battery Controller | `M_BMS --> BAT_CTRL` | SOC, limits, strings connected | | up | | | | H | | |
-| IF-03 | Battery Controller → PPC | `BAT_CTRL --> PPC` | SoC, strings connected, P/Q limits | | up | | | | H | | |
-| IF-04 | Inverter Controller ↔ PPC | `INV_CTRL <--> PPC` | PQ commands, status | | bi | | | | H | | |
-| IF-05 | PPC ↔ Grid RTAC | `PPC <--> RTAC` | Plant telemetry & setpoints | | bi | | | | H | | |
-| IF-06 | RTAC ↔ ISO Telemetry | `RTAC <--> GTEL` | APD, APC, SOC, MAXENER, Mode, op metrics | | bi | | | | H | | |
-| IF-07 | RTAC ↔ TOP Real-time Desk | `RTAC <--> TOP` | | | bi | | | | H | | |
-| IF-08 | P&C → Substation SCADA | `P&C --- SCADA` | Relay events, PQ, meter data | | up | | | | M | | |
-| IF-09 | EMS → APM | `EMS -->|API| APM` | Historized telemetry | | up | | | | H | | |
-| IF-10 | TAD → Optimizer | `TAD -->|API| OPT` | Awards, schedules, prices | | down | | | | H | | |
-| IF-11 | POI Meters → Settlement | `POI --> SET` | Revenue metering (RQMD) | | up | | | | H | | |
-| IF-12 | EMS → GOP | `EMS --> GOP` | Operating displays/alarms | | up | | | | M | | |
-| IF-13 | … | | | | | | | | | | |
+| ID | From → To | What moves | Protocol / Transport | Dir | Crit | Status / notes |
+|----|-----------|------------|----------------------|-----|------|----------------|
+| IF-01 | String BMS → Master BMS | Cell V/T, string SOC, alarms | | up | H | |
+| IF-02 | Master BMS → Battery Controller | SOC, limits, strings connected | | up | H | |
+| IF-03 | Battery Controller → PPC | SoC, strings connected, P/Q limits | | up | H | |
+| IF-04 | Inverter Controller ↔ PPC | PQ commands, status | | bi | H | |
+| IF-05 | PPC ↔ Grid RTAC | Plant telemetry & setpoints | | bi | H | |
+| IF-06 | RTAC ↔ ISO Telemetry | Market/BA telemetry set (point list in the Grid Telemetry Map) | | bi | H | |
+| IF-07 | RTAC ↔ TOP Real-time Desk | | | bi | H | |
+| IF-08 | P&C → Substation SCADA | Relay events, PQ, meter data | | up | M | |
+| IF-09 | EMS → APM | Historized telemetry for analytics/shadow calcs | | up | H | |
+| IF-10 | TAD → Optimizer | Awards, schedules, prices | | down | H | |
+| IF-11 | POI Meters → Settlement | Revenue metering (RQMD) | | up | H | |
+| IF-12 | EMS → GOP | Operating displays/alarms | | up | M | |
+| IF-13 | … | | | | | |
 
-## 3. ISO Telemetry Point List
+## 3. Where the telemetry detail lives
 
-The contractual/market-facing signals (the `GTEL` subgraph). For each: define precisely, identify the authoritative upstream source, and the full chain of custody.
+This register deliberately stops at the system/interface grain, so it can be reviewed in one sitting. Point lists, tag mappings, and ingestion specs each live in exactly one home:
 
-| Signal | Definition (project-specific) | Authoritative Source | Chain (source → … → ISO) | Update Rate | Validation / Plausibility Check | Known Issues |
-|--------|-------------------------------|----------------------|--------------------------|-------------|--------------------------------|--------------|
-| APD — Available Discharge Power (MW) | Max sustained discharge considering SOC foldback, BMS limits, PCS derates | | | | | |
-| APC — Available Charge Power (MW) | Symmetric charge counterpart | | | | | |
-| SOC (MWh) | Dischargeable energy at rated power from present state | | | | | |
-| MAXENER (MWh) | Usable capacity at current SOH & availability (slow-varying) | | | | | |
-| Mode | AS / AGC / ADS / MAN / OFF | | | | | |
-| Operational metrics | | | | | | |
+- **Grid/market-facing points (BESS ↔ BA/ISO/offtaker)** — the [Grid Telemetry Map](/Data_Product%28DP%29/Grid_Telemetry_Mapping/grid-telemetry-map.md) data product: every point on the grid interface with its source tag, monitoring tag, and interface address, including the market signal set (APD, APC, SOC, MAXENER, Mode) with per-point definitions and validation checks.
+- **Vendor/OEM tag semantics** — the OEM telemetry extraction in `Project_Documentation/` (what each signal means and its contract role).
+- **Per-guarantee capture requirements (what must be historized, at what resolution, from which source, retained how long)** — the Performance Guarantee Matrix §6 Shadow Calculation Requirements.
+- **Owner metric definitions computed from the captured data** — the Metrics Tree and its calculation sheets.
 
-## 4. Historian / Data Platform Ingestion Map
-
-| Source System | Tags / Topics Ingested | Ingestion Path (e.g., Modbus → collector → historian) | Retention Tier | Table / Topic Prefix | Gaps |
-|---------------|------------------------|---------------------------------------------------------------|----------------|---------------------------|------|
-| | | | | | |
-
-## 5. Open Items
+## 4. Open Items
 
 Tracked in this folder's `todo.md` (create it with the first item — see the AGENTS.md conventions).

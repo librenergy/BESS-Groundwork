@@ -7,7 +7,7 @@ description: "The grid telemetry points (BESS ↔ grid operator): one table, fro
 # Grid Telemetry Map
 
 **Project:** `{{PROJECT_NAME}}`  **Market/ISO:** `{{ISO}}`  **Version:** `{{VERSION}}`  **Last updated:** `{{DATE}}`
-**Source EIM version:** `{{EIM_VERSION}}`  **Companions:** [DIR](../../Data_Interface_Register%28DIR%29/data-interface-register.md) · [SOE Mapping](../State_of_Energy_Mapping/state-of-energy-mapping.md) · [Metrics Tree & KPIs](../../Metrics_Tree%28MT%29/metrics-tree.md)
+**Source EIM version:** `{{EIM_VERSION}}`  **Companions:** [DIR](../../Data_Interface_Register%28DIR%29/data-interface-register.md) · [SOE Mapping](../State_of_Energy_Mapping/state-of-energy-mapping.md) · [Metrics Tree](../../Metrics_Tree%28MT%29/metrics-tree.md)
 
 > **Scope: grid telemetry only.** The points exchanged between the BESS and the grid operator (balancing authority, ISO, or offtaker dispatch desk); nothing internal. This is the most important interface on the site: dispatch, compliance, and LD exposure all ride on these points. For each one the table answers where the value comes from and how the owner monitors it. The utility side of the interface rides a private network the owner cannot read, so monitoring means reading the same value on our side (SCADA, EMS, or historian tag).
 >
@@ -54,4 +54,4 @@ Column notation is `source.tag`: `ems.` (OEM site controller, register/tag), `rt
 
 ## Open items
 
-Track in this folder's `todo.md` (create it with the first item — see the AGENTS.md conventions). Typical first items: the grid operator's final point list; standing up the `historian.GRID_*` monitoring tags (mirroring + naming); which `reserved` rows to propose to the operator.
+Track in this folder's `todo.md` (create it with the first item; see the AGENTS.md conventions). Typical first items: the grid operator's final point list; standing up the `historian.GRID_*` monitoring tags (mirroring + naming); which `reserved` rows to propose to the operator.

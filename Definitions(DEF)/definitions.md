@@ -79,7 +79,7 @@ One row per organization, with **every alias/spelling seen in source documents**
 | **NERC** | North American Electric Reliability Corporation | | |
 | **GADS** | Generating Availability Data System (NERC) | The industry outage/derate event taxonomy (Conventional/Wind/Solar; standalone BESS GADS pending) — the toolkit's `Data_Product(DP)/Outage_Tracker` document runs a GADS-aligned BESS taxonomy | `Data_Product(DP)/Outage_Tracker/` |
 
-## 5. Metrics & KPIs
+## 5. Metrics
 
 | Term | Expansion | Meaning on this project | Source |
 |---|---|---|---|
@@ -121,7 +121,7 @@ The terms that cause real disputes — two meanings in the repo, or two contract
 | **EIM_VERSION** | Header field | Version stamp tracing a populated document to a specific EIM version | templates |
 | **OKF** | Open Knowledge Format v0.2 | The repo's documentation convention (frontmatter, reserved index/log, per-folder indexes) | `AGENTS.md` |
 | **RACI** | Responsible / Accountable / Consulted / Informed | Role-assignment matrix; exactly one **A** per row | `RACI_Matrix(RACI)/` |
-| **KPI** | Key Performance Indicator | One authoritative definition per metric | `Metrics_Tree(MT)/` (Metrics & KPIs) |
+| **KPI** | Key Performance Indicator | One authoritative definition per metric | `Metrics_Tree(MT)/` (the Metrics Tree) |
 | **Shadow calculation / shadow settlement** | — | Owner-side independent replication of a counterparty's contractual number | `Performance_Guarantee_Matrix(PGM)/` |
 | **`%% TODO` / ❓** | Mermaid comment / open-question marker | Conventions for recording uncertainty without pretending a fact is known | EIM, skills |
 

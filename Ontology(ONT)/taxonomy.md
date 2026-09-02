@@ -1,16 +1,32 @@
 ---
 type: Template
 title: "Taxonomy — Naming, Codes & Prefix Conventions"
-description: "How things are named across the toolkit: canonical equipment/system terms, organization codes, and the prefix/ID conventions every generated document must follow."
+description: "How things are named across the toolkit: canonical equipment/system terms, organization codes, and the prefix/ID conventions every generated document must follow. The naming file of the Groundwork Ontology."
 ---
 
 # Taxonomy — Naming, Codes & Prefix Conventions
 
 ![image-20260824131442403](./taxonomy.assets/image-20260824131442403.png)
 
-**Status:** template, populated in a facilitated session (skill: `definitions-taxonomy`). The [definitions.md](./definitions.md) file defines *what terms mean*; this file defines *which term to use* and *how to code it*.
+**Part of the [Groundwork Ontology](ontology.md)** — moved here from `Definitions_Taxonomy(DT)/` on 2026-08-31 so segment structure and naming have one home. The prose glossary stays in [Definitions (DEF)](../Definitions%28DEF%29/definitions.md): that file defines *what terms mean*; this file defines *which term to use* and *how to code it*. The ratified per-type segment table (definitions, parents, synonyms) is [segment-types.md](segment-types.md); this file owns the **grammar**: hierarchy levels, instance-code formats, topic paths, and identifier schemes.
+
+**Status:** template, populated in a facilitated session (naming/codes via the `ontology` session; the glossary side stays with `definitions-taxonomy`).
 
 Every document generated from the EIM (registers, matrices, reports) carries codes and prefixes. This file is the single authority for those conventions. When two documents disagree on a name or code, this file wins, and the divergent document gets fixed.
+
+## Identifier schemes (registry)
+
+Every ID scheme in the toolkit, one place; details in §4 and in each scheme's home document. All are **append-only**: an insertion never renumbers an existing ID.
+
+| Scheme | Format | Governs | Defined in |
+|:---|:---|:---|:---|
+| Segment type IDs | `Snake_Case` (`MP`, `Bat_Str`) | classes of things | [segment-types.md](segment-types.md) |
+| Segment instance codes | `Type-Code` / `Type-NN` per §2 | physical instances, nameplates, topic paths | this file §2 |
+| Measurement terms | `snake_case`, one unit each | quantities | [measurements.md](measurements.md) |
+| Canonical columns | `term[_statistic]` | time-series table columns | [canonical-models.md](canonical-models.md) |
+| Performance guarantees | `PG-<series><NN>` — 1xx offtaker · 2xx LTSA/supply · 3xx O&M, series by counterparty | contractual instruments | [PGM](../Performance_Guarantee_Matrix%28PGM%29/performance-guarantee-matrix.md) header |
+| Owner metrics | `MT_<SEG_TYPE>_<NNN>` — segment type = reporting grain | engineering/monitoring metrics | [Metrics Tree](../Metrics_Tree%28MT%29/metrics-tree.md) header |
+| Interfaces / warranties / telemetry points | `IF-*` / `W-*` / `GT-NN` per §4 | DIR, WOM, Grid Telemetry Map rows | §4 + those documents |
 
 ---
 
@@ -80,7 +96,7 @@ An **Energy Station (ES)** is the combination of blocks behind one block transfo
 | Level | Segment | Code format | Required | Used by | Description |
 |---|---|---|---|---|---|
 | 0 | **Site** | `Site` or project code | Always | All | Project root |
-| 1 | **PoC** | `PoC-{N}` | If multiple grid connections | All | Point of Connection / POI. Site-level; may serve multiple BESS. |
+| 1 | **POM** | `POM-{N}` | If multiple metering points | All | Point of Metering: the revenue meter that is the commercial boundary. Site-level; may serve multiple BESS. Renamed from `PoC` 2026-09-02; the physical interconnection point (POI) is a separate, usually metric-free boundary. |
 | 1 | **BESS** | `BESS-{N}` | Always | All | Complete plant or subdivision. |
 | 2 | **Feeder** | `Feeder-{L}` | If multiple feeders | All | Distribution circuit. |
 | 3 | **ES** | `ES-{Code}` | If grouped into stations | AC, DC | Energy Station: the blocks behind one block transformer (Block, Skid, FNE). |
@@ -131,7 +147,7 @@ PCS is parent of Bus; Bus is parent of Bat. Multiple PCSs may share a Bus.
 | **External** (field-visible nameplate) | `Type-Code` | Full location code. Readable at the equipment nameplate. | `PCS-1A2`, `ES-11A1`, `ACB-11A1-3` |
 | **Internal** (behind doors) | `Type-{NN}` | Sequential. Context from parent path. | `Str-01`, `Mod-02`, `Cell-015` |
 
-**External segments:** PoC, BESS, Feeder, ES, PCS, ACB, TX, Bat.
+**External segments:** POM, BESS, Feeder, ES, PCS, ACB, TX, Bat.
 **Internal segments:** Bus (when implicit), Str, Mod, Cell.
 
 ### 2e. Topic path examples
@@ -152,7 +168,7 @@ Non-process equipment is grouped under the site as parallel systems:
 | `System_Environment_Monitoring` | Weather stations, ambient sensors | `MET-01`, `MET-02` |
 | `System_Facilities` | HVAC, access control, buildings | `HVAC-01` |
 | `System_IT` | UPS, firewall, servers, switches | `UPS-01`, `Firewall-Primary` |
-| `Substation` | PoC, meters, protection, circuit breakers | `PoC-1`, `Meter-1`, `Breaker-52F11` |
+| `Substation` | POM, meters, protection, circuit breakers | `POM-1`, `Meter-1`, `Breaker-52F11` |
 
 Site-level peers. Same `Type-Code` format, not children of any BESS.
 
@@ -189,7 +205,7 @@ System_Environment_Monitoring --> MET-02
 System_Elements --> Fire_Alarms["Fire_Alarms"]
 System_Elements --> Emergency_Stops["Emergency_Stops"]
 
-Substation --> PoC
+Substation --> POM
 Substation --> Battery_Aggregation_Multimeter
 Substation --> RTU-Scheduler
 Substation --> RTU-Utility
@@ -250,7 +266,7 @@ Ratified and **applied to the folder names** as `Folder_Name(ACR)` for easier na
 | WOM | Warranty_Obligation_Matrix(WOM) |
 | DP | Data_Product(DP): parent folder for generated deliverables; product subfolders are plain-named |
 | MT | Metrics_Tree(MT) |
-| DT | Definitions_Taxonomy(DT) |
+| DT | Definitions(DEF) |
 
 *Retired folder acronyms:* `MPR`, `OAP`/`GADS`, `SR`; those folders now sit under `Data_Product(DP)/` with plain names. **GADS** remains a live *term* in the glossary (NERC's Generating Availability Data System); it is simply no longer a folder code.
 
@@ -264,9 +280,9 @@ How structured identifiers are built in generated documents. Agree the scheme **
 |-------|------------|---------|
 | EIM node IDs | stable uppercase snake IDs, never renamed once satellite docs reference them | `BESS_LTSA`, `OM_PROV` |
 | Interface IDs (Data Interface Register) | ❓ e.g. `IF-<ORG>-<NN>` | |
-| Guarantee IDs (Performance Guarantee Matrix) | ❓ e.g. `PG-<contract>-<NN>` | |
+| Guarantee IDs (Performance Guarantee Matrix) | `PG-<series><NN>`, three digits, series by counterparty (1xx offtaker, 2xx LTSA/supply, 3xx O&M), append-only within a series | `PG-101`, `PG-201` |
 | Warranty IDs (Warranty Obligation Matrix) | ❓ e.g. `W-<NN>` | |
-| KPI IDs | ❓ e.g. `KPI-<NN>` | |
+| Owner metric codes (Metrics Tree) | `MT_<SEG_TYPE>_<NNN>`, segment type = reporting grain, append-only per series | `MT_BESS_001` |
 | Grid telemetry point IDs (Grid Telemetry Map) | `GT-<NN>`: 01– outputs (BESS → grid), 51– inputs (grid → BESS). Columns use `source.tag` notation (`ems.`, `rtac.`, `scada.`, `historian.`, `plc.`, `meter.`, `dnp3.`); on-interface rows carry a `dnp3.*` grid address, not-yet-taken rows `reserved` | `GT-10` |
 | Document versions | `vMAJOR.MINOR`, draft until v1.0; satellite docs pin `EIM_VERSION` | |
 

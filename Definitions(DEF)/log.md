@@ -13,3 +13,7 @@
 * ID prefix `MP-` renamed to `ACB-` throughout, for the same reason. "Central inverter designs" named after a manufacturer became "central-inverter / PCS-skid designs".
 
 * Five architecture illustrations added under `taxonomy.assets/`; one orphaned duplicate removed.
+
+## 2026-08-31
+
+* **Folder renamed `Definitions_Taxonomy(DT)` → `Definitions(DEF)`; `taxonomy.md` (with assets) moved to `Ontology(ONT)/taxonomy.md`** — ported from the first project clone: segment structure and naming have one home in the ontology (identifier authority), this folder stays the prose authority (glossary + two-tier roll-up, unchanged). Full reference sweep across the repo (README, AGENTS.md, CLAUDE.md, INSTRUCTIONS, all skills, templates; log.md files excluded per the never-sweep rule). The `definitions-taxonomy` skill now notes the taxonomy's new home; the glossary's §5 heading simplified to "Metrics" with the KPI-notion removal.
