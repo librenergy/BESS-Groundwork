@@ -9,7 +9,7 @@ description: "Enumerates every contractual guarantee of a measured performance l
 **Project:** `{{PROJECT_NAME}}`  **Market/ISO:** `{{ISO}}`  **Version:** `{{VERSION}}`  **Last updated:** `{{DATE}}`
 **Source EIM version:** `{{EIM_VERSION}}`
 
-> **Guarantee ID scheme (three digits, series by counterparty):** **PG-1xx** = offtaker · **PG-2xx** = LTSA/supply provider · **PG-3xx** = O&M provider; add further series (4xx…) per additional counterparty. Numbering starts at x01 within each series and is **append-only**: a new guarantee takes the next free number in its counterparty's series, so existing IDs never shift when one is inserted. The series follows the **counterparty**, not the instrument (a supply-agreement guarantee from the same vendor as the LTSA shares the 2xx series).
+> **Guarantee ID scheme (three digits, series by counterparty):** **PG_1xx** = offtaker · **PG_2xx** = LTSA/supply provider · **PG_3xx** = O&M provider; add further series (4xx…) per additional counterparty. Numbering starts at x01 within each series and is **append-only**: a new guarantee takes the next free number in its counterparty's series, so existing IDs never shift when one is inserted. The series follows the **counterparty**, not the instrument (a supply-agreement guarantee from the same vendor as the LTSA shares the 2xx series).
 
 > Purpose: enumerate every contractual instrument that guarantees a **measured performance level**: availability, capacity/energy retention, efficiency, dispatch/response. It pins down, for each one, *exactly how the number is calculated*: evaluation period, formula, measurement boundary, inputs, and every exclusion/excuse condition. The commercial terms (LD rates, caps) are recorded for reference, but the engineering payload is the calculation methodology and the data needed to shadow it. Defect-style warranties live in the **Warranty Obligation Matrix**; this document covers "it underperformed", not "it broke".
 
@@ -19,12 +19,12 @@ One cross-walk row per metric family, showing which instrument covers it on each
 
 | Metric family | Owed to the offtaker | Held from vendor, one-time (supply-agreement commissioning) | Held from vendor, ongoing (service agreement · warranty) |
 |---|---|---|---|
-| Availability (power) | PG-101 | (acceptance testing instead) | PG-201 |
-| Availability (response) | PG-104 | | ⚠️ PG-206, usually absent |
-| Capacity (power) | PG-102 | PG-204 | |
-| Energy retention | | PG-204 | PG-202 · PG-205 |
-| Efficiency (RTE) | PG-103 | PG-204 | PG-203 |
-| Dispatch / delivery | PG-104 | | |
+| Availability (power) | PG_101 | (acceptance testing instead) | PG_201 |
+| Availability (response) | PG_104 | | ⚠️ PG_206, usually absent |
+| Capacity (power) | PG_102 | PG_204 | |
+| Energy retention | | PG_204 | PG_202 · PG_205 |
+| Efficiency (RTE) | PG_103 | PG_204 | PG_203 |
+| Dispatch / delivery | PG_104 | | |
 
 Where instruments share a test-protocol shape, record what differs: meter location (POI vs project meter), measurand (power vs energy), temperature treatment.
 
@@ -89,11 +89,12 @@ Terms to settle in the same clause, each of which is worth more than the guarant
 
 | Metrics tree node | Row here |
 |---|---|
-| Availability LD | PG-101 |
-| Dispatch adjustment | PG-104 |
-| Capacity and RTE adjustment | PG-102 · PG-103 (the tree combines them into one node; keep them separate here, since they are separate mechanisms with separate tests) |
-| Power availability guarantee | PG-201 |
-| Capacity guarantee | PG-202 |
+| Availability adjustment | PG_101 |
+| Dispatch adjustment | PG_104 |
+| Capacity adjustment | PG_102 |
+| RTE adjustment | PG_103 |
+| Availability guarantee | PG_201 |
+| Capacity guarantee | PG_202 |
 | Central outage log | not a guarantee. It is the shared event record every row's excused treatment reads, and it is judged **once per contract**; see §5 |
 | OBE and its four measures | not guarantees. They are the measurement layer in §1.2 that the rows above are computed from |
 
@@ -101,11 +102,11 @@ Terms to settle in the same clause, each of which is worth more than the guarant
 
 | Row | Why it is off the tree |
 |---|---|
-| PG-203 vendor RTE | A real claim, but the tree scopes the vendor side to power availability and capacity for readability. Add a node if RTE recovery is material on the project |
-| PG-301 O&M / BOP SLAs | Response-time and service obligations, not a performance measurement the platform computes |
-| PG-204 commissioning acceptance | One-time, pre-operation. It sets the denominators the ongoing rows anchor to, then stops mattering |
-| PG-205 retention warranty | A defect-claim path that happens to have a measured trigger; the tree already carries the measurement as the capacity guarantee |
-| PG-206 response guarantee | Seeded here as a **gap row**. It has no tree node because it usually has no contract; the tree carries the underlying measure as Operational Availability under OBE |
+| PG_203 vendor RTE | A real claim, but the tree scopes the vendor side to power availability and capacity for readability. Add a node if RTE recovery is material on the project |
+| PG_301 O&M / BOP SLAs | Response-time and service obligations, not a performance measurement the platform computes |
+| PG_204 commissioning acceptance | One-time, pre-operation. It sets the denominators the ongoing rows anchor to, then stops mattering |
+| PG_205 retention warranty | A defect-claim path that happens to have a measured trigger; the tree already carries the measurement as the capacity guarantee |
+| PG_206 response guarantee | Seeded here as a **gap row**. It has no tree node because it usually has no contract; the tree carries the underlying measure as Operational Availability under OBE |
 
 When the tree changes, check this table first. A new node with no row here is an unmapped mechanism; a row whose tree node was deleted is a monitoring gap.
 
@@ -117,10 +118,10 @@ The guarantees the owner gives under the offtake/tolling agreement (plus any int
 
 | ID | Guarantee | EIM Node | Guaranteed Level | Evaluation Period | Assessment Basis (telemetry / test / event log) | LD / Remedy (reference) | Cap | Calc Sheet |
 |----|-----------|----------|------------------|-------------------|--------------------------------------------------|--------------------------|-----|-----------|
-| PG-101 | Availability | | ❓ per agreement | ❓ typically annual | ❓ **which type?** Reference: PA per §1.2. Confirm whether the agreement counts logged outage hours or telemetry, since only the latter can be shadowed | | | `calc-offtake-availability.md` |
-| PG-102 | Capacity (power test) | | ❓ per agreement | per test | metered acceptance test at POI; confirm whether duration is tested or only power | | | `calc-offtake-capacity.md` |
-| PG-103 | Efficiency (RTE) | | ❓ per agreement | per test | metered test, SOC-matched window, boundary declared | | | `calc-offtake-rte.md` |
-| PG-104 | Dispatch compliance | | ❓ per agreement | interval / event | OA per §1.2, meter vs setpoint with ramp-widened dead-band and directional SOC exclusion | | | `calc-offtake-dispatch.md` |
+| PG_101 | Availability | | ❓ per agreement | ❓ typically annual | ❓ **which type?** Reference: PA per §1.2. Confirm whether the agreement counts logged outage hours or telemetry, since only the latter can be shadowed | | | `calc-offtake-availability.md` |
+| PG_102 | Capacity (power test) | | ❓ per agreement | per test | metered acceptance test at POI; confirm whether duration is tested or only power | | | `calc-offtake-capacity.md` |
+| PG_103 | Efficiency (RTE) | | ❓ per agreement | per test | metered test, SOC-matched window, boundary declared | | | `calc-offtake-rte.md` |
+| PG_104 | Dispatch compliance | | ❓ per agreement | interval / event | OA per §1.2, meter vs setpoint with ramp-widened dead-band and directional SOC exclusion | | | `calc-offtake-dispatch.md` |
 
 ## 3. Held from Vendors
 
@@ -130,7 +131,7 @@ Every guarantee the owner holds, grouped by instrument. Record the guaranteed de
 
 | ID | Guarantee | EIM Node | Guaranteed Level | Evaluation Period | Assessment Basis | LD / Remedy (reference) | Cap | Calc Sheet |
 |----|-----------|----------|------------------|-------------------|-------------------|--------------------------|-----|-----------|
-| PG-204 | Commissioning performance (power / energy / RTE) | | | one-time at commissioning | metered acceptance test | | | |
+| PG_204 | Commissioning performance (power / energy / RTE) | | | one-time at commissioning | metered acceptance test | | | |
 
 Capture: repeat-until-pass mechanics, per-guarantee acceptance rules (a guarantee once met may stay met regardless of the others), precondition waivers, buydown options (whose option, at what rate, against which floating exposure), and how the results anchor the offtake side's contract capacity and the ongoing retention baselines.
 
@@ -138,20 +139,20 @@ Capture: repeat-until-pass mechanics, per-guarantee acceptance rules (a guarante
 
 | ID | Guarantee | EIM Node | Guaranteed Level | Evaluation Period | Assessment Basis | LD / Remedy (reference) | Cap | Calc Sheet |
 |----|-----------|----------|------------------|-------------------|-------------------|--------------------------|-----|-----------|
-| PG-201 | Availability | | ❓ per agreement | ❓ typically annual | ⚠️ telemetry, often vendor self-assessed. **Negotiate toward PA per §1.2**; refuse `max(charge, discharge)`, which cannot see a one-sided derate | | | `calc-service-power-availability.md` |
-| PG-202 | Energy retention / capacity | | ❓ per agreement | per test | QA per §1.2, controlled capacity test | | | `calc-service-energy-retention.md` |
-| PG-203 | Efficiency (RTE) | | ❓ per agreement | per test | metered test, SOC-matched, boundary declared | | | `calc-service-rte.md` |
-| PG-206 | Operational availability (response) | | ❓ **usually absent** | interval | OA per §1.2, attributed to the provider's boundary | | | `calc-service-operational-availability.md` |
+| PG_201 | Availability | | ❓ per agreement | ❓ typically annual | ⚠️ telemetry, often vendor self-assessed. **Negotiate toward PA per §1.2**; refuse `max(charge, discharge)`, which cannot see a one-sided derate | | | `calc-service-power-availability.md` |
+| PG_202 | Energy retention / capacity | | ❓ per agreement | per test | QA per §1.2, controlled capacity test | | | `calc-service-energy-retention.md` |
+| PG_203 | Efficiency (RTE) | | ❓ per agreement | per test | metered test, SOC-matched, boundary declared | | | `calc-service-rte.md` |
+| PG_206 | Operational availability (response) | | ❓ **usually absent** | interval | OA per §1.2, attributed to the provider's boundary | | | `calc-service-operational-availability.md` |
 
 Capture: shared LD caps, throughput conditioning and row-shift rules, guarantee-termination triggers (cumulative throughput, relocation, service termination), and who computes each number (self-assessed guarantees need a shadow calculation).
 
-**PG-206 is seeded deliberately as a gap row.** The service agreement typically covers the site controller, so the provider owns the plant's ability to act on an instruction as well as its capability to deliver power, yet almost no agreement measures the former. Leave the row in with its level marked absent: it makes the uncovered exposure visible in the matrix, and it is the specification to table at the next amendment. Shadow it from day one either way, because the evidence cannot be reconstructed later.
+**PG_206 is seeded deliberately as a gap row.** The service agreement typically covers the site controller, so the provider owns the plant's ability to act on an instruction as well as its capability to deliver power, yet almost no agreement measures the former. Leave the row in with its level marked absent: it makes the uncovered exposure visible in the matrix, and it is the specification to table at the next amendment. Shadow it from day one either way, because the evidence cannot be reconstructed later.
 
 ### 3.3 Defect-warranty instruments with a measured trigger
 
 | ID | Guarantee | EIM Node | Guaranteed Level | Evaluation Period | Assessment Basis | LD / Remedy (reference) | Cap | Calc Sheet |
 |----|-----------|----------|------------------|-------------------|-------------------|--------------------------|-----|-----------|
-| PG-205 | Energy retention warranty (equipment warranty) | | | per claim | owner-run capacity test | repair/replace (defect path) | | |
+| PG_205 | Energy retention warranty (equipment warranty) | | | per claim | owner-run capacity test | repair/replace (defect path) | | |
 
 Boundary note: the claim path and owner-side validity conditions live in the **Warranty Obligation Matrix**; a row sits here only when its trigger is a measured performance test. Where multiple retention instruments anchor to the same guaranteed energy value, add an endgame comparison (instrument | curve ends | level at end | remedy), since the floors and lifetimes usually differ.
 
@@ -159,7 +160,7 @@ Boundary note: the claim path and owner-side validity conditions live in the **W
 
 | ID | Guarantee | EIM Node | Guaranteed Level | Evaluation Period | Assessment Basis | LD / Remedy (reference) | Cap | Calc Sheet |
 |----|-----------|----------|------------------|-------------------|-------------------|--------------------------|-----|-----------|
-| PG-301 | O&M / BOP SLAs (response, availability) | | | | | | | |
+| PG_301 | O&M / BOP SLAs (response, availability) | | | | | | | |
 
 ## 4. Calculation Sheets
 
@@ -196,7 +197,7 @@ Fill the first three columns from the executed agreements. The **Expected patter
 | Controls/SCADA/comms outage (incl. failed dispatch commands) | | | | ⚠️ The event that scores opposite ways: a command timeout is an owner-side cause to the vendor and a forced outage to the offtaker. The other largest exposure |
 | BESS equipment fault | | | | The one class that generally counts against the vendor. Confirm it is not diluted by a `max()` availability definition |
 | One-sided capability loss (charge-only or discharge-only) | | | | ⚠️ Invisible under a `max(charge, discharge)` definition, fully visible to the offtaker. Pure retained risk created by drafting, not by the plant |
-| Missed setpoint / dispatch deviation | | | | Usually chargeable offtake-side with no vendor counterpart, because service agreements rarely measure response (see PG-206) |
+| Missed setpoint / dispatch deviation | | | | Usually chargeable offtake-side with no vendor counterpart, because service agreements rarely measure response (see PG_206) |
 | Grid outage / curtailment / voltage excursion | | | | Often excused both sides, but via different definitions. Vendor-side voltage-band adjustments can excuse more than the offtake FM clause does |
 | Force majeure (compare definitions!) | | | | Never identical between contracts. Compare word by word; the gap is retained |
 | Performance test hours | | | | Usually excused, and often outside any planned-outage cap. Confirm which party's requested tests qualify |
@@ -215,19 +216,19 @@ Consolidated from the calc sheets: the event logs, telemetry series, and derived
 
 | Requirement | Type (tag / event log / derived) | Serves Guarantee(s) | Metric (ref) | Resolution / Retention | Source System | Status |
 |-------------|----------------------------------|----------------------|--------------|------------------------|---------------|--------|
-| String DC contactor status | tag, per string | PG-101, PG-201 (EA) | ❓ | 1 to 5 min | BMS | |
-| String BMS availability status | tag, per string | PG-101, PG-201 (EA) | ❓ | 1 to 5 min | BMS | |
+| String DC contactor status | tag, per string | PG_101, PG_201 (EA) | ❓ | 1 to 5 min | BMS | |
+| String BMS availability status | tag, per string | PG_101, PG_201 (EA) | ❓ | 1 to 5 min | BMS | |
 | String and DC bus voltage | tag | EA signal quality control | ❓ | 1 to 5 min | BMS | |
-| PCS module status and availability | tag, per module | PG-101, PG-201 (EA) | ❓ | 1 to 5 min | PCS | |
+| PCS module status and availability | tag, per module | PG_101, PG_201 (EA) | ❓ | 1 to 5 min | PCS | |
 | PCS AC / module AC / DC bus voltages | tag | EA signal quality control | ❓ | 1 to 5 min | PCS | |
-| String ACP and ADP | tag, per string or bus | PG-201, PG-206 (PA) | ❓ | 1 to 5 min | master BMS at bus level | |
-| PCS module ACP and ADP | tag, per module | PG-201, PG-206 (PA) | ❓ | 1 to 5 min | PCS, POI-referred | |
+| String ACP and ADP | tag, per string or bus | PG_201, PG_206 (PA) | ❓ | 1 to 5 min | master BMS at bus level | |
+| PCS module ACP and ADP | tag, per module | PG_201, PG_206 (PA) | ❓ | 1 to 5 min | PCS, POI-referred | |
 | BESS SOC, in MWh and %, with declared basis | tag | PA, OA, QA | ❓ | 1 to 5 min | EMS / BMS | |
 | Per-string and per-bus SOC | tag | imbalance attribution | ❓ | 1 to 5 min | BMS | |
-| Dispatch setpoint as received | tag | PG-104, PG-206 (OA) | ❓ | settlement resolution | PPC / grid interface | |
-| Actual power at the POI | tag | PG-104, PG-206 (OA) | ❓ | settlement resolution | revenue meter | |
-| Setpoint acknowledgement and controller fault flags | tag / event | PG-206 (OA attribution) | ❓ | per event | site controller | |
-| Capacity test results (`Q_test`) | test record | PG-102, PG-202, PG-205 (QA) | ❓ | per test, retained for life | test report | |
+| Dispatch setpoint as received | tag | PG_104, PG_206 (OA) | ❓ | settlement resolution | PPC / grid interface | |
+| Actual power at the POI | tag | PG_104, PG_206 (OA) | ❓ | settlement resolution | revenue meter | |
+| Setpoint acknowledgement and controller fault flags | tag / event | PG_206 (OA attribution) | ❓ | per event | site controller | |
+| Capacity test results (`Q_test`) | test record | PG_102, PG_202, PG_205 (QA) | ❓ | per test, retained for life | test report | |
 | Guaranteed capacity schedule (`Q_guaranteed`) | contract parameter | QA baseline | ❓ | per contract year | executed agreement | |
 | Excused events: MW, start, end, cause, notice record | event log | every guarantee | ❓ | per event | [Outage Tracker](/Data_Product%28DP%29/Outage_Tracker/outage-tracker.md) | |
 | POI normalisation constants (MVA vs MW, directional losses, C-rate) | static parameter | every MW-based guarantee | ❓ | on change | design documents | |
@@ -246,4 +247,4 @@ Consolidated from the calc sheets: the event logs, telemetry series, and derived
 | | | | |
 
 ---
-*Related: the [Warranty Obligation Matrix](../Warranty_Obligation_Matrix%28WOM%29/warranty-obligation-matrix.md) holds defect-style warranties and the owner-side conditions that keep them valid. The availability methodology behind §1.2 is specified in the [Daily Performance Report](/Data_Product%28DP%29/Daily_Performance_Report/daily-performance-report.md) and sourced in [references](references/index.md).*
+*Related: the [Warranty Obligation Matrix](../Warranty_Obligation_Matrix%28WOM%29/warranty-obligation-matrix.md) holds defect-style warranties and the owner-side conditions that keep them valid. The availability methodology behind §1.2 is specified in the [Daily Performance Report](/Data_Product%28DP%29/Daily_Performance_Report/daily-performance-report.md) and sourced in [BESS Experts](../BESS_Experts/index.md).*

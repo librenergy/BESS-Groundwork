@@ -8,7 +8,7 @@ description: "How things are named across the toolkit: canonical equipment/syste
 
 ![image-20260824131442403](./taxonomy.assets/image-20260824131442403.png)
 
-**Part of the [Groundwork Ontology](ontology.md)** — moved here from `Definitions_Taxonomy(DT)/` on 2026-08-31 so segment structure and naming have one home. The prose glossary stays in [Definitions (DEF)](../Definitions%28DEF%29/definitions.md): that file defines *what terms mean*; this file defines *which term to use* and *how to code it*. The ratified per-type segment table (definitions, parents, synonyms) is [segment-types.md](segment-types.md); this file owns the **grammar**: hierarchy levels, instance-code formats, topic paths, and identifier schemes.
+**Part of the [Groundwork Ontology](ontology.md)**, moved here from `Definitions_Taxonomy(DT)/` on 2026-08-31 so segment structure and naming have one home. The prose glossary stays in [Definitions (DEF)](../Definitions%28DEF%29/definitions.md): that file defines *what terms mean*; this file defines *which term to use* and *how to code it*. The ratified per-type segment table (definitions, parents, synonyms) is [segment-types.md](segment-types.md); this file owns the **grammar**: hierarchy levels, instance-code formats, topic paths, and identifier schemes.
 
 **Status:** template, populated in a facilitated session (naming/codes via the `ontology` session; the glossary side stays with `definitions-taxonomy`).
 
@@ -24,8 +24,8 @@ Every ID scheme in the toolkit, one place; details in §4 and in each scheme's h
 | Segment instance codes | `Type-Code` / `Type-NN` per §2 | physical instances, nameplates, topic paths | this file §2 |
 | Measurement terms | `snake_case`, one unit each | quantities | [measurements.md](measurements.md) |
 | Canonical columns | `term[_statistic]` | time-series table columns | [canonical-models.md](canonical-models.md) |
-| Performance guarantees | `PG-<series><NN>` — 1xx offtaker · 2xx LTSA/supply · 3xx O&M, series by counterparty | contractual instruments | [PGM](../Performance_Guarantee_Matrix%28PGM%29/performance-guarantee-matrix.md) header |
-| Owner metrics | `MT_<SEG_TYPE>_<NNN>` — segment type = reporting grain | engineering/monitoring metrics | [Metrics Tree](../Metrics_Tree%28MT%29/metrics-tree.md) header |
+| Performance guarantees | `PG_<series><NN>`: 1xx offtaker · 2xx LTSA/supply · 3xx O&M, series by counterparty | contractual instruments | [PGM](../Performance_Guarantee_Matrix%28PGM%29/performance-guarantee-matrix.md) header |
+| Owner metrics | `MT_<SEG_TYPE>_<NNN>`: segment type = reporting grain | engineering/monitoring metrics | [Metrics Tree](../Metrics_Tree%28MT%29/metrics-tree.md) header |
 | Interfaces / warranties / telemetry points | `IF-*` / `W-*` / `GT-NN` per §4 | DIR, WOM, Grid Telemetry Map rows | §4 + those documents |
 
 ---
@@ -81,7 +81,7 @@ Two block (container) types:
 
 | Block type | Description | Typical use case |
 |---|---|---|
-| **AC Block (ACB)** | Integrated PCS+battery in one enclosure, AC output. Leaf node at owner level — no visible Bus or separate Bat. | Containerized all-in-one BESS units |
+| **AC Block (ACB)** | Integrated PCS+battery in one enclosure, AC output. Leaf node at owner level, no visible Bus or separate Bat. | Containerized all-in-one BESS units |
 | **DC Block (Bat)** | DC battery container with no inverter; connects to an external PCS. | Rack-based DC container designs |
 
 An **Energy Station (ES)** is the combination of blocks behind one block transformer, in one of two configurations:
@@ -280,7 +280,7 @@ How structured identifiers are built in generated documents. Agree the scheme **
 |-------|------------|---------|
 | EIM node IDs | stable uppercase snake IDs, never renamed once satellite docs reference them | `BESS_LTSA`, `OM_PROV` |
 | Interface IDs (Data Interface Register) | ❓ e.g. `IF-<ORG>-<NN>` | |
-| Guarantee IDs (Performance Guarantee Matrix) | `PG-<series><NN>`, three digits, series by counterparty (1xx offtaker, 2xx LTSA/supply, 3xx O&M), append-only within a series | `PG-101`, `PG-201` |
+| Guarantee IDs (Performance Guarantee Matrix) | `PG_<series><NN>`, three digits, series by counterparty (1xx offtaker, 2xx LTSA/supply, 3xx O&M), append-only within a series | `PG_101`, `PG_201` |
 | Warranty IDs (Warranty Obligation Matrix) | ❓ e.g. `W-<NN>` | |
 | Owner metric codes (Metrics Tree) | `MT_<SEG_TYPE>_<NNN>`, segment type = reporting grain, append-only per series | `MT_BESS_001` |
 | Grid telemetry point IDs (Grid Telemetry Map) | `GT-<NN>`: 01– outputs (BESS → grid), 51– inputs (grid → BESS). Columns use `source.tag` notation (`ems.`, `rtac.`, `scada.`, `historian.`, `plc.`, `meter.`, `dnp3.`); on-interface rows carry a `dnp3.*` grid address, not-yet-taken rows `reserved` | `GT-10` |

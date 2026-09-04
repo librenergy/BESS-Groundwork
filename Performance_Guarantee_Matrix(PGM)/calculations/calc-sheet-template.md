@@ -1,14 +1,14 @@
 ---
 type: analysis
-title: "PG-{{ID}} — {{CONTRACT}} {{METRIC}}"
+title: "PG_{{ID}} — {{CONTRACT}} {{METRIC}}"
 description: Complete calculation methodology for a single performance guarantee - formula, inputs, conditions and exclusions, edge cases, the data required to deliver or shadow the calculation, and illustrative SQL.
 ---
 
-# PG-{{ID}} — {{CONTRACT}} {{METRIC}}
+# PG_{{ID}} — {{CONTRACT}} {{METRIC}}
 
 **Source:** `{{CONTRACT}}` §`{{CLAUSE}}` ([extraction](../../Project_Documentation/{{DOMAIN}}/guarantees.md)). **Direction:** held by owner / owed to counterparty. **Guaranteed level:** `{{LEVEL}}`.
 
-One sheet per guarantee mechanism, standalone so it can be reviewed on its own. Copy this file, rename it `PG-{ID}-{contract}-{metric}.md` (the guarantee’s PG code first, so sheets sort by series), carry the same code in the frontmatter title and H1 (every appearance of a metric carries its reference), and fill every section; an empty section is a finding, not an omission.
+One sheet per guarantee mechanism, standalone so it can be reviewed on its own. Copy this file, rename it `PG_{ID}-{contract}-{metric}.md` (the guarantee’s PG code first, so sheets sort by series), carry the same code in the frontmatter title and H1 (every appearance of a metric carries its reference), and fill every section; an empty section is a finding, not an omission.
 
 ## Evaluation period
 

@@ -12,7 +12,7 @@ The series this toolkit's availability methodology is built on. Module 1 defines
 
 The slide decks are committed beside this file so an agent can read the source without leaving the repo. The videos carry the explanation; the decks carry the formulas.
 
-> **Reference, never contractual.** Where a deck and an executed agreement disagree, the agreement governs. Where a deck and a [calculation sheet](../calculations/index.md) disagree, the calc sheet governs. Use these to understand *why* a calculation is shaped the way it is, not to settle what a project owes.
+> **Reference, never contractual.** Where a deck and an executed agreement disagree, the agreement governs. Where a deck and a [calculation sheet](../Performance_Guarantee_Matrix%28PGM%29/calculations/index.md) disagree, the calc sheet governs. Use these to understand *why* a calculation is shaped the way it is, not to settle what a project owes.
 
 ## Module 1: BESS Availability Explained
 
@@ -36,7 +36,7 @@ Availability tells you what happened; performance engineering is the practice th
 | The OBE framework and all four availability types | [Daily Performance Report §2](/Data_Product%28DP%29/Daily_Performance_Report/daily-performance-report.md) |
 | Power availability as the calculation to negotiate into a service agreement | [Daily Performance Report §4.1](/Data_Product%28DP%29/Daily_Performance_Report/daily-performance-report.md) |
 | Capacity normalisation to the POI | [Daily Performance Report §9.2](/Data_Product%28DP%29/Daily_Performance_Report/daily-performance-report.md) |
-| Per-guarantee calculation methodology | [Calculation sheets](../calculations/index.md) |
+| Per-guarantee calculation methodology | [Calculation sheets](../Performance_Guarantee_Matrix%28PGM%29/calculations/index.md) |
 | Terminology (OBE, EA, OA, PA, QA, ACP/ADP, overbuild) | [Definitions](/Definitions%28DEF%29/definitions.md) §5 |
 | Entity interaction mapping (Module 2, pillar 1) | [Entity Interaction Map](/Entity_Interaction_Map%28EIM%29/entity-interaction-map.md) |
 | Metrics tree (Module 2, pillar 1) | [Metrics Tree](/Metrics_Tree%28MT%29/metrics-tree.md) |

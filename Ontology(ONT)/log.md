@@ -1,5 +1,9 @@
 # Log
 
+## 2026-09-02 (separator sweep: PG-xxx → PG_xxx)
+
+* **Registered ID scheme for performance guarantees is now `PG_xxx`.** `PG-xxx` → `PG_xxx` across every non-log Markdown file (13 files, 102 code occurrences): the performance-guarantee series now uses the same underscore separator as the owner-metric series (`MT_BESS_001`), on the maintainer's decision to standardize. Numbers unchanged, so no metric was renumbered; only the separator moved. Log files keep the old form as history. The Mermaid.ai copy of the metrics tree re-pushed with the new labels.
+
 ## 2026-09-02 (segment `PoC` → `POM`; ported from the first project clone)
 
 * **`PoC` (Point of Connection) renamed `POM` (Point of Metering)** across segment-types, taxonomy (block type, instance grammar `POM-{N}`, external-segment list, substation contents, graphs) and the canonical head-end model. First-clone lesson: the old name conflated the commercial metering boundary — the revenue meter, where every measured guarantee actually lives — with the physical point of interconnection, which typically carries no metrics. Projects that need the physical POI name it as its own boundary.

@@ -98,7 +98,7 @@ Manufacturing measures a line with **OEE**, Overall Equipment Effectiveness: is 
 | **Equipment Availability (EA)** | Is the BESS on? | % | MW installed, MW contracted |
 | **Operational Availability (OA)** | Is it responding to dispatch? | MW | % contracted |
 | **Power Availability (PA)** | Can it deliver full power right now? | MW | % installed, % contracted |
-| **Energy Availability (QA)** | Does it still hold the capacity promised? | MWh | % installed, % contracted |
+| **Energy Capacity (QA)** | Does it still hold the capacity promised? | MWh | % installed, % contracted |
 
 Each is strong where the others are blind, which is the whole argument for computing all four rather than picking one:
 
@@ -109,7 +109,7 @@ Each is strong where the others are blind, which is the whole argument for compu
 | Power | **High** (MW) | **High**, 100% of calendar time | Medium, computed by the EMS from equipment-reported metrics | Medium: corner cases that are hard to model, such as reactive-power and temperature derating |
 | Energy | **High** (MWh) | Medium: applies continuously, but only updates at a capacity test | **High**, measured by a controlled test rather than estimated | Medium: capacity tests are run in best-case operating conditions |
 
-Equipment availability covers all the time but says only on or off. Operational availability is the most trustworthy number available, because it compares a meter against a setpoint, but it only exists while the plant is being dispatched. Power availability fills that gap with full calendar coverage at the cost of trusting an EMS estimate. Energy availability is the odd one out: high accuracy because it is measured by a controlled test, low frequency for the same reason. No single one of them is the answer.
+Equipment availability covers all the time but says only on or off. Operational availability is the most trustworthy number available, because it compares a meter against a setpoint, but it only exists while the plant is being dispatched. Power availability fills that gap with full calendar coverage at the cost of trusting an EMS estimate. Energy capacity is the odd one out: high accuracy because it is measured by a controlled test, low frequency for the same reason. No single one of them is the answer.
 
 #### The combination
 
@@ -285,7 +285,7 @@ BESS_AP = BESS_ADP                      if BESS_SOC = 100%
 - **SOC estimation error at the rails.** High and low SOC is exactly where the estimate is worst. A depth-weighted derate is the usual treatment.
 - **SOC override for balancing.** Where the reported BESS SOC is deliberately biased to force continued charging or discharging for balancing, the availability calculation must know, or it will read the bias as a fault.
 
-#### 2.4 Energy Availability: does it still hold the capacity promised?
+#### 2.4 Energy Capacity: does it still hold the capacity promised?
 
 The odd one out, and the one most often implemented wrongly. The other three are interval metrics computed from streamed telemetry. This one is neither, and trying to make it one is the mistake.
 
@@ -374,7 +374,7 @@ Compute an owner-side replica of the provider's own definition, whatever it is, 
 
 #### 4.2 Operational availability: the dimension usually missing
 
-Where the agreement carries no response measure, shadow one anyway. It costs nothing beyond data already captured, it is the evidence base for arguing the provider's number overstates what the owner received, and it is the specification to table at the next amendment. It is seeded as an explicit gap row (PG-206) in the PGM for the same reason.
+Where the agreement carries no response measure, shadow one anyway. It costs nothing beyond data already captured, it is the evidence base for arguing the provider's number overstates what the owner received, and it is the specification to table at the next amendment. It is seeded as an explicit gap row (PG_206) in the PGM for the same reason.
 
 Use the §2.2 construction unchanged, including the directional SOC exclusion, so the owner's operational number and the provider-attributed one differ only in **attribution**, never in method. A difference in method turns every conversation into an argument about arithmetic instead of about cause.
 

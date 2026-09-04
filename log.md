@@ -1,5 +1,9 @@
 # Log
 
+## 2026-09-03 (BESS_Experts folder)
+
+* **New top-level resource `BESS_Experts/`**, the training and reference material behind the toolkit, moved whole from `Performance_Guarantee_Matrix(PGM)/references/` with history. Inbound links repointed repo-wide (root index, PGM, Metrics Tree calc sheets); README gained a Reference material section. Detail in [`BESS_Experts/log.md`](BESS_Experts/log.md).
+
 ## 2026-09-02 (genericity audit: HEAD 70f7b1b + working tree + full history)
 
 * **Audit run before committing the day's ported changes.** Scope: all committable working-tree files (all types), the `70f7b1b` commit's added lines, and a full-history blob scan over every text object (533 objects listed; scanner verified against known-dirty and known-clean strings before trusting results). Wordlist dated 2026-08-17, both source clones covered.

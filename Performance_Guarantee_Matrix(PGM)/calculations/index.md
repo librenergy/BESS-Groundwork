@@ -1,6 +1,6 @@
 # Calculation Sheets
 
-One standalone sheet per guarantee mechanism, each carrying the complete calculation conditions so it can be reviewed independently. Built by the [`performance-guarantee-matrix`](/.agents/skills/performance-guarantee-matrix/SKILL.md) skill; name them `PG-{ID}-{contract}-{metric}.md` (the guarantee’s PG code first, so sheets sort by series).
+One standalone sheet per guarantee mechanism, each carrying the complete calculation conditions so it can be reviewed independently. Built by the [`performance-guarantee-matrix`](/.agents/skills/performance-guarantee-matrix/SKILL.md) skill; name them `PG_{ID}-{contract}-{metric}.md` (the guarantee’s PG code first, so sheets sort by series).
 
 * [Calc sheet template](calc-sheet-template.md) - The section structure every sheet follows, with a worked availability example.
 

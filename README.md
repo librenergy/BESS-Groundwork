@@ -92,7 +92,7 @@ All resources below are **templates**. The workflow: **clone this entire reposit
 | [RACI Matrix](./RACI_Matrix%28RACI%29/raci-matrix.md) | [`raci-matrix`](./.agents/skills/raci-matrix/SKILL.md) | Template | Responsible/Accountable/Consulted/Informed assignments for operational events and processes, plus the escalation & communication plan (severity levels, who-calls-whom chains, notification deadlines) built on the accountable parties. |
 | [Performance Guarantee Matrix](./Performance_Guarantee_Matrix%28PGM%29/performance-guarantee-matrix.md) | [`performance-guarantee-matrix`](./.agents/skills/performance-guarantee-matrix/SKILL.md) | Template | Inventory of measured-performance guarantees with their exact calculation methodologies, exclusion asymmetries, and shadow-calculation requirements. |
 | [Warranty Obligation Matrix](./Warranty_Obligation_Matrix%28WOM%29/warranty-obligation-matrix.md) | [`warranty-obligation-matrix`](./.agents/skills/warranty-obligation-matrix/SKILL.md) | Template | Inventory of defect-style warranties, claim paths, and the owner-side conditions that keep coverage valid. |
-| [Metrics Tree](./Metrics_Tree%28MT%29/metrics-tree.md) | [`metrics-tree`](./.agents/skills/metrics-tree/SKILL.md) | Template | The tree (decomposition of the headline value, grouped by governing agreement) plus the per-segment metric registry (PG-xxx contractual rows referencing the PGM; MT_ owner metrics with calculation sheets in calculations/). |
+| [Metrics Tree](./Metrics_Tree%28MT%29/metrics-tree.md) | [`metrics-tree`](./.agents/skills/metrics-tree/SKILL.md) | Template | The tree (decomposition of the headline value, grouped by governing agreement) plus the per-segment metric registry (PG_xxx contractual rows referencing the PGM; MT_ owner metrics with calculation sheets in calculations/). |
 | [Definitions](./Definitions%28DEF%29/index.md) | [`definitions-taxonomy`](./.agents/skills/definitions-taxonomy/SKILL.md) | Template | Global glossary: every acronym/term/organization with its project meaning, ambiguous terms flagged. The naming authority (taxonomy: codes, ID schemes, segment grammar) lives in Ontology(ONT)/taxonomy.md. |
 | [Groundwork Ontology](./Ontology%28ONT%29/index.md) | [`ontology`](./.agents/skills/ontology/SKILL.md) | Template | The semantic foundation: segment taxonomy, measurement vocabulary (one name/unit/definition per quantity), and canonical data models per segment type, plus the platform-projection spec an agent uses to build dimension data and canonical tables. DT is the prose authority; ONT is the identifier authority. |
 
@@ -113,6 +113,12 @@ Three kinds, distinguished by cadence and audience: **data products** recur on a
 | [State of Energy Mapping](./Data_Product%28DP%29/State_of_Energy_Mapping/state-of-energy-mapping.md) | [`data-product`](./.agents/skills/data-product/SKILL.md) | Template | The remap from installed state of energy (OEM fleet) to contractual state of energy (the offtaker's 0-to-contracted range): buffers, the remap function block and its accounting gains, computation owner, and the layered counting/steering/recalibration algorithm. |
 | [Work Products](./Work_Product%28WP%29/index.md) | — | Category | Engineering studies and reviews produced for the project: reliability study, spare parts review, failover/redundancy test study, telemetry readiness assessment, performance test review, augmentation review, LD exposure review, RCA. Point-in-time analyses ending in findings, as opposed to the recurring deliverables in Data Products. |
 | [Standard Operating Procedures](./Standard_Operating_Procedures%28SOP%29/index.md) | — | Category | Step-by-step procedures issued to operating parties and counterparties: controlled documents with owner, revision, distribution list, and acknowledgement tracking. A study concluding "someone should do X when Y" hands its procedure off here. |
+
+### Reference material
+
+| Resource | Skill | Status | Description |
+|:---|:---|:---|:---|
+| [BESS Experts](./BESS_Experts/index.md) | — | Reference | Training and reference material behind the toolkit: the BESS performance-engineering video series with its slide decks, and a map from each episode to where its content is implemented. Not project material, never contractual; grows on its own clock and seeds the bessexperts.com community. |
 
 ## Using with AI agents
 

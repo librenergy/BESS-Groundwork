@@ -1,5 +1,13 @@
 # Log
 
+## 2026-09-03 (references moved to BESS_Experts)
+
+* **`references/` moved to the top-level [`BESS_Experts/`](../BESS_Experts/index.md)** so the training material can grow independently of this document. The index and the main document's closing note now point there; nothing else in the PGM changed.
+
+## 2026-09-02 (separator sweep: PG-xxx → PG_xxx)
+
+* **Guarantee IDs now `PG_xxx`.** `PG-xxx` → `PG_xxx` across every non-log Markdown file (13 files, 102 code occurrences): the performance-guarantee series now uses the same underscore separator as the owner-metric series (`MT_BESS_001`), on the maintainer's decision to standardize. Numbers unchanged, so no metric was renumbered; only the separator moved. Log files keep the old form as history. The Mermaid.ai copy of the metrics tree re-pushed with the new labels. The header's ID rule and every row reference in this document and its calc sheets updated in place.
+
 ## 2026-09-02 (calc-sheet template: PG code in title and H1)
 
 * `calc-sheet-template.md` title/H1 changed from "Calc Sheet: {{CONTRACT}} — {{METRIC}}" to "PG-{{ID}} — {{CONTRACT}} {{METRIC}}", and the rename instruction now says to carry the code in the frontmatter title and H1 as well as the filename — every appearance of a metric carries its reference. Ported from the first project clone, where a QC pass caught sheets whose files were renumbered but whose titles were not.
